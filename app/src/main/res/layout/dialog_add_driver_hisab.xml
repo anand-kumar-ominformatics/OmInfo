@@ -66,10 +66,10 @@
             android:layout_alignParentEnd="true"
             android:background="@drawable/toggle_editext_color"
             android:fontFamily="@font/font_regular"
-            android:hint="Enter"
             android:gravity="start"
+            android:hint="Enter"
+            android:inputType="text"
             android:padding="10dp"
-            android:inputType="numberDecimal"
             android:textSize="@dimen/_14sp" />
 
     </RelativeLayout>

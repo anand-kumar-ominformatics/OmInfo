@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     >
 
-    <include layout="@layout/content_dashboard"/>
+    <include
+        layout="@layout/content_dashboard"
+         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

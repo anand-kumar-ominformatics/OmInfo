@@ -20,7 +20,27 @@
         <item name="colorPrimary">@color/light_grey</item>
         <item name="colorPrimaryDark">@color/light_grey</item>
     </style>
-
+    <style name="EditTextPIN4Digit" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:layout_width">@dimen/_40dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="fontFamily">@font/gilroy_regular</item>
+        <item name="android:maxLength">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:focusable">false</item>
+        <item name="android:imeOptions">actionDone</item>
+        <item name="android:inputType">numberPassword</item>
+        <item name="android:singleLine">true</item>
+        <item name="errorTextColor">@color/deep_red</item>
+        <item name="android:textColor">@color/back_text_colour</item>
+        <item name="android:textSize">@dimen/_16sp</item>
+        <item name="android:theme">@style/EditTextBseLine</item>
+    </style>
+    <style name="EditTextBseLine" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorControlNormal">@color/back_text_colour</item>
+        <item name="colorControlActivated">@color/color_main</item>
+        <item name="colorControlHighlight">@color/color_main</item>
+    </style>
     <style name="AppSearchView" parent="Widget.AppCompat.SearchView" >
         <item name="android:textAlignment">center</item>
         <item name="android:textSize">@dimen/_14sp</item>

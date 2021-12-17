@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/layHeaderToolbar"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:paddingBottom="@dimen/_10dp"
+android:gravity="center_horizontal"
+    android:paddingHorizontal="@dimen/_3dp"
+android:orientation="horizontal"
+>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:gravity="left"
+        android:onClick="onClick"
+        android:layout_weight="1"
+        android:paddingLeft="@dimen/_3dp"
+        android:fontFamily="@font/gilroy_regular"
+        android:paddingTop="@dimen/_5dp"
+        android:text="Date"
+        android:inputType="textMultiLine"
+        android:textColor="@color/back_text_colour"
+        android:textSize="@dimen/_12sp"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvVehicleNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginLeft="@dimen/_5dp"
+        android:fontFamily="@font/gilroy_regular"
+        android:gravity="center"
+        android:paddingTop="@dimen/_5dp"
+        android:text="Mh"
+        android:inputType="textMultiLine"
+        android:layout_weight="1"
+        android:textColor="@color/back_text_colour"
+        android:textSize="@dimen/_12sp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDriver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:gravity="center"
+        android:onClick="onClick"
+        android:layout_marginLeft="@dimen/_5dp"
+        android:inputType="textMultiLine"
+        android:layout_weight="1"
+        android:fontFamily="@font/gilroy_regular"
+        android:paddingTop="@dimen/_5dp"
+        android:text="Driver"
+        android:maxLength="15"
+        android:textColor="@color/back_text_colour"
+        android:textSize="@dimen/_12sp"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvAmt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginLeft="@dimen/_5dp"
+        android:fontFamily="@font/gilroy_regular"
+        android:gravity="center"
+        android:paddingRight="@dimen/_3dp"
+        android:paddingTop="@dimen/_5dp"
+        android:text=""
+        android:inputType="textMultiLine"
+        android:layout_weight="1"
+        android:textColor="@color/back_text_colour"
+        android:textSize="@dimen/_12sp" />
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

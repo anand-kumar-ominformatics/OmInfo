@@ -1,15 +1,18 @@
 <resources>
-    <string name="app_name">Om Turanth</string>
+    <string name="app_name">Turanth Suvidha Staff</string>
     <string name="scr_lbl_please_enter_your_username_and_password">Please enter your \nUsername and password</string>
     <string name="scr_lbl_username">Username</string>
     <string name="scr_lbl_password">Password</string>
     <string name="scr_lbl_truck_details"><u>Truck Documents</u></string>
     <string name="scr_lbl_cleaner_details"><u>Cleaner Details</u></string>
+    <string name="scr_lbl_Driver_details">ड्राइवर डिटेल्स</string>
     <string name="scr_lbl_cleaner_batta">क्लीनर भत्ता</string>
     <string name="scr_lbl_cleaner_bhatta">ड्राइवर भत्ता ( टोटल दिन : 03 )</string>
-    <string name="scr_lbl_cleaner_bhatta_new">ड्राइवर भत्ता</string>
+    <string name="scr_lbl_cleaner_bhatta_new">ड्राइवर भत्ता ( टोटल दिन : 03 )</string>
     <string name="scr_lbl_trip_kharcha">ट्रिप खर्चा</string>
     <string name="scr_lbl_okay">OKAY</string>
+    <string name="scr_lbl_not_okay">NOT OKAY</string>
+    <string name="scr_lbl_sorry_no_contacts_available">Sorry, No Data Available!</string>
     <string name="err_msg_connection_was_refused">Please check your internet connection or try again later</string>
     <string name="scr_lbl_add_kharcha">खर्चा ऐड करे</string>
     <string name="scr_lbl_total_hisab">टोटल हिसाब</string>
@@ -28,9 +31,9 @@
     <string name="scr_lbl_trip">ट्रिप</string>
     <string name="scr_lbl_pass_hisab">Pass Hisab</string>
     <string name="scr_title_purana_hisab">पुराना हिसाब</string>
-    <string name="scr_lbl_cleaner_name">क्लीनर नाम :</string>
+    <string name="scr_lbl_cleaner_name">क्लीनर : </string>
     <string name="scr_lbl_aur_janiye">और जानिए</string>
-    <string name="scr_lbl_complaint">COMPLAINT</string>
+    <string name="scr_lbl_complaint">COMPLAIN</string>
     <string name="scr_lbl_check_issue">Check Issue</string>
     <string name="scr_lbl_toll_kharcha">टोल खर्चा</string>
     <string name="scr_lbl_submit">SUBMIT</string>
@@ -70,6 +73,35 @@
     <string name="msg_weight_submitted">Weight Submitted Successfully!</string>
     <string name="scr_lbl_find_in_maps">Find In Maps</string>
     <string name="scr_lbl_kata_chitthi_weight">कांटा चिट्ठी वजन</string>
+    <string name="scr_lbl_unresolved">Unresolved</string>
+    <string name="scr_lbl_stop_recording">Recording Completed</string>
+    <string name="scr_lbl_advance_assign">Advance Assigned</string>
+    <string name="ram_singh"><u>Ram Singh</u></string>
+    <string name="ravi_sharma"><u>Ravi Sharma</u></string>
+    <string name="scr_lbl_advance_assigned">Advance Assigned</string>
+    <string name="scr_lbl_advance_assigned_to">Advance Assigned To</string>
+    <string name="src_lbl_otp_received">OTP Received</string>
+    <string name="scr_lbl_assigned_advance">Assigned Advance</string>
+    <string name="scr_lbl_pay_advance">Pay Advance</string>
+    <string name="scr_lbl_enter_vehicle_number">Enter Veh. No. or Driver Name</string>
+    <string name="scr_lbl_driver_name">Driver Name</string>
+    <string name="hint_enter_driver_name">Enter Driver Name</string>
+    <string name="scr_lbl_cleaner_name_eng">Cleaner Name</string>
+    <string name="hint_enter_cleaner_name">Enter Cleaner Name</string>
+    <string name="scr_lbl_amount">Amount</string>
+    <string name="hint_enter_amount">Enter Amount</string>
+    <string name="scr_lbl_remark">Remark</string>
+    <string name="hint_enter_remark">Enter Remark</string>
+    <string name="scr_lbl_date">Date</string>
+    <string name="scr_lbl_driver">Driver</string>
+    <string name="scr_lbl_cleaner">Cleaner</string>
+    <string name="btn_send_otp">send otp</string>
+    <string name="msg_advance_paid_success">Advance Paid Successfully !</string>
+    <string name="msg_otp_you_have_entered">OTP you have enterd is incorrect.</string>
+    <string name="msg_otp_has_successfully">OTP has successfully sent on driver\'s mobile.</string>
+    <string name="scr_lbl_vehicle_no">Vehicle No</string>
+    <string name="scr_lbl_no_driver">No Driver</string>
+    <string name="scr_lbl_advance_to_driver">Advance to Driver</string>
 
 
 </resources>

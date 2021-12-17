@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_below="@+id/toolbar_layout"
+    android:background="@color/color_main"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/cl_mainlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_layout">
+
+        <include layout="@layout/content_collapse_common_header" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardOne"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_70dp"
+                    android:layout_marginHorizontal="@dimen/_16dp"
+                    android:layout_weight="1"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:layout_marginTop="@dimen/_20dp"
+                    android:elevation="@dimen/_12dp"
+                    app:cardCornerRadius="@dimen/_8dp"
+                    app:cardElevation="@dimen/_3dp">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/layFilterCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_70dp"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:layout_gravity="right|center"
+                        android:gravity="right|center"
+                        android:paddingVertical="@dimen/_10dp"
+                        android:paddingHorizontal="@dimen/_10dp">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:weightSum="2"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                >
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/imgFilter"
+                                    android:layout_width="@dimen/_16dp"
+                                    android:layout_height="@dimen/_16dp"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_marginRight="@dimen/_8dp"
+                                    android:src="@drawable/ic_filter" />
+
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvStart"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_toRightOf="@+id/imgFilter"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:text="Monday : 26 october 2021"
+                                    android:textColor="@color/back_text_colour"
+                                    android:textSize="@dimen/_14sp" />
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_marginTop="@dimen/_10dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                >
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/imgLoc"
+                                    android:layout_width="@dimen/_16dp"
+                                    android:layout_height="@dimen/_16dp"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_marginRight="@dimen/_8dp"
+                                    android:src="@drawable/ic_loc" />
+
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvStartLoc"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_toRightOf="@+id/imgLoc"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:text="Vashi Branch"
+                                    android:textColor="@color/back_text_colour"
+                                    android:textSize="@dimen/_14sp" />
+
+                            </RelativeLayout>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:weightSum="2"
+                            android:layout_weight="3.2"
+                            android:gravity="right|center"
+                            android:layout_gravity="right|center"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_toRightOf="@+id/imgFilter1"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:text="₹ 2500"
+                                android:gravity="center"
+                                android:layout_gravity="center"
+                                android:textColor="@color/green"
+                                android:textSize="@dimen/_18dp" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvStart1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_toRightOf="@+id/imgFilter1"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:text="Branch Bal"
+                                android:gravity="center"
+                                android:layout_gravity="center"
+                                android:textColor="@color/back_text_colour"
+                                android:textSize="@dimen/_14sp" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/_105dp"
+                    android:background="@drawable/layout_round_shape_corners"
+                    android:orientation="vertical">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvPuranaHisab"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_16dp"
+                        android:layout_marginBottom="@dimen/_16dp"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:nestedScrollingEnabled="true"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/row_purana_hisab" />
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+            </RelativeLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

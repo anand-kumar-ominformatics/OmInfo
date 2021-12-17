@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_below="@+id/toolbar_layout"
+    android:background="@color/color_main"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/cl_mainlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_layout">
+
+        <include layout="@layout/content_collapse_common_header" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/layout_round_shape_corners"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_16dp"
+                        android:layout_marginTop="@dimen/_20dp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvGadiNo"
+                            android:layout_width="@dimen/_100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/gilroy_semibold"
+                            android:gravity="left"
+                            android:text="Veh. Number"
+                            android:textColor="@color/back_text_colour"
+                            android:textSize="@dimen/_14sp" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvGadiNoColon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/tvGadiNo"
+                            android:fontFamily="@font/gilroy_semibold"
+                            android:text="  :   "
+                            android:textColor="@color/back_text_colour"
+                            android:textSize="@dimen/_14sp" />
+
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/etDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/tvGadiNoColon"
+                            android:background="@drawable/toggle_editext_color"
+                            android:editable="true"
+                            android:fontFamily="@font/gilroy_semibold"
+                            android:gravity="start"
+                            android:hint="Enter Veh. Number"
+                            android:imeOptions="actionDone"
+                            android:inputType="text"
+                            android:paddingVertical="@dimen/_12dp"
+                            android:paddingLeft="@dimen/_15dp"
+                            android:paddingRight="@dimen/_10dp"
+                            android:text=""
+                            android:textColor="@drawable/edit_text_selector"
+                            android:textColorHint="@color/app_gray"
+                            android:textSize="@dimen/_14sp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_16dp"
+                        android:layout_marginTop="@dimen/_10dp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvDriverName"
+                            android:layout_width="@dimen/_100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/gilroy_semibold"
+                            android:gravity="left"
+                            android:text="@string/scr_lbl_driver_name"
+                            android:textColor="@color/back_text_colour"
+                            android:textSize="@dimen/_14sp" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvDriverNameColon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/tvDriverName"
+                            android:fontFamily="@font/gilroy_semibold"
+                            android:text="  :   "
+                            android:textColor="@color/back_text_colour"
+                            android:textSize="@dimen/_14sp" />
+
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/etDriverName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/tvDriverNameColon"
+                            android:background="@drawable/toggle_editext_color"
+                            android:editable="true"
+                            android:fontFamily="@font/gilroy_semibold"
+                            android:gravity="start"
+                            android:hint="@string/hint_enter_driver_name"
+                            android:imeOptions="actionDone"
+                            android:inputType="text"
+                            android:paddingVertical="@dimen/_12dp"
+                            android:paddingLeft="@dimen/_15dp"
+                            android:paddingRight="@dimen/_10dp"
+                            android:text=""
+                            android:textColor="@drawable/edit_text_selector"
+                            android:textColorHint="@color/app_gray"
+                            android:textSize="@dimen/_14sp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_16dp"
+                        android:layout_marginTop="@dimen/_10dp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvCleanerName"
+                            android:layout_width="@dimen/_100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/gilroy_semibold"
+                            android:gravity="left"
+                            android:text="@string/scr_lbl_cleaner_name_eng"
+                            android:textColor="@color/back_text_colour"
+                            android:textSize="@dimen/_14sp" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvCleanerNameColon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/tvCleanerName"
+                            android:fontFamily="@font/gilroy_semibold"
+                            android:text="  :   "
+                            android:textColor="@color/back_text_colour"
+                            android:textSize="@dimen/_14sp" />
+
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/etCleanerName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/tvCleanerNameColon"
+                            android:background="@drawable/toggle_editext_color"
+                            android:editable="true"
+                            android:fontFamily="@font/gilroy_semibold"
+                            android:gravity="start"
+                            android:hint="@string/hint_enter_cleaner_name"
+                            android:imeOptions="actionDone"
+                            android:inputType="text"
+                            android:paddingVertical="@dimen/_12dp"
+                            android:paddingLeft="@dimen/_15dp"
+                            android:paddingRight="@dimen/_10dp"
+                            android:text=""
+                            android:textColor="@drawable/edit_text_selector"
+                            android:textColorHint="@color/app_gray"
+                            android:textSize="@dimen/_14sp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_16dp"
+                        android:layout_marginTop="@dimen/_10dp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvAmount"
+                            android:layout_width="@dimen/_100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/gilroy_semibold"
+                            android:gravity="left"
+                            android:text="@string/scr_lbl_amount"
+                            android:textColor="@color/back_text_colour"
+                            android:textSize="@dimen/_14sp" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvAmountColon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/tvAmount"
+                            android:fontFamily="@font/gilroy_semibold"
+                            android:text="  :   "
+                            android:textColor="@color/back_text_colour"
+                            android:textSize="@dimen/_14sp" />
+
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/etAmount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/tvAmountColon"
+                            android:background="@drawable/toggle_editext_color"
+                            android:editable="true"
+                            android:fontFamily="@font/gilroy_semibold"
+                            android:gravity="start"
+                            android:hint="@string/hint_enter_amount"
+                            android:imeOptions="actionDone"
+                            android:inputType="text"
+                            android:paddingVertical="@dimen/_12dp"
+                            android:paddingLeft="@dimen/_15dp"
+                            android:paddingRight="@dimen/_10dp"
+                            android:text=""
+                            android:textColor="@drawable/edit_text_selector"
+                            android:textColorHint="@color/app_gray"
+                            android:textSize="@dimen/_14sp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_16dp"
+                        android:layout_marginTop="@dimen/_10dp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvRemark"
+                            android:layout_width="@dimen/_100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/gilroy_semibold"
+                            android:gravity="left"
+                            android:text="@string/scr_lbl_remark"
+                            android:textColor="@color/back_text_colour"
+                            android:textSize="@dimen/_14sp" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvRemarkColon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/tvRemark"
+                            android:fontFamily="@font/gilroy_semibold"
+                            android:text="  :   "
+                            android:textColor="@color/back_text_colour"
+                            android:textSize="@dimen/_14sp" />
+
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/etRemark"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/tvRemarkColon"
+                            android:background="@drawable/toggle_editext_color"
+                            android:editable="true"
+                            android:fontFamily="@font/gilroy_semibold"
+                            android:gravity="start"
+                            android:hint="@string/hint_enter_remark"
+                            android:imeOptions="actionDone"
+                            android:inputType="text"
+                            android:paddingVertical="@dimen/_12dp"
+                            android:paddingLeft="@dimen/_15dp"
+                            android:paddingRight="@dimen/_10dp"
+                            android:text=""
+                            android:textColor="@drawable/edit_text_selector"
+                            android:textColorHint="@color/app_gray"
+                            android:textSize="@dimen/_14sp" />
+                    </RelativeLayout>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/submitButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="bottom"
+                    android:layout_marginHorizontal="@dimen/_16dp"
+                    android:layout_marginBottom="@dimen/_20dp"
+                    android:visibility="visible"
+                    android:background="@drawable/bg_button_round_corner_5"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/_3dp"
+                    android:text="SUBMIT"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sp" />
+
+            </RelativeLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -5,7 +5,7 @@ android:id="@+id/layHeaderToolbar"
 android:layout_width="match_parent"
 android:layout_height="wrap_content"
 android:layout_marginHorizontal="@dimen/_16dp"
-android:layout_marginBottom="@dimen/_10dp"
+android:layout_marginBottom="@dimen/_10dp" android:layout_marginVertical="@dimen/_5dp"
 android:gravity="center"
 android:orientation="horizontal"
 android:weightSum="2">
@@ -18,7 +18,7 @@ android:weightSum="2">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvHisabName"
-        android:layout_width="@dimen/_120dp"
+        android:layout_width="@dimen/_85dp"
         android:layout_height="wrap_content"
         android:layout_gravity="left|center"
         android:clickable="true"
@@ -26,7 +26,7 @@ android:weightSum="2">
         android:onClick="onClick"
         android:fontFamily="@font/gilroy_bold"
         android:paddingTop="@dimen/_5dp"
-        android:text="कांटा चिट्ठी वजन"
+        android:text="कांटा चिट्ठी"
         android:textColor="@color/back_text_colour"
         android:textSize="@dimen/_16sp"
         />
@@ -54,13 +54,15 @@ android:weightSum="2">
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/etHisab"
-        android:layout_width="@dimen/_140dp"
+        android:layout_width="@dimen/_120dp"
         android:layout_height="wrap_content"
         android:background="@drawable/toggle_editext_color"
         android:fontFamily="@font/gilroy_regular"
         android:hint="₹ Enter Amount"
-        android:padding="10dp"
         android:inputType="numberDecimal"
+        android:paddingVertical="4dp"
+        android:text=""
+        android:gravity="center"
         android:textSize="@dimen/_14sp" />
 
 

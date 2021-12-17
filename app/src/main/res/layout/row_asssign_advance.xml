@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layClick"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/_16dp"
+    android:layout_marginBottom="@dimen/_10dp"
+    android:background="@drawable/layout_round_shape_corners_8_semi_blue"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:weightSum="3">
+
+    <View
+        android:id="@+id/viewBorder"
+        android:layout_width="@dimen/_4dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/layout_round_shape_corners_8_green_view"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.2"
+        android:paddingVertical="@dimen/_10dp"
+        android:paddingLeft="@dimen/_12dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:fontFamily="@font/gilroy_bold"
+                android:text="@string/scr_lbl_advance_assigned_to"
+                android:textColor="@color/color_main"
+                android:textSize="@dimen/_14sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6dp"
+           >
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvGadiNo"
+                android:layout_width="@dimen/_60dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:fontFamily="@font/font_regular"
+                android:text="Veh. No."
+                android:textColor="@color/back_text_colour"
+                android:textSize="@dimen/_14sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvGadiNoColon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_regular"
+                android:text=" :   "
+                android:layout_toRightOf="@+id/tvGadiNo"
+                android:textColor="@color/back_text_colour"
+                android:textSize="@dimen/_14sp" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvGadiNoValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tvGadiNoColon"
+                android:fontFamily="@font/gilroy_semibold"
+                android:text="MH cv 1F 5674"
+                android:textColor="@color/back_text_colour"
+                android:textSize="@dimen/_14sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_3dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTrip"
+                android:layout_width="@dimen/_60dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:fontFamily="@font/font_regular"
+                android:text="Driver"
+                android:textColor="@color/back_text_colour"
+                android:textSize="@dimen/_14sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTripColon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_regular"
+                android:text=" :   "
+                android:layout_toRightOf="@+id/tvTrip"
+                android:textColor="@color/back_text_colour"
+                android:textSize="@dimen/_14sp" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTripValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tvTripColon"
+                android:fontFamily="@font/gilroy_semibold"
+                android:text="Deepak"
+                android:textColor="@color/back_text_colour"
+                android:textSize="@dimen/_14sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_3dp"
+            android:layout_marginBottom="@dimen/_6dp"
+           >
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCleaner"
+                android:layout_width="@dimen/_60dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:fontFamily="@font/font_regular"
+                android:text="Cleaner"
+                android:textColor="@color/back_text_colour"
+                android:textSize="@dimen/_14sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCleanerColon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_regular"
+                android:text=" :   "
+                android:layout_toRightOf="@+id/tvCleaner"
+                android:textColor="@color/back_text_colour"
+                android:textSize="@dimen/_14sp" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCleanerValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tvCleanerColon"
+                android:fontFamily="@font/gilroy_semibold"
+                android:text="Deepak"
+                android:textColor="@color/back_text_colour"
+                android:textSize="@dimen/_14sp" />
+
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.8"
+        android:paddingRight="@dimen/_30dp"
+        android:paddingVertical="@dimen/_10dp"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:fontFamily="@font/gilroy_semibold"
+            android:text="₹2500"
+            android:textColor="@color/green"
+            android:textSize="@dimen/_15sp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

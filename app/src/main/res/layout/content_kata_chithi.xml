@@ -46,30 +46,177 @@
                             android:id="@+id/tvStart"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
                             android:fontFamily="@font/gilroy_semibold"
-                            android:text="तारीख        :        "
+                            android:text="Vehicle No     :     "
+                            android:textColor="@color/back_text_colour"
+                            android:textSize="@dimen/_16sp" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/tvStart"
+                            android:background="@drawable/toggle_editext_color"
+                            android:fontFamily="@font/gilroy_semibold"
+                            android:gravity="start"
+                            android:inputType="text"
+                            android:textSize="@dimen/_14sp"
+                            app:boxBackgroundColor="#FFF"
+                            app:boxCornerRadiusBottomEnd="@dimen/_10dp"
+                            app:boxCornerRadiusBottomStart="@dimen/_10dp"
+                            app:boxCornerRadiusTopEnd="@dimen/_10dp"
+                            app:boxCornerRadiusTopStart="@dimen/_10dp"
+                            app:boxStrokeColor="#FFF"
+                            app:hintEnabled="false"
+                            app:hintTextAppearance="@style/Editext.Theme"
+                            app:placeholderTextAppearance="@style/Editext.Theme">
+
+                            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                                android:id="@+id/AutoComTextViewVehNo"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_40dp"
+                                android:background="@drawable/toggle_editext_color"
+                                android:backgroundTint="@android:color/transparent"
+                                android:clickable="true"
+                                android:dropDownHeight="200dp"
+                                android:editable="true"
+                                android:ellipsize="start"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true"
+                                android:fontFamily="@font/gilroy_regular"
+                                android:hint="@string/scr_lbl_vehicle_no"
+                                android:imeOptions="actionDone"
+                                android:inputType="textAutoComplete|textNoSuggestions"
+                                android:maxLines="3"
+                                android:paddingVertical="@dimen/_1dp"
+                                android:textColor="@color/back_text_colour"
+                                android:textColorHint="@color/app_gray"
+                                android:textSize="@dimen/_14sp" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_16dp"
+                        android:layout_marginTop="@dimen/_20dp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvBranchTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/gilroy_semibold"
+                            android:text="Driver Name  :     "
                             android:textColor="@color/back_text_colour"
                             android:textSize="@dimen/_16sp" />
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/tvDateValue"
+                            android:id="@+id/tvBranchName"
                             android:layout_width="200dp"
                             android:layout_height="wrap_content"
-                            android:layout_toRightOf="@+id/tvStart"
+                            android:layout_toRightOf="@+id/tvBranchTitle"
                             android:background="@drawable/bottom_line_textview"
-                            android:fontFamily="@font/font_semibold"
+                            android:fontFamily="@font/font_regular"
+                            android:hint="@string/scr_lbl_driver_name"
+                            android:paddingLeft="@dimen/_15dp"
+                            android:paddingBottom="@dimen/_8dp"
                             android:text=""
                             android:textColor="@color/back_text_colour"
+                            android:textColorHint="@color/app_gray"
                             android:textSize="@dimen/_16sp" />
                     </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_16dp"
+                        android:layout_marginTop="@dimen/_20dp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvVehicleNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/gilroy_semibold"
+                            android:text="Date               :     "
+                            android:textColor="@color/back_text_colour"
+                            android:textSize="@dimen/_16sp" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvDateValueTo"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/tvVehicleNo"
+                            android:background="@drawable/bottom_line_textview"
+                            android:fontFamily="@font/font_regular"
+                            android:hint="Select Date"
+                            android:paddingLeft="@dimen/_15dp"
+                            android:paddingBottom="@dimen/_8dp"
+                            android:text=""
+                            android:textColor="@color/back_text_colour"
+                            android:textColorHint="@color/app_gray"
+                            android:textSize="@dimen/_14sp" />
+                    </RelativeLayout>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/getDetailsButton"
+                        android:layout_width="@dimen/_120dp"
+                        android:layout_height="@dimen/_35dp"
+                        android:layout_gravity="right"
+                        android:layout_marginHorizontal="@dimen/_16dp"
+                        android:layout_marginTop="@dimen/_20dp"
+                        android:background="@drawable/bg_button_round_corner_blue"
+                        android:fontFamily="@font/gilroy_semibold"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/_2dp"
+                        android:text="Get Details"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14sp" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_16dp"
+                        android:layout_marginTop="@dimen/_20dp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvStartWeight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/gilroy_semibold"
+                            android:text="Weight           :     "
+                            android:textColor="@color/back_text_colour"
+                            android:textSize="@dimen/_16sp" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/etWeight"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/tvStartWeight"
+                            android:background="@drawable/bottom_line_textview"
+                            android:fontFamily="@font/font_regular"
+                            android:hint="Weight"
+                            android:imeOptions="actionDone"
+                            android:inputType="numberDecimal"
+                            android:paddingLeft="@dimen/_15dp"
+                            android:paddingBottom="@dimen/_8dp"
+                            android:text=""
+                            android:textColor="@color/back_text_colour"
+                            android:textColorHint="@color/app_gray"
+                            android:textSize="@dimen/_14sp" />
+
+                    </RelativeLayout>
+
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_16dp"
-                        android:layout_marginTop="@dimen/_16dp"
+                        android:layout_marginTop="@dimen/_20dp"
                         android:fontFamily="@font/gilroy_semibold"
-                        android:text="गैलरी"
+                        android:text="Photos"
                         android:textColor="@color/back_text_colour"
                         android:textSize="@dimen/_16sp" />
 

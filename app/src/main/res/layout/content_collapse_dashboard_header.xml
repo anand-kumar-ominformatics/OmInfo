@@ -69,6 +69,7 @@
                     android:gravity="left"
                     android:onClick="onClick"
                     android:clickable="true"
+                    android:visibility="gone"
                     android:src="@drawable/ic_menu" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -88,6 +89,8 @@
                     android:layout_height="@dimen/_20dp"
                     android:clickable="true"
                     android:onClick="onClick"
+                    android:layout_marginTop="@dimen/_2dp"
+                    android:layout_marginRight="@dimen/_20dp"
                     android:src="@drawable/ic_phone"
                     android:visibility="visible" />
 
@@ -101,7 +104,7 @@
                     android:clickable="true"
                     android:onClick="onClick"
                     android:src="@drawable/ic_complaint"
-                    android:visibility="visible" />
+                    android:visibility="gone" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvComplaintCount"
@@ -109,9 +112,10 @@
                     android:layout_height="@dimen/_15dp"
                     android:layout_marginLeft="@dimen/_32dp"
                     android:layout_toRightOf="@+id/imgCall"
-                    android:background="@drawable/layout_round_shape_corners_15_light_blue"
+                    android:background="@drawable/layout_round_shape_corners_15_light_yellow"
                     android:fontFamily="@font/gilroy_semibold"
                     android:text="6"
+                    android:visibility="gone"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_12sp" />
@@ -120,15 +124,16 @@
                     android:id="@+id/imgNotify"
                     android:layout_width="@dimen/_20dp"
                     android:layout_height="@dimen/_20dp"
+                    android:layout_marginRight="@dimen/_20dp"
                     android:layout_toRightOf="@+id/imgReport"
                     android:clickable="true"
+                    android:visibility="gone"
                     android:onClick="onClick"
-                    android:layout_marginRight="@dimen/_20dp"
                     android:src="@drawable/ic_bell" />
 
 
                 <androidx.appcompat.widget.AppCompatTextView
-                   android:id="@+id/tvNotifyCount"
+                    android:id="@+id/tvNotifyCount"
                     android:layout_width="@dimen/_15dp"
                     android:layout_height="@dimen/_15dp"
                     android:layout_marginLeft="@dimen/_12dp"
@@ -136,14 +141,15 @@
                     android:background="@drawable/layout_round_shape_corners_15_light_blue"
                     android:fontFamily="@font/gilroy_semibold"
                     android:text="6"
+                    android:visibility="gone"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_12sp" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imgLogout"
-                    android:layout_width="@dimen/_20dp"
-                    android:layout_height="@dimen/_20dp"
+                    android:layout_width="@dimen/_25dp"
+                    android:layout_height="@dimen/_25dp"
                     android:layout_toRightOf="@+id/imgNotify"
                     android:clickable="true"
                     android:onClick="onClick"
