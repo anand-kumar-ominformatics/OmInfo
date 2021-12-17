@@ -361,7 +361,6 @@ public class KataChithiActivity extends BaseActivity {
                 }catch (Exception e){e.printStackTrace();}
                 break;
             case R.id.submitButton:
-                // Encode into Base64 URL format
                 try{
                     if (mSelectedVehicle != null) {
                         if (mSelectedVehicle.getDriverID() == null
