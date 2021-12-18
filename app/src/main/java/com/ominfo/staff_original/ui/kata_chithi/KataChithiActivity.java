@@ -74,6 +74,7 @@ import com.ominfo.staff_original.ui.kata_chithi.model.VehicleViewModel;
 import com.ominfo.staff_original.ui.login.model.LoginResultTable;
 import com.ominfo.staff_original.util.AppUtils;
 import com.ominfo.staff_original.util.LogUtil;
+import com.ominfo.staff_original.util.RealPathUtils;
 import com.ominfo.staff_original.util.SharedPref;
 import com.ominfo.staff_original.util.Util;
 
@@ -138,7 +139,7 @@ public class KataChithiActivity extends BaseActivity {
 
     @BindView(R.id.imgNoImage)
     CardView imageViewNoImage;
-    private int downloaded = 0, downloadedCount = 0, requestStatus = 1;
+    private int downloaded = 0, downloadedCount = 0;
     List<VehicleResult> vehicleNoDropdown = new ArrayList<>();
     VehicleResult mSelectedVehicle = new VehicleResult();
     @Inject
@@ -146,6 +147,8 @@ public class KataChithiActivity extends BaseActivity {
     private FetchKataChitthiViewModel mFetchKataChitthiViewModel;
     private SaveKataChitthiViewModel mSaveKataChitthiViewModel;
     private VehicleViewModel vehicleViewModel;
+    int cam = 0;
+    private int SELECT_FILE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -214,6 +217,7 @@ public class KataChithiActivity extends BaseActivity {
         etWeight.setText(".00");
         String mDate = AppUtils.getCurrentDateTime_();//SharedPref.getInstance(getApplicationContext()).read(SharedPrefKey.KATA_CHITTI_DATE, AppUtils.getCurrentDateTime_());
         tvDateValue.setText(AppUtils.getconvertedKataData(mDate));
+        cam=2;
         requestPermission();
         //mSelectedVehicle = null;
         callVehicleApi();
@@ -230,6 +234,37 @@ public class KataChithiActivity extends BaseActivity {
         //set toolbar title
         toolbarTitle.setText("Kanta Chitthi");
         initToolbar(1, mContext, R.id.imgBack, R.id.imgReport, R.id.imgNotify, R.id.imgLogout, R.id.imgCall);
+    }
+
+    private void reqPermissionCode(){
+        if(cam==0) {
+            cameraIntent();
+        }else if(cam==1) {
+            galleryIntent();
+        }else if(cam==2) {
+            deleteImagesFolder();
+        }
+    }
+
+    /*private void deleteDir(){
+        File dir = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES), Constants.FILE_NAME);
+        //File oldFile = new File(myDir);
+        if (dir.isDirectory())
+        {
+            String[] children = dir.list();
+            for (int i = 0; i < children.length; i++)
+            {
+                new File(dir, children[i]).delete();
+            }
+        }
+    }*/
+
+    private void galleryIntent() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);//
+        startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
     }
 
     //set value to vehicle colour dropdown
@@ -376,11 +411,9 @@ public class KataChithiActivity extends BaseActivity {
                 }catch (Exception e){e.printStackTrace();}
                 break;
             case R.id.imgCapture:
-                requestStatus = 0;
-                requestPermission();
+                showChooseCameraDialog();
                 break;
             case R.id.tvDateValueTo:
-
                 openDataPicker(tvDateValue);
                 break;
         }
@@ -501,19 +534,42 @@ public class KataChithiActivity extends BaseActivity {
                         1000);
 
             } else {
-                if (requestStatus == 0) {
-                    cameraIntent();
-                } else {
-                    deleteImagesFolder();
-                }
+                reqPermissionCode();
             }
         } else {
-            if (requestStatus == 0) {
-                cameraIntent();
-            } else {
-                deleteImagesFolder();
-            }
+            reqPermissionCode();
         }
+    }
+
+    private void showChooseCameraDialog() {
+        Dialog mDialog = new Dialog(this, R.style.ThemeDialogCustom);
+        mDialog.setContentView(R.layout.dialog_select_image);
+        AppCompatImageView mClose = mDialog.findViewById(R.id.imgCancel);
+        AppCompatTextView tvChooseFromCamera = mDialog.findViewById(R.id.tvChooseFromCamera);
+        AppCompatTextView tvCameraImage = mDialog.findViewById(R.id.tvCameraImage);
+        tvChooseFromCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDialog.dismiss();
+                cam = 1;
+                requestPermission();
+            }
+        });
+        tvCameraImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDialog.dismiss();
+                cam = 0;
+                requestPermission();
+            }
+        });
+        mClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDialog.dismiss();
+            }
+        });
+        mDialog.show();
     }
 
     private void cameraIntent() {
@@ -608,7 +664,7 @@ public class KataChithiActivity extends BaseActivity {
                 if (loginResultTable != null) {
                     //DashboardResult dashboardResult = mDb.getDbDAO().getVehicleDetails();
                     SaveKataChitthiRequest mLoginRequest = new SaveKataChitthiRequest();
-                    mLoginRequest.setDriverID(Long.parseLong(loginResultTable.getDriverId())); //6b07b768-926c-49b6-ac1c-89a9d03d4c3b
+                    mLoginRequest.setDriverID(Long.parseLong(mSelectedVehicle.getDriverID())); //6b07b768-926c-49b6-ac1c-89a9d03d4c3b
                     mLoginRequest.setUserkey(loginResultTable.getUserKey());
                     mLoginRequest.setVehicleID(Long.parseLong(mSelectedVehicle.getVehicleID()));//dashboardResult.getArray5().get(0).getVehicleID()));
                     mLoginRequest.setTransactionDate(getDate(tvDateValue.getText().toString()));
@@ -618,6 +674,7 @@ public class KataChithiActivity extends BaseActivity {
                     mLoginRequest.setPhotoXml(mImageList);
                     Gson gson = new Gson();
                     String bodyInStringFormat = gson.toJson(mLoginRequest);
+                    LogUtil.printLog("save_kata",bodyInStringFormat);
                     RequestBody mRequestBodyType = RequestBody.create(MediaType.parse("text/plain"), "saveKantaChitthi");
                     RequestBody mRequestBodyTypeImage = RequestBody.create(MediaType.parse("text/plain"), bodyInStringFormat);
                     LogUtil.printLog("request save", bodyInStringFormat);
@@ -669,11 +726,26 @@ public class KataChithiActivity extends BaseActivity {
         }
     }
 
+    private void onSelectFromGalleryResult(Intent data,String pathFile,int cameraOrGallery) {
+        try {
+            String actualPath = RealPathUtils.getActualPath(mContext, data.getData());
+            kataChitthiImageList.add(new KataChitthiImageModel(actualPath, 1, null));
+            setAdapterForPuranaHisabList();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == SELECT_FILE && resultCode == Activity.RESULT_OK) {
+            if (data != null) {
+                onSelectFromGalleryResult(data,"",0);
+            }
+        }
         if (requestCode == REQUEST_CAMERA && resultCode == Activity.RESULT_OK) {
-            if (resultCode == RESULT_OK) {
+            if (data != null) {
                 try {
 
                     File file = new File(tempUri + "/IMG_temp.jpg");
@@ -715,18 +787,6 @@ public class KataChithiActivity extends BaseActivity {
                 }
             }
         }
-       /* if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
-
-            //setAdapterForPuranaHisabList();
-            if (driverHisabModelList.size() > 0) {
-                driverHisabModelList.add(new DriverHisabModel("", "1", photo));
-                setAdapterForPuranaHisabList();
-            } else {
-                driverHisabModelList.add(new DriverHisabModel("", "1", photo));
-                setAdapterForPuranaHisabList();
-            }
-        }*/
     }
 
     //TODO will add comments later
@@ -774,11 +834,7 @@ public class KataChithiActivity extends BaseActivity {
                         grantResults[1] == PackageManager.PERMISSION_GRANTED
                         && grantResults[2] == PackageManager.PERMISSION_GRANTED
                 ) {
-                    if (requestStatus == 0) {
-                        cameraIntent();
-                    } else {
-                        deleteImagesFolder();
-                    }
+                   reqPermissionCode();
                 } else {
                     //Toast.makeText(mContext, getString(R.string.somthing_went_wrong), Toast.LENGTH_SHORT).show();
                 }

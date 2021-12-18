@@ -161,6 +161,8 @@ public class LoginActivity extends BaseActivity {
                     if (tag.equalsIgnoreCase("Login")) {
                         LoginResponse responseModel = new Gson().fromJson(apiResponse.data.toString(), LoginResponse.class);
                         if (responseModel != null && responseModel.getStatus().equals("1")) {
+                            finish();
+                            launchScreen(mContext, DashbooardActivity.class);
                             LogUtil.printToastMSG(LoginActivity.this, responseModel.getMessage());
                             SharedPref.getInstance(this).write(SharedPrefKey.IS_LOGGED_IN, true);
                             try{
@@ -169,7 +171,6 @@ public class LoginActivity extends BaseActivity {
                             catch (Exception e){
                                 e.printStackTrace();
                             }
-                            launchScreen(mContext, DashbooardActivity.class);
                             //mDb.getDbDAO().insertLogin(responseModel);
                         } else {
                             LogUtil.printToastMSG(LoginActivity.this, responseModel.getMessage());

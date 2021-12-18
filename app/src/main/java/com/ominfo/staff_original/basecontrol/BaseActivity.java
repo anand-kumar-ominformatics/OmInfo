@@ -557,8 +557,8 @@ public class BaseActivity extends AppCompatActivity implements ServiceCallBackIn
             public void onClick(View v) {
                 mDialog.dismiss();
                 finishAffinity();
-                SharedPref.getInstance(mContext).write(SharedPrefKey.IS_LOGGED_IN, false);
                 launchScreen(mContext, LoginActivity.class);
+                SharedPref.getInstance(mContext).write(SharedPrefKey.IS_LOGGED_IN, false);
                 try{mDb.getDbDAO().deleteLogin();}catch (Exception e){e.printStackTrace();}
             }
         });
