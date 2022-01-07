@@ -28,7 +28,7 @@
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/activity_notifications.xml" value="0.1082427536231884" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/activity_pay_advance.xml" value="0.1" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/activity_purana_hisab.xml" value="0.1082427536231884" />
-        <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/activity_splash.xml" value="0.20416666666666666" />
+        <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/activity_splash.xml" value="0.313969571230982" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/content_all_contacts.xml" value="0.18" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/content_assigned_advance.xml" value="0.25" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/content_collapse_common_header.xml" value="0.25" />
@@ -36,10 +36,12 @@
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/content_dashboard.xml" value="0.35315315315315315" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/content_dashboard_bkp.xml" value="0.17083333333333334" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/content_kata_chithi.xml" value="0.25" />
+        <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/content_login.xml" value="0.10280797101449275" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/content_pay_advance.xml" value="0.1" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/dialog_advance_to_driver.xml" value="0.25" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/dialog_call_manager.xml" value="0.1" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/dialog_contact_details.xml" value="0.1" />
+        <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/dialog_doc_full_view.xml" value="0.11684782608695653" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/dialog_get_otp.xml" value="0.33" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/dialog_logout.xml" value="0.16770833333333332" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/dialog_otp_from_driver.xml" value="0.33" />
@@ -54,7 +56,7 @@
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/row_driver_hisab.xml" value="0.1" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/row_driver_hisab_details.xml" value="0.22" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/row_dropdown_item.xml" value="0.14791666666666667" />
-        <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/row_images_kata_chithi.xml" value="0.1" />
+        <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/row_images_kata_chithi.xml" value="0.9" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/row_notifications.xml" value="0.18" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/row_purana_hisab.xml" value="0.18" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/row_trip_awadhi_textview.xml" value="0.1" />
