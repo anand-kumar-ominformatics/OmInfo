@@ -23,11 +23,12 @@
     <uses-feature
         android:name="android.hardware.camera.front"
         android:required="false" />
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true" />
+
     <uses-feature android:name="android.hardware.camera2.full" android:required="false"/>
     <uses-feature android:name="android.hardware.camera2" android:required="false"/>
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false" /> <!-- https://stackoverflow.com/questions/62782648/android-11-scoped-storage-permissions -->
+     <!-- https://stackoverflow.com/questions/62782648/android-11-scoped-storage-permissions -->
     <queries>
         <intent>
             <action android:name="android.media.action.IMAGE_CAPTURE" />
@@ -110,7 +111,8 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
         <activity
             android:name="com.ominfo.staff_original.ui.SplashActivity"
             android:exported="true"
@@ -118,7 +120,6 @@
             android:theme="@style/AppTheme.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

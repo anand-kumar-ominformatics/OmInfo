@@ -60,6 +60,7 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
             File imgFile = new File(mListData.get(position).getImagePath());
             if(mListData.get(position).getImageType()==1) {
                 holder.mProgressBar.setVisibility(View.GONE);
+                //                //
                 AppUtils.loadImage(mContext, mListData.get(position).getImagePath(), holder.imgShow, holder.mProgressBar);
                 //holder.imgShow.setImageURI(Uri.fromFile(imgFile));
             }else {

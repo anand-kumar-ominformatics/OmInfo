@@ -4,11 +4,16 @@
 </paths><?xml version="1.0" encoding="utf-8"?>-->
 <paths>
     <external-files-path name="Pictures" path="Pictures" />
+    <cache-path
+        name="camera"
+        path="Camera/" />
 <external-path
     name="external_files" path="."/>
 <files-path
     name="files" path="/"/>
 <cache-path
     name="cache" path="/"/>
-
+    <external-files-path
+        name="OmTuranth"
+        path="/"/>
 </paths>

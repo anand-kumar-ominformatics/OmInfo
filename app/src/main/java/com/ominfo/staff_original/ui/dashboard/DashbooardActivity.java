@@ -109,7 +109,7 @@ public class DashbooardActivity extends BaseActivity {
 
     private void init(){
         mDb =BaseApplication.getInstance(mContext).getAppDatabase();
-        //requestPermission();
+        requestPermission();
         setToolbar();
         LoginResultTable loginResultTable = mDb.getDbDAO().getLoginData();
         if(loginResultTable!=null){
@@ -125,6 +125,79 @@ public class DashbooardActivity extends BaseActivity {
         driverHisabModelList.add(new DriverHisabModel("Surat",""));
         driverHisabModelList.add(new DriverHisabModel("","Enter Rout"));
 
+    }
+
+    //request camera and storage permission
+    private void requestPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (mContext.checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
+                    || mContext.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                    || mContext.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+                requestPermissions(new String[]
+                                {
+                                        Manifest.permission.CAMERA,
+                                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                                },
+                        1000);
+
+            } else {
+                //deleteImagesFolder();
+            }
+        } else {
+            //deleteImagesFolder();
+        }
+    }
+
+    /*
+     * permission result
+     * */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case 1000:
+                if (grantResults.length > 0 &&
+                        grantResults[0] == PackageManager.PERMISSION_GRANTED &&
+                        grantResults[1] == PackageManager.PERMISSION_GRANTED
+                        && grantResults[2] == PackageManager.PERMISSION_GRANTED
+                ) {
+                    //deleteImagesFolder();
+                } else {
+                    //Toast.makeText(mContext, getString(R.string.somthing_went_wrong), Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+        }
+
+    }
+
+    private void deleteImagesFolder() {
+        try {
+            //private void deleteImagesFolder(){
+            File myDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+            if (myDir.exists()) {
+                myDir.delete();
+            }
+            // }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            File dir = new File(Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_PICTURES), Constants.FILE_NAME);
+            //File oldFile = new File(myDir);
+            if (dir.isDirectory()) {
+                String[] children = dir.list();
+                for (int i = 0; i < children.length; i++) {
+                    new File(dir, children[i]).delete();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void injectAPI() {
@@ -366,55 +439,6 @@ public class DashbooardActivity extends BaseActivity {
         mDialog.show();
     }
 
-
-    //request camera and storage permission
-    private void requestPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
-                    || checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
-                    || checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                    || checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-                requestPermissions(new String[]
-                                {
-                                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                                        Manifest.permission.READ_EXTERNAL_STORAGE,
-                                        Manifest.permission.ACCESS_FINE_LOCATION,
-                                        Manifest.permission.ACCESS_COARSE_LOCATION,
-
-                                },
-                        1000);
-
-            } else {
-                //createFolder();
-            }
-        } else {
-            //createFolder();
-        }
-    }
-
-
-    /*
-     * ACCESS_FINE_LOCATION permission result
-     * */
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case 1000:
-                if (grantResults.length > 0 &&
-                        grantResults[0] == PackageManager.PERMISSION_GRANTED &&
-                        grantResults[1] == PackageManager.PERMISSION_GRANTED
-                        && grantResults[2] == PackageManager.PERMISSION_GRANTED
-                        && grantResults[3] == PackageManager.PERMISSION_GRANTED) {
-                    //BaseApplication.getInstance().mService.requestLocationUpdates();
-                } else {
-                    //Toast.makeText(mContext, getString(R.string.somthing_went_wrong), Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-        }
-    }
 
     /*Api response */
     private void consumeResponse(ApiResponse apiResponse, String tag) {

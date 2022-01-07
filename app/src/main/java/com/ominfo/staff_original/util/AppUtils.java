@@ -200,32 +200,43 @@ public class AppUtils {
      * @param mImageView target view
      */
     public static void loadImage(Context context, String url, AppCompatImageView mImageView, ProgressBar mProgressBar) {
+      /*  Uri urlNew = null;
+        ((BitmapDrawable)mImageView.getDrawable()).getBitmap().recycle();
+        if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.N) {
+            urlNew =(Uri.parse(new File(url).toString()));
+        } else{
+            urlNew =(Uri.fromFile(new File(url)));
+        }
+        //.thumbnail(0.5f)
+        mImageView.setImageDrawable(null);
+        mImageView.setImageURI(urlNew);*/
         Glide.with(context)
-                .load(url)
-                .placeholder(R.drawable.ic_launcher_background)
-                .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) // don't use target size, load full image
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .fitCenter()
-                .listener(new RequestListener<Drawable>() {
-                    @Override
-                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                        try {
-                            mProgressBar.setVisibility(View.GONE);
-                        } catch (Exception en) {
+                    .load(url)//Uri.parse("file://"+url))
+                    .placeholder(R.drawable.ic_launcher_background)
+                    .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) // don't use target size, load full image
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .fitCenter()
+                    //.thumbnail(0.5f)
+                    .listener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            try {
+                                mProgressBar.setVisibility(View.GONE);
+                            } catch (Exception en) {
+                            }
+                            return false;
                         }
-                        return false;
-                    }
 
-                    @Override
-                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                        try {
-                            mProgressBar.setVisibility(View.GONE);
-                        } catch (Exception en) {
+                        @Override
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                            try {
+                                mProgressBar.setVisibility(View.GONE);
+                            } catch (Exception en) {
+                            }
+                            return false;
                         }
-                        return false;
-                    }
-                })
-                .into(mImageView);
+                    })
+                    .into(mImageView);
     }
 
     public static Bitmap getBitmapFromView(AppCompatImageView imageView) {

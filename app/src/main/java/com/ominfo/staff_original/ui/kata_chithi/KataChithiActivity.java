@@ -8,6 +8,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -242,7 +243,7 @@ public class KataChithiActivity extends BaseActivity {
         }else if(cam==1) {
             galleryIntent();
         }else if(cam==2) {
-            deleteImagesFolder();
+            //deleteImagesFolder();
         }
     }
 
@@ -432,7 +433,7 @@ public class KataChithiActivity extends BaseActivity {
         // if (model.getImageType()==1) {
         try {
             File imgFile = new File(model.getImagePath());
-            imgShow.setImageURI(Uri.fromFile(imgFile));
+            try{imgShow.setImageBitmap(imgUrl);}catch (Exception e){e.printStackTrace();}
             if (imgFile != null && !imgFile.equals("") && !imgFile.equals("null")) {
                 imgShare.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -577,13 +578,23 @@ public class KataChithiActivity extends BaseActivity {
         picUri = getOutputPhotoFile();//Uri.fromFile(getOutputPhotoFile());
         //tempUri=picUri;
         intent.putExtra(MediaStore.EXTRA_OUTPUT, picUri);
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP) {
+            intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        } else {
+            List<ResolveInfo> resInfoList = getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+            for (ResolveInfo resolveInfo : resInfoList) {
+                String packageName = resolveInfo.activityInfo.packageName;
+                grantUriPermission(packageName, picUri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            }
+        }
+
         //intent.putExtra("URI", picUri);
         startActivityForResult(intent, REQUEST_CAMERA);
     }
 
     private Uri getOutputPhotoFile() {
-        File directory = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES), Constants.FILE_NAME);
+        File directory = getExternalFilesDir(Environment.DIRECTORY_PICTURES);;
+        //File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         tempUri = directory.getPath();
         if (!directory.exists()) {
             if (!directory.mkdirs()) {
@@ -745,9 +756,8 @@ public class KataChithiActivity extends BaseActivity {
             }
         }
         if (requestCode == REQUEST_CAMERA && resultCode == Activity.RESULT_OK) {
-            if (data != null) {
+            //if (data != null) {
                 try {
-
                     File file = new File(tempUri + "/IMG_temp.jpg");
 
                     Bitmap mImgaeBitmap = null;
@@ -785,14 +795,13 @@ public class KataChithiActivity extends BaseActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
+            //}
         }
     }
 
     //TODO will add comments later
     private void SaveImageMM(Bitmap finalBitmap) {
-        File myDir = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES), Constants.FILE_NAME);
+        File myDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         myDir.mkdirs();
         String timeStamp = new SimpleDateFormat("yyyMMdd_HHmmss", Locale.US).format(new Date());
         String fname = "Image_" + timeStamp + "_capture.jpg";
@@ -878,8 +887,7 @@ public class KataChithiActivity extends BaseActivity {
                                             }
                                         }
 
-                                        File myDir = new File(Environment.getExternalStoragePublicDirectory(
-                                                Environment.DIRECTORY_PICTURES), Constants.FILE_NAME);
+                                        File myDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);;
                                         myDir.mkdirs();
                                         if (responseModel.getResult().getArray2() != null) {
                                             downloaded = responseModel.getResult().getArray2().size();
@@ -919,7 +927,7 @@ public class KataChithiActivity extends BaseActivity {
                             if (responseModel != null && responseModel.getStatus().equals("1")) {
                                 //LogUtil.printToastMSG(KataChithiActivity.this, responseModel.getMessage());
                                 showSuccessDialog(getString(R.string.msg_weight_submitted));
-                                deleteImagesFolder();
+                                //deleteImagesFolder();
                                 new Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
@@ -951,11 +959,10 @@ public class KataChithiActivity extends BaseActivity {
         }
     }
 
-    private void deleteImagesFolder() {
+    /*private void deleteImagesFolder() {
         try {
             //private void deleteImagesFolder(){
-            File myDir = new File(Environment.getExternalStoragePublicDirectory(
-                    Environment.DIRECTORY_PICTURES), Constants.FILE_NAME);
+            File myDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);;
             if (myDir.exists()) {
                 myDir.delete();
             }
@@ -965,8 +972,7 @@ public class KataChithiActivity extends BaseActivity {
             e.printStackTrace();
         }
         try {
-            File dir = new File(Environment.getExternalStoragePublicDirectory(
-                    Environment.DIRECTORY_PICTURES), Constants.FILE_NAME);
+            File dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);;
             //File oldFile = new File(myDir);
             if (dir.isDirectory()) {
                 String[] children = dir.list();
@@ -977,7 +983,7 @@ public class KataChithiActivity extends BaseActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     private void downloadImageFromUrl(String url, String lr, File file) {
         @SuppressLint("StaticFieldLeak")
