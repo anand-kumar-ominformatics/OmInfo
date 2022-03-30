@@ -7,6 +7,7 @@ import android.widget.Toast;
 public class LogUtil {
 
     public static boolean isEnableLogs = false;
+    public static boolean isEnableToast = true;
 
     public static void printLog(String tag, Object object) {
         if (isEnableLogs && object!=null) {
@@ -29,7 +30,7 @@ public class LogUtil {
     }
 
     public static void printToastMSG(Context mContext, String object) {
-        if (isEnableLogs && object!=null) {
+        if (isEnableToast && object!=null) {
             Toast.makeText(mContext,object, Toast.LENGTH_SHORT).show();
 
         }

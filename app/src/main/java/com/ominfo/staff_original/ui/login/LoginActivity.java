@@ -76,7 +76,7 @@ public class LoginActivity extends BaseActivity {
         mDb = BaseApplication.getInstance(mContext).getAppDatabase();
         setErrorMSG();
         //set login cred
-        //editTextEmail.setText("DR0001");
+        //editTextEmail.setText("BO0005");
         //editTextPassword.setText("123");
         try{mDb.getDbDAO().deleteLogin();}
         catch (Exception e){e.printStackTrace();}

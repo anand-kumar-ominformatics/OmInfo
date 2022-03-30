@@ -1,5 +1,4 @@
 package com.ominfo.staff_original.ui.kata_chithi;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -21,13 +20,11 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.MediaStore;
-import android.text.InputFilter;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,7 +49,6 @@ import com.ominfo.staff_original.basecontrol.BaseActivity;
 import com.ominfo.staff_original.basecontrol.BaseApplication;
 import com.ominfo.staff_original.common.TouchImageView;
 import com.ominfo.staff_original.database.AppDatabase;
-import com.ominfo.staff_original.interfaces.Constants;
 import com.ominfo.staff_original.interfaces.SharedPrefKey;
 import com.ominfo.staff_original.network.ApiResponse;
 import com.ominfo.staff_original.network.DynamicAPIPath;
@@ -119,6 +115,9 @@ public class KataChithiActivity extends BaseActivity {
 
     @BindView(R.id.tvDateValueTo)
     AppCompatTextView tvDateValue;
+
+    @BindView(R.id.imgDeleteOption)
+    AppCompatImageView imgDeleteOption;
 
     @BindView(R.id.getDetailsButton)
     AppCompatButton getDetailsButton;
@@ -196,17 +195,17 @@ public class KataChithiActivity extends BaseActivity {
                 if(actionId == EditorInfo.IME_ACTION_DONE){
                     // Your action on done
                     try{
-                    AppUtils.hideKeyBoard(KataChithiActivity.this);
-                    String currentString = etWeight.getText().toString().trim();
-                    String[] separated = currentString. split("\\.");
-                    if(separated.length==1){
-                        etWeight.append(".00");
-                    }
-                    if(separated.length>1){
-                        if(separated[1]!=null){
-                            etWeight.setText(currentString);
+                        AppUtils.hideKeyBoard(KataChithiActivity.this);
+                        String currentString = etWeight.getText().toString().trim();
+                        String[] separated = currentString. split("\\.");
+                        if(separated.length==1){
+                            etWeight.append(".00");
                         }
-                    }
+                        if(separated.length>1){
+                            if(separated[1]!=null){
+                                etWeight.setText(currentString);
+                            }
+                        }
                     }catch (Exception e){e.printStackTrace();}
                     return true;
                 }
@@ -228,7 +227,7 @@ public class KataChithiActivity extends BaseActivity {
         getDetailsButton.setTextColor(
                 mContext.getResources().getColor(R.color.white)
         );
-
+        getDetailsButton.setEnabled(false);
     }
 
     private void setToolbar() {
@@ -301,9 +300,9 @@ public class KataChithiActivity extends BaseActivity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         int pos = 0;
                         for (int i = 0; i < vehicleNoDropdown.size(); i++) {
-                           if (vehicleNoDropdown.get(i).getVehicleNo().equals(AutoComTextViewVehNo.getText().toString())) {
-                               pos = i;
-                         }
+                            if (vehicleNoDropdown.get(i).getVehicleNo().equals(AutoComTextViewVehNo.getText().toString())) {
+                                pos = i;
+                            }
                         }
                         Handler handler = new Handler();
                         Runnable runnable = null;
@@ -321,31 +320,33 @@ public class KataChithiActivity extends BaseActivity {
                                 etWeight.setText(".00");
                                 tvBranchName.setText(mSelectedVehicle.getDriverName());
                                 getDetailsButton.setBackground(null);
-                                if (mSelectedVehicle.getDriverID().equals("0")
+                                if (mSelectedVehicle.getDriverID()==null
+                                        ||mSelectedVehicle.getDriverName()==null||
+                                        mSelectedVehicle.getDriverID().equals("0")
                                         || mSelectedVehicle.getDriverName().equals("")
-                                        ||mSelectedVehicle.getDriverID()==null
-                                        ||mSelectedVehicle.getDriverName()==null)
+                                )
                                 {
-                                    getDetailsButton.setBackground(mContext.getResources().getDrawable(
+                                  /*  getDetailsButton.setBackground(mContext.getResources().getDrawable(
                                             R.drawable.bg_button_round_corner_grey
                                     ));
                                     getDetailsButton.setTextColor(
                                             mContext.getResources().getColor(R.color.white)
-                                    );
+                                    );*/
                                     //tvDateValue.setEnabled(false);
                                     tvBranchName.setText(R.string.scr_lbl_no_driver);
                                 }
-                                else {
-                                    getDetailsButton.setBackground(mContext.getResources().getDrawable(
-                                            R.drawable.bg_button_round_corner_blue
-                                    ));
-                                    getDetailsButton.setTextColor(
-                                            mContext.getResources().getColor(R.color.white)
-                                    );
-                                    //tvDateValue.setEnabled(true);
-                                    kataChitthiImageList.removeAll(kataChitthiImageList);
-                                    setAdapterForPuranaHisabList();
-                                }
+                                // else {
+                                getDetailsButton.setBackground(mContext.getResources().getDrawable(
+                                        R.drawable.bg_button_round_corner_blue
+                                ));
+                                getDetailsButton.setTextColor(
+                                        mContext.getResources().getColor(R.color.white)
+                                );
+                                getDetailsButton.setEnabled(true);
+                                //tvDateValue.setEnabled(true);
+                                kataChitthiImageList.removeAll(kataChitthiImageList);
+                                setAdapterForPuranaHisabList();
+                                // }
                             }
                         }, delay);
 
@@ -363,10 +364,10 @@ public class KataChithiActivity extends BaseActivity {
 
     private void injectAPI() {
         mFetchKataChitthiViewModel = ViewModelProviders.of(KataChithiActivity.this, mViewModelFactory).get(FetchKataChitthiViewModel.class);
-        mFetchKataChitthiViewModel.getResponse().observe(this, apiResponse -> consumeResponse(apiResponse, "fetch"));
+        mFetchKataChitthiViewModel.getResponse().observe(this, apiResponse -> consumeResponse(apiResponse, DynamicAPIPath.POST_FETCH_KATA_CHITTI));
 
         mSaveKataChitthiViewModel = ViewModelProviders.of(KataChithiActivity.this, mViewModelFactory).get(SaveKataChitthiViewModel.class);
-        mSaveKataChitthiViewModel.getResponse().observe(this, apiResponse -> consumeResponse(apiResponse, "save"));
+        mSaveKataChitthiViewModel.getResponse().observe(this, apiResponse -> consumeResponse(apiResponse, DynamicAPIPath.POST_SAVE_KATA_CHITTI));
 
         vehicleViewModel = ViewModelProviders.of(KataChithiActivity.this, mViewModelFactory).get(VehicleViewModel.class);
         vehicleViewModel.getResponse().observe(this, apiResponse -> consumeResponse(apiResponse, DynamicAPIPath.POST_VEHICLE));
@@ -374,7 +375,7 @@ public class KataChithiActivity extends BaseActivity {
 
     //perform click actions
     @OnClick({R.id.submitButton, R.id.imgCapture, R.id.tvDateValueTo
-            ,R.id.getDetailsButton})
+            ,R.id.getDetailsButton,R.id.imgDeleteOption})
     public void onClick(View view) {
         int id = view.getId();
         switch (id) {
@@ -382,37 +383,48 @@ public class KataChithiActivity extends BaseActivity {
                 //on button
                 try {
                     if (mSelectedVehicle != null) {
-                        if (mSelectedVehicle.getDriverID() == null
+                       /* if (mSelectedVehicle.getDriverID() == null
                                 || mSelectedVehicle.getDriverName() == null
                         ||mSelectedVehicle.getDriverID().equals("0")
                                 || mSelectedVehicle.getDriverName().equals("")
                                 ) {
                         } else {
-                            //tvDateValue.setEnabled(true);
-                            callFetchKataChitthiApi();
-                            setAdapterForPuranaHisabList();
-                            etWeight.setEnabled(true);
-                        }
+                            //tvDateValue.setEnabled(true);*/
+                        callFetchKataChitthiApi();
+                        setAdapterForPuranaHisabList();
+                        etWeight.setEnabled(true);
+                        //}
                     }
                 }catch (Exception e){e.printStackTrace();}
                 break;
             case R.id.submitButton:
                 try{
                     if (mSelectedVehicle != null) {
-                        if (mSelectedVehicle.getDriverID() == null
+                       /* if (mSelectedVehicle.getDriverID() == null
                                 || mSelectedVehicle.getDriverName() == null
                                 || mSelectedVehicle.getDriverID().equals("0")
                                 || mSelectedVehicle.getDriverName().equals("")
                                 ) {
                             LogUtil.printToastMSG(mContext, "Sorry, No driver available!");
-                        } else {
-                            callSaveKataChitthiApi();
-                        }
+                        } else {*/
+                        callSaveKataChitthiApi();
+                        // }
                     }
                 }catch (Exception e){e.printStackTrace();}
                 break;
             case R.id.imgCapture:
                 showChooseCameraDialog();
+                break;
+            case R.id.imgDeleteOption:
+                getDetailsButton.setBackground(mContext.getResources().getDrawable(
+                        R.drawable.bg_button_round_corner_grey
+                ));
+                getDetailsButton.setTextColor(
+                        mContext.getResources().getColor(R.color.white)
+                );
+                getDetailsButton.setEnabled(false);
+                etWeight.setEnabled(false);
+                AutoComTextViewVehNo.setText("");
                 break;
             case R.id.tvDateValueTo:
                 openDataPicker(tvDateValue);
@@ -628,13 +640,22 @@ public class KataChithiActivity extends BaseActivity {
             if (loginResultTable != null) {
                 //String mDate = AppUtils.getCurrentDateTime_();//SharedPref.getInstance(getApplicationContext()).read(SharedPrefKey.KATA_CHITTI_DATE, AppUtils.getCurrentDateTime_());
                 FetchKataChitthiRequest mLoginRequest = new FetchKataChitthiRequest();
-                mLoginRequest.setDriverID(mSelectedVehicle.getDriverID());//loginResultTable.getDriverId()); //6b07b768-926c-49b6-ac1c-89a9d03d4c3b
+                String driverId = "0";
+                if (mSelectedVehicle.getDriverID() == null
+                        || mSelectedVehicle.getDriverID().equals("") ||
+                        mSelectedVehicle.getDriverID().equals("null")){
+                    driverId = "0";
+                }
+                else{
+                    driverId =mSelectedVehicle.getDriverID();
+                }
+                mLoginRequest.setDriverID(driverId);//loginResultTable.getDriverId()); //6b07b768-926c-49b6-ac1c-89a9d03d4c3b
                 mLoginRequest.setUserkey(loginResultTable.getUserKey());
                 mLoginRequest.setVehicleID(mSelectedVehicle.getVehicleID());//dashboardResult.getArray5().get(0).getVehicleID());
                 mLoginRequest.setTransactionDate(getDate(tvDateValue.getText().toString()));
                 Gson gson = new Gson();
                 String bodyInStringFormat = gson.toJson(mLoginRequest);
-                LogUtil.printLog("request fetch", bodyInStringFormat);
+                LogUtil.printLog("request_kata", bodyInStringFormat);
                 mFetchKataChitthiViewModel.hitGetKataChitthiApi(bodyInStringFormat);
             }
         } else {
@@ -757,44 +778,44 @@ public class KataChithiActivity extends BaseActivity {
         }
         if (requestCode == REQUEST_CAMERA && resultCode == Activity.RESULT_OK) {
             //if (data != null) {
+            try {
+                File file = new File(tempUri + "/IMG_temp.jpg");
+
+                Bitmap mImgaeBitmap = null;
                 try {
-                    File file = new File(tempUri + "/IMG_temp.jpg");
+                    BitmapFactory.Options options = new BitmapFactory.Options();
+                    options.inJustDecodeBounds = true;
+                    BitmapFactory.decodeFile(file.getAbsolutePath(), options);
 
-                    Bitmap mImgaeBitmap = null;
-                    try {
-                        BitmapFactory.Options options = new BitmapFactory.Options();
-                        options.inJustDecodeBounds = true;
-                        BitmapFactory.decodeFile(file.getAbsolutePath(), options);
+                    // Calculate inSampleSize
+                    options.inSampleSize = Util.calculateInSampleSize(options, 600, 600);
 
-                        // Calculate inSampleSize
-                        options.inSampleSize = Util.calculateInSampleSize(options, 600, 600);
+                    // Decode bitmap with inSampleSize set
+                    options.inJustDecodeBounds = false;
+                    Bitmap scaledBitmap = BitmapFactory.decodeFile(file.getAbsolutePath(), options);
 
-                        // Decode bitmap with inSampleSize set
-                        options.inJustDecodeBounds = false;
-                        Bitmap scaledBitmap = BitmapFactory.decodeFile(file.getAbsolutePath(), options);
-
-                        //check the rotation of the image and display it properly
-                        ExifInterface exif;
-                        exif = new ExifInterface(file.getAbsolutePath());
-                        int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 0);
-                        Matrix matrix = new Matrix();
-                        if (orientation == 6) {
-                            matrix.postRotate(90);
-                        } else if (orientation == 3) {
-                            matrix.postRotate(180);
-                        } else if (orientation == 8) {
-                            matrix.postRotate(270);
-                        }
-                        mImgaeBitmap = Bitmap.createBitmap(scaledBitmap, 0, 0, scaledBitmap.getWidth(), scaledBitmap.getHeight(), matrix, true);
-                        SaveImageMM(mImgaeBitmap);
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                    //check the rotation of the image and display it properly
+                    ExifInterface exif;
+                    exif = new ExifInterface(file.getAbsolutePath());
+                    int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 0);
+                    Matrix matrix = new Matrix();
+                    if (orientation == 6) {
+                        matrix.postRotate(90);
+                    } else if (orientation == 3) {
+                        matrix.postRotate(180);
+                    } else if (orientation == 8) {
+                        matrix.postRotate(270);
                     }
-
-//                    CropImage.activity(picUri).start(this);
+                    mImgaeBitmap = Bitmap.createBitmap(scaledBitmap, 0, 0, scaledBitmap.getWidth(), scaledBitmap.getHeight(), matrix, true);
+                    SaveImageMM(mImgaeBitmap);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
+//                    CropImage.activity(picUri).start(this);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             //}
         }
     }
@@ -843,7 +864,7 @@ public class KataChithiActivity extends BaseActivity {
                         grantResults[1] == PackageManager.PERMISSION_GRANTED
                         && grantResults[2] == PackageManager.PERMISSION_GRANTED
                 ) {
-                   reqPermissionCode();
+                    reqPermissionCode();
                 } else {
                     //Toast.makeText(mContext, getString(R.string.somthing_went_wrong), Toast.LENGTH_SHORT).show();
                 }
@@ -867,7 +888,7 @@ public class KataChithiActivity extends BaseActivity {
                     LogUtil.printLog(tag, apiResponse.data.toString());
                     try {
                         try {
-                            if (tag.equalsIgnoreCase("fetch")) {
+                            if (tag.equalsIgnoreCase(DynamicAPIPath.POST_FETCH_KATA_CHITTI)) {
                                 FetchKataChitthiResponse responseModel = new Gson().fromJson(apiResponse.data.toString(), FetchKataChitthiResponse.class);
                                 if (responseModel != null && responseModel.getStatus().equals("1")) {
                                     if (responseModel.getResult() != null) {
@@ -922,7 +943,7 @@ public class KataChithiActivity extends BaseActivity {
                             kataChitthiImageList.removeAll(kataChitthiImageList);
                             setAdapterForPuranaHisabList();
                         }
-                        if (tag.equalsIgnoreCase("save")) {
+                        if (tag.equalsIgnoreCase(DynamicAPIPath.POST_SAVE_KATA_CHITTI)) {
                             SaveKataChitthiResponse responseModel = new Gson().fromJson(apiResponse.data.toString(), SaveKataChitthiResponse.class);
                             if (responseModel != null && responseModel.getStatus().equals("1")) {
                                 //LogUtil.printToastMSG(KataChithiActivity.this, responseModel.getMessage());
@@ -941,8 +962,13 @@ public class KataChithiActivity extends BaseActivity {
                         if (tag.equalsIgnoreCase(DynamicAPIPath.POST_VEHICLE)) {
                             VehicleResponse responseModel = new Gson().fromJson(apiResponse.data.toString(), VehicleResponse.class);
                             if (responseModel != null && responseModel.getStatus().equals("1")) {
-                               vehicleNoDropdown = responseModel.getResult();
-                               setDropdownVehNo();
+                                vehicleNoDropdown = responseModel.getResult();
+                                try {
+                                    setDropdownVehNo();
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                    AutoComTextViewVehNo.setText("");
+                                }
                             } else {
                                 LogUtil.printToastMSG(KataChithiActivity.this, responseModel.getMessage());
                             }

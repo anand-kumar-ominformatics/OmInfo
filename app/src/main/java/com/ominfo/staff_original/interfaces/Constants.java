@@ -29,7 +29,7 @@ public interface Constants {
     String ACCEPTED = "ACCEPTED";
     String TITLE = "title";
     String MESSAGE = "MESSAGE";
-
+    int LOADER_TIMEOUT = 32000;
     String CHANGE_PASSWORD = "CHANGE_PASSWORD";
     String CHANGE_PIN = "CHANGE_PIN";
     String KEY_OBJECT = "KEY_Object";

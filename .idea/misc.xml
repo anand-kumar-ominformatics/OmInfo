@@ -12,6 +12,7 @@
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/drawable/bg_button_round_corner_blue.xml" value="0.16354166666666667" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/drawable/bg_button_round_corner_grey.xml" value="0.15520833333333334" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/drawable/bg_login_res.xml" value="0.1" />
+        <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/drawable/ic_delete_text.xml" value="0.13020833333333334" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/drawable/layout_round_shape_corners_8_red_view.xml" value="0.15104166666666666" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/drawable/shape_round_grey_left_right_border_dialog.xml" value="0.18385416666666668" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/drawable/shape_round_grey_left_right_no_border_dialog.xml" value="0.159375" />
@@ -33,7 +34,7 @@
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/content_assigned_advance.xml" value="0.25" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/content_collapse_common_header.xml" value="0.25" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/content_collapse_dashboard_header.xml" value="0.44701348747591524" />
-        <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/content_dashboard.xml" value="0.35315315315315315" />
+        <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/content_dashboard.xml" value="0.22" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/content_dashboard_bkp.xml" value="0.17083333333333334" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/content_kata_chithi.xml" value="0.25" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/content_login.xml" value="0.10280797101449275" />
@@ -47,6 +48,7 @@
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/dialog_otp_from_driver.xml" value="0.33" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/dialog_raise_issue.xml" value="0.20416666666666666" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/dialog_truck_details.xml" value="0.14322916666666666" />
+        <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/layout_progress_loader.xml" value="0.1" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/row_advance_to_driver.xml" value="0.20416666666666666" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/row_asssign_advance.xml" value="0.25" />
         <entry key="..\:/Om_informatic_projects/Staff_original/Staff_original/Staff_original/app/src/main/res/layout/row_call_child_item.xml" value="0.1082427536231884" />
