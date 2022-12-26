@@ -1,25 +1,37 @@
 package com.ominfo.staff_original.basecontrol;
 
+import static com.ominfo.staff_original.ui.attendance.StartAttendanceActivity.result;
+import static com.ominfo.staff_original.ui.attendance.StartAttendanceActivity.tvCurrLocation;
+import static com.ominfo.staff_original.ui.attendance.StartAttendanceActivity.tvCurrLocation;
+
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.Nullable;
@@ -34,6 +46,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,6 +54,7 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 import com.ominfo.staff_original.R;
+import com.ominfo.staff_original.common.BackgroundAttentionService;
 import com.ominfo.staff_original.database.AppDatabase;
 import com.ominfo.staff_original.deps.DaggerDeps;
 import com.ominfo.staff_original.deps.Deps;
@@ -52,6 +66,7 @@ import com.ominfo.staff_original.network.DynamicAPIPath;
 import com.ominfo.staff_original.network.NetworkCheck;
 import com.ominfo.staff_original.network.NetworkModule;
 import com.ominfo.staff_original.network.ViewModelFactory;
+import com.ominfo.staff_original.ui.attendance.StartAttendanceActivity;
 import com.ominfo.staff_original.ui.contacts.AllContactsActivity;
 import com.ominfo.staff_original.ui.contacts.adapter.CallManagerAdapter;
 import com.ominfo.staff_original.ui.contacts.model.CallRequest;
@@ -66,8 +81,10 @@ import com.ominfo.staff_original.util.CustomAnimationUtil;
 import com.ominfo.staff_original.util.LogUtil;
 import com.ominfo.staff_original.util.SharedPref;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -100,6 +117,10 @@ public class BaseActivity extends AppCompatActivity implements ServiceCallBackIn
     private GetContactsViewModel getContactsViewModel;
     List<CallResult> callResultList =new ArrayList<>();
     private AppDatabase mDb;
+    public Context context;
+    AlphaAnimation inAnimation;
+    AlphaAnimation outAnimation;
+    private MyReceiver myReceiver;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -108,6 +129,7 @@ public class BaseActivity extends AppCompatActivity implements ServiceCallBackIn
         mDeps.inject(this);
         mDb =BaseApplication.getInstance(this).getAppDatabase();
         injectAPI();
+        myReceiver = new MyReceiver();
     }
 
     private void injectAPI() {
@@ -122,6 +144,141 @@ public class BaseActivity extends AppCompatActivity implements ServiceCallBackIn
             actionBar.setTitle(title);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+    }
+    public static class DarkStatusBar {
+        public static void setLightStatusBar(View view, Activity activity) {
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+                int flags = view.getSystemUiVisibility();
+                flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+                view.setSystemUiVisibility(flags);
+                activity.getWindow().setStatusBarColor(Color.WHITE);
+            }
+        }
+    }
+    /**
+     * Receiver for broadcasts sent by {@link }.
+     */
+    private class MyReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Location location = intent.getParcelableExtra(BackgroundAttentionService.EXTRA_LOCATION);
+            String address = "";
+            try {
+                tvCurrLocation.setText("Current Location : Fetching...");
+            } catch (Exception e) {
+            }
+            if (location != null) {
+                Geocoder geocoder;
+                List<Address> addresses;
+                geocoder = new Geocoder(getBaseContext(), Locale.getDefault());
+
+                try {
+                    addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+                    SharedPref.getInstance(getBaseContext()).write(SharedPrefKey.ATTENTION_LOC_LAT, String.valueOf(location.getLatitude()));
+                    SharedPref.getInstance(getBaseContext()).write(SharedPrefKey.ATTENTION_LOC_LONG, String.valueOf(location.getLongitude()));
+                    SharedPref.getInstance(getBaseContext()).write(SharedPrefKey.ATTENTION_LOC_TITLE, "Fetching...");
+                    ///addresses = null;
+                    if (addresses != null && addresses.size() > 0) {
+                        //LogUtil.printToastMSG(getApplicationContext(),"addresss_attendnce"+address);
+                        address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+                        //address = null;
+                        String city = addresses.get(0).getLocality();
+                        String state = addresses.get(0).getAdminArea();
+                        String country = addresses.get(0).getCountryName();
+                        String postalCode = addresses.get(0).getPostalCode();
+                        String knownName = addresses.get(0).getFeatureName();
+                        //tvCurrLocation.setText("Current Location : " + address);
+                        SharedPref.getInstance(getBaseContext()).write(SharedPrefKey.ATTENTION_LOC_LAT, String.valueOf(location.getLatitude()));
+                        SharedPref.getInstance(getBaseContext()).write(SharedPrefKey.ATTENTION_LOC_LONG, String.valueOf(location.getLongitude()));
+                        SharedPref.getInstance(getBaseContext()).write(SharedPrefKey.ATTENTION_LOC_TITLE, address);
+                        Boolean iSTimer = SharedPref.getInstance(getApplicationContext()).read(SharedPrefKey.CHECK_OUT_ENABLED, false);
+                        tvCurrLocation.setText("Current Location : " + address);
+                        tvCurrLocation.setEnabled(false);
+                        tvCurrLocation.setPaintFlags(0);
+                        //LogUtil.printToastMSG(getApplicationContext(),"addresss_attendnce"+address);
+                        //Handler handler = new Handler(Looper.getMainLooper());
+
+                        if(address ==null || address.equals("")){
+                            String locationRes = SharedPref.getInstance(getBaseContext()).read(SharedPrefKey.LOCATION_ENTERED_TXT, "Fetching...");
+                            SharedPref.getInstance(getBaseContext()).write(SharedPrefKey.NOT_FETCHED, true);
+                            tvCurrLocation.setEnabled(true);
+                            tvCurrLocation.setPaintFlags(tvCurrLocation.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                            tvCurrLocation.setText("Tap to add your current location");
+                            if (result != null && !result.equals("temp") && !result.equals("") && !result.equals("Fetching...")) {
+                                if(locationRes!=null && !locationRes.equals("") && !locationRes.equals("Fetching..."))
+                                {
+                                    result=locationRes;
+                                    address = locationRes;
+                                    //SharedPref.getInstance(getBaseContext()).write(SharedPrefKey.ATTENTION_LOC_TITLE, locationRes);
+                                }
+                                tvCurrLocation.setText("Current Location : " + result);
+                            }
+                            if (tvCurrLocation.getText().toString() == null || tvCurrLocation.getText().toString().equals("Tap to add your current location") || tvCurrLocation.getText().toString().equals("Current Location : Fetching...")) {
+                                LogUtil.printSnackBar(getBaseContext(), R.color.white, findViewById(android.R.id.content),
+                                        "Sorry, We are unable to fetch your location! \nPlease select it manually.");
+                            }
+                        }
+
+                    } else {
+                        //SharedPref.getInstance(getBaseContext()).write(SharedPrefKey.ATTENTION_LOC_LAT, "0.0");
+                        //SharedPref.getInstance(getBaseContext()).write(SharedPrefKey.ATTENTION_LOC_LONG, "0.0");
+                        //SharedPref.getInstance(getBaseContext()).write(SharedPrefKey.ATTENTION_LOC_TITLE, "");
+                        Handler handler = new Handler(Looper.getMainLooper());
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                // update the ui from here
+                                String locationLat = SharedPref.getInstance(getBaseContext()).read(SharedPrefKey.ENTERED_VISIT_LAT, "0.0");
+                                String locationLng = SharedPref.getInstance(getBaseContext()).read(SharedPrefKey.ENTERED_VISIT_LNG, "0.0");
+                                String locationRes = SharedPref.getInstance(getBaseContext()).read(SharedPrefKey.LOCATION_ENTERED_TXT, "Fetching...");
+                                //data.getStringExtra("result");
+                                SharedPref.getInstance(getBaseContext()).write(SharedPrefKey.NOT_FETCHED, true);
+                                tvCurrLocation.setEnabled(true);
+                                tvCurrLocation.setPaintFlags(tvCurrLocation.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                                tvCurrLocation.setText("Tap to add your current location");
+
+                                if (result != null && !result.equals("temp") && !result.equals("") && !result.equals("Fetching...")) {
+                                    if(locationRes!=null && !locationRes.equals("") && !locationRes.equals("Fetching..."))
+                                    {
+                                        result=locationRes;
+                                        //SharedPref.getInstance(getBaseContext()).write(SharedPrefKey.ATTENTION_LOC_TITLE, locationRes);
+                                    }
+                                    tvCurrLocation.setText("Current Location : " + result);
+                                }
+                                if (tvCurrLocation.getText().toString() == null || tvCurrLocation.getText().toString().equals("Tap to add your current location") || tvCurrLocation.getText().toString().equals("Current Location : Fetching...")) {
+                                    LogUtil.printSnackBar(getBaseContext(), R.color.white, findViewById(android.R.id.content),
+                                            "Sorry, We are unable to fetch your location! \nPlease select it manually.");}
+
+                            }
+                        },100);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+    }
+
+    public void showSmallProgressBar(FrameLayout mProgressBarHolder) {
+        inAnimation = new AlphaAnimation(0f, 1f);
+        inAnimation.setDuration(200);
+        mProgressBarHolder.setAnimation(inAnimation);
+        mProgressBarHolder.setVisibility(View.VISIBLE);
+    }
+    public void startLocationService() {
+        startService(new Intent(this, BackgroundAttentionService.class));
+        LocalBroadcastManager.getInstance(this).registerReceiver(myReceiver,
+                new IntentFilter(BackgroundAttentionService.ACTION_BROADCAST));
+    }
+
+    public void dismissSmallProgressBar(FrameLayout mProgressBarHolder) {
+        outAnimation = new AlphaAnimation(1f, 0f);
+        outAnimation.setDuration(200);
+        mProgressBarHolder.setAnimation(outAnimation);
+        mProgressBarHolder.setVisibility(View.GONE);
     }
 
     public void setFontInCollapseToolbar(CollapsingToolbarLayout mCollapsingToolbarLayout) {

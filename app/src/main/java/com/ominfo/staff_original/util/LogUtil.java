@@ -1,8 +1,13 @@
 package com.ominfo.staff_original.util;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
+import com.ominfo.staff_original.R;
 
 public class LogUtil {
 
@@ -35,4 +40,24 @@ public class LogUtil {
 
         }
     }
+
+    public static void printSnackBar(Context context, int colour, View id, String object) {
+        //findViewById(android.R.id.content)
+        if (isEnableToast && object!=null) {
+            Snackbar.make(id, object.trim(), Snackbar.LENGTH_LONG)
+                    .setActionTextColor(Color.WHITE)
+                    .setTextColor(context.getResources().getColor(R.color.white))
+                    .setBackgroundTint(context.getResources().getColor(R.color.color_main))
+                    //.setTextMaxLines(3)
+                    .setAction("Ok", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                    }).show();
+
+            //snackbar.show();
+        }
+    }
+
 }

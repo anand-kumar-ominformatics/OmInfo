@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="oval">
+            <gradient
+                android:angle="90"
+                android:startColor="#CC7D6FBD"
+                android:endColor="#4D37B3" />
+            <size
+                android:width="@dimen/_50dp"
+                android:height="@dimen/_50dp" />
+        </shape>
+    </item>
+    <item
+        android:left="0dp"
+        android:right="0dp"
+        android:gravity="center"
+        android:height="@dimen/_20dp"
+        android:width="@dimen/_20dp">
+       <bitmap android:src="@drawable/ic_attendance" />
+    </item>
+
+</layer-list>

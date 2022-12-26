@@ -23,6 +23,7 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -41,6 +42,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.gson.Gson;
 import com.ominfo.staff_original.BuildConfig;
 import com.ominfo.staff_original.R;
 import com.ominfo.staff_original.interfaces.Constants;
@@ -94,7 +97,299 @@ public class AppUtils {
         }
     }
 */
+    public static String getCurrentMonth() {
+        String sDateFormate = "";
+        String sDate = getCurrentDateInyyyymmdd();
+        try {
+            String pattern = "MMM";
+            String inputPattern = "yyyy-MM-dd";
 
+            SimpleDateFormat fmt = new SimpleDateFormat(inputPattern);
+            Date date = fmt.parse(sDate);
+
+            SimpleDateFormat fmtOut = new SimpleDateFormat(pattern);
+            sDateFormate = fmtOut.format(date);
+
+            LogUtil.printLog(TAG, "sDateFormate: " + sDateFormate);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return sDateFormate;
+    }
+    public static String convert24to12Attendance(String date12){
+        try {
+            SimpleDateFormat displayFormat = new SimpleDateFormat("HH:mm:ss");
+            SimpleDateFormat parseFormat = new SimpleDateFormat("hh:mm a"/*, Locale.getDefault()*/);
+            Date date = null;
+            try {
+                date = displayFormat.parse(date12);
+                return parseFormat.format(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+                return date12;
+            }
+        }catch (Exception e){
+            return date12==null?"--:--":date12;
+        }
+    }
+    public static String startMonth(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.MONTH, 0);
+        calendar.set(Calendar.DATE, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
+        Date monthFirstDay = calendar.getTime();
+        calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+        Date monthLastDay = calendar.getTime();
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd",Locale.getDefault());
+        String startDateStr = df.format(monthFirstDay);
+        String endDateStr = df.format(monthLastDay);
+
+        Log.e("DateFirstLast",startDateStr+" "+endDateStr);
+        return startDateStr;
+    }
+    public static String convertMonthToIntMMM(String monthName){
+        try{
+            Date date = new SimpleDateFormat("MMM", Locale.ENGLISH).parse(monthName);//put your month name in english here
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(date);
+            int val = cal.get(Calendar.MONTH)+1;
+            return String.valueOf(val).length()==1?"0"+val:String.valueOf(val);
+        }
+        catch(Exception e) { }
+        return monthName;
+    }
+    public static String getDayToday(String Date1){
+        try {
+            String dt = Date1;  // Start date
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy");
+            Calendar c = Calendar.getInstance();
+            try {
+                c.setTime(sdf.parse(dt));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            //c.add(Calendar.DATE, 40);  // number of days to add, can also use Calendar.DAY_OF_MONTH in place of Calendar.DATE
+            SimpleDateFormat sdf1 = new SimpleDateFormat("dd");
+            String output = sdf1.format(c.getTime());
+            return output;
+        }catch (Exception e){
+            e.printStackTrace();
+            return Date1;
+        }
+    }
+    public static String startHolidayMonth(Calendar calendar ){
+        calendar.add(Calendar.MONTH, 0);
+        calendar.set(Calendar.DATE, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
+        Date monthFirstDay = calendar.getTime();
+        calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+        Date monthLastDay = calendar.getTime();
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd",Locale.getDefault());
+        String startDateStr = df.format(monthFirstDay);
+        String endDateStr = df.format(monthLastDay);
+
+        Log.e("DateFirstLast",startDateStr+" "+endDateStr);
+        return startDateStr;
+    }
+
+    public static String startHolidayMonthFromScrath(String month){
+        int val= Integer.valueOf(convertMonthToIntMMM(month));
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.MONTH, val);
+        calendar.set(Calendar.DATE, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
+        Date monthFirstDay = calendar.getTime();
+        calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+        Date monthLastDay = calendar.getTime();
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd",Locale.getDefault());
+        String startDateStr = df.format(monthFirstDay);
+        String endDateStr = df.format(monthLastDay);
+
+        Log.e("DateFirstLast",startDateStr+" "+endDateStr);
+        return startDateStr;
+    }
+    public static String endHolidayMonthFromScrath(String month){
+        int val= Integer.valueOf(convertMonthToIntMMM(month));
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.MONTH, val);
+        calendar.set(Calendar.DATE, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
+        Date monthFirstDay = calendar.getTime();
+        calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+        Date monthLastDay = calendar.getTime();
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd",Locale.getDefault());
+        String startDateStr = df.format(monthFirstDay);
+        String endDateStr = df.format(monthLastDay);
+
+        Log.e("DateFirstLast",startDateStr+" "+endDateStr);
+        return endDateStr;
+    }
+    public static String endHolidayMonth(Calendar calendar){
+        calendar.add(Calendar.MONTH, 0);
+        calendar.set(Calendar.DATE, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
+        Date monthFirstDay = calendar.getTime();
+        calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+        Date monthLastDay = calendar.getTime();
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd",Locale.getDefault());
+        String startDateStr = df.format(monthFirstDay);
+        String endDateStr = df.format(monthLastDay);
+
+        Log.e("DateFirstLast",startDateStr+" "+endDateStr);
+        return endDateStr;
+    }
+    public static String startEndMonthfromInt(int month){
+        try {
+            String[] date = AppUtils.getCurrentDateTime_().split("/");
+            String string = date[2]+"-"+(month-1)+"-01"; //assuming input
+            DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date dt = sdf .parse(string);
+            Calendar c = Calendar.getInstance();
+            c.setTime(dt);
+            c.add(Calendar.MONTH, 1);  //adding a month directly - gives the start of next month.
+            String firstDate = sdf.format(c.getTime());
+            System.out.println(firstDate);
+
+            c.add(Calendar.MONTH, 1);
+            c.add(Calendar.DAY_OF_MONTH, -1);
+            String lastDate = sdf.format(c.getTime());
+            System.out.println(lastDate);
+            return firstDate + "~" + lastDate;
+        }catch (Exception e){}
+        return "~";
+    }
+    public static String getCurrentDateInyyyymmdd() {
+        Calendar c = Calendar.getInstance();
+        //System.out.println("Current time => "+c.getTime());
+        //2021-04-08 16:45:14.084445
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = df.format(c.getTime());
+        // formattedDate have current date/time
+        return formattedDate;
+    }
+    public static String dateConvertYYYYToDD(String sDate) {
+        String sDateFormate = "";
+        try {
+            String pattern = "dd/MM/yyyy";
+            String inputPattern = "yyyy-MM-dd";
+            /*SimpleDateFormat simpleDateFormat = new SimpleDateFormat(inputPattern);
+            Date date = simpleDateFormat.parse(sDate);
+            SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+            sDateFormate = sdf.format(date.getTime());
+            System.out.println(sDateFormate);*/
+
+            SimpleDateFormat fmt = new SimpleDateFormat(inputPattern);
+            Date date = fmt.parse(sDate);
+
+            SimpleDateFormat fmtOut = new SimpleDateFormat(pattern);
+            sDateFormate = fmtOut.format(date);
+
+            LogUtil.printLog(TAG, "sDateFormate: " + sDateFormate);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return sDateFormate;
+    }
+    public static double meterDistanceBetweenPoints(float lat_a, float lng_a, float lat_b, float lng_b) {
+
+        float pk = (float) (180.f/Math.PI);
+
+        float a1 = lat_a / pk;
+        float a2 = lng_a / pk;
+        float b1 = lat_b / pk;
+        float b2 = lng_b / pk;
+
+        double t1 = Math.cos(a1) * Math.cos(a2) * Math.cos(b1) * Math.cos(b2);
+        double t2 = Math.cos(a1) * Math.sin(a2) * Math.cos(b1) * Math.sin(b2);
+        double t3 = Math.sin(a1) * Math.sin(b1);
+        double tt = Math.acos(t1 + t2 + t3);
+
+        return Double.isNaN(tt)?0.0:6366000 * tt;
+    }
+    public static String convertDobDate(String date12){
+        SimpleDateFormat displayFormat = new SimpleDateFormat("dd, MMMM yyyy");
+        SimpleDateFormat parseFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+            date = parseFormat.parse(date12);
+            return displayFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return date12;
+        }
+    }
+    public static String convertMonthHighlight(String date12){
+        SimpleDateFormat displayFormat = new SimpleDateFormat("MMM");
+        SimpleDateFormat parseFormat = new SimpleDateFormat("MMMM");
+        Date date = null;
+        try {
+            date = parseFormat.parse(date12);
+            return displayFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return date12;
+        }
+    }
+
+    public static String endMonth(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.MONTH, 0);
+        calendar.set(Calendar.DATE, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
+        Date monthFirstDay = calendar.getTime();
+        calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+        Date monthLastDay = calendar.getTime();
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd",Locale.getDefault());
+        String startDateStr = df.format(monthFirstDay);
+        String endDateStr = df.format(monthLastDay);
+
+        Log.e("DateFirstLast",startDateStr+" "+endDateStr);
+        return endDateStr;
+    }
+    public static String getJsonToString(LatLng latLng){
+        Gson gson = new Gson();
+        String json = gson.toJson(latLng);
+        return json;
+    }
+    public static String convertAlarmDate(String date12){
+        SimpleDateFormat displayFormat = new SimpleDateFormat("E, MMMM dd");
+        SimpleDateFormat parseFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = null;
+        try {
+            date = parseFormat.parse(date12);
+            return displayFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return date12;
+        }
+    }
+    public static String getCurrentTime() {
+        Calendar c = Calendar.getInstance();
+        //System.out.println("Current time => "+c.getTime());
+        //2021-04-08 16:45:14.084445
+        SimpleDateFormat df = new SimpleDateFormat("hh:mm a");
+        String formattedDate = df.format(c.getTime());
+        // formattedDate have current date/time
+        return formattedDate;
+    }
+    public static String getCurrentYear() {
+        Calendar c = Calendar.getInstance();
+        //System.out.println("Current time => "+c.getTime());
+        //2021-04-08 16:45:14.084445
+        SimpleDateFormat df = new SimpleDateFormat("yyyy");
+        String formattedDate = df.format(c.getTime());
+        // formattedDate have current date/time
+        return formattedDate;
+    }
+    public static String getCurrentTimeIn24hr() {
+        Calendar c = Calendar.getInstance();
+        //System.out.println("Current time => "+c.getTime());
+        //2021-04-08 16:45:14.084445
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
+        String formattedDate = df.format(c.getTime());
+        // formattedDate have current date/time
+        return formattedDate;
+    }
     /**
      * this method return device model like Galaxy 9
      *

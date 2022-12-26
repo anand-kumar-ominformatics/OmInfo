@@ -8,14 +8,38 @@
     <color name="color_blue_30">#4D4D37B3</color>
     <color name="color_blue_10">#1A4D37B3</color>
     <color name="semi_white">#F0F0F0</color>
-
+    <color name="Light_Green">#1ECA44</color>
+    <color name="Dark_Green">#28A745</color>
+    <color name="Light_Green_quo">#32D256</color>
+    <color name="dark_att_blue">#00BEFA</color>
+    <color name="light_att_blue">#0168EC</color>
+    <color name="dark_tick_blue">#942FE3</color>
+    <color name="light_tick_blue">#646CC1</color>
+    <color name="Dark_Green_quo">#28A945</color>
+    <color name="Light_Blue">#1FC5BC</color>
+    <color name="Dark_Blue">#17A4B8</color>
+    <color name="Light_Blue_rec">#42CAFD</color>
+    <color name="Dark_Blue_rec">#3bb8e6</color>
+    <color name="Light_Blue_cust">#305999</color>
+    <color name="Dark_Blue_cust">#1F3C68</color>
+    <color name="Dark_Red">#DD3647</color>
+    <color name="Light_Yellow">#FECB31</color>
+    <color name="Dark_Yellow">#FFC208</color>
+    <color name="Light_Yellow_dis">#FDC70F</color>
+    <color name="Dark_Yellow_dis">#DFB00A</color>
+    <color name="Light_Voilet">#D35CAC</color>
+    <color name="Dark_Voilet">#CC0594</color>
     <color name="green">#71C951</color>
 
+    <color name="pink">#ff3078</color>
+    <color name="bg_calender_screen">#F5F6F8</color>
 
     <!--textfiled colours-->
     <color name="color_text_filed">#EEEFF1</color>
     <color name="color_text_filed_hint">#78797A</color>
-
+    <color name="light_att_grad">#338FF4</color>
+    <color name="Light_Red">#FC5161</color>
+    <color name="blue_graph">#00c0e4</color>
     <color name="colorPrimaryDark">#282828</color>
     <color name="white">#FFFFFF</color>
     <color name="pastel_orange">#FF6F00</color>

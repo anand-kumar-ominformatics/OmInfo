@@ -102,6 +102,17 @@
     <string name="scr_lbl_vehicle_no">Vehicle No</string>
     <string name="scr_lbl_no_driver">No Driver</string>
     <string name="scr_lbl_advance_to_driver">Advance to Driver</string>
+    <string name="scr_lbl_loading_list">Loading List</string>
+    <string name="msg_office_location_emp">Stay in the office while you get your current location checked.</string>
+    <string name="msg_current_location_emp">The app will continuously check your location to make sure you\'re where you need to be.</string>
+    <string name="msg_location_change_in_attendance">Please mark your attendance from your office location only.</string>
+    <string name="scr_lbl_unavailable">Unavailable</string>
+    <string name="scr_lbl_attendance_details">Attendance Details</string>
+    <string name="scr_lbl_status">Status</string>
+    <string name="src_lbl_in_time">In time : </string>
+    <string name="scr_lbl_out_time">Out time : </string>
+    <string name="scr_lbl_you_absent">You were Absent.</string>
+    <string name="plese_contact_ur_admin">Configurations failure, Please contact your admin!</string>
 
 
 </resources>

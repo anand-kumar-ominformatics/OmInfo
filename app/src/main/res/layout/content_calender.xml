@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@+id/toolbar_layout"
+    android:background="@color/color_main"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/cl_mainlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_layout">
+
+        <include layout="@layout/content_collapse_common_header" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardHigh"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10dp"
+                    android:layout_marginTop="@dimen/_10dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:elevation="@dimen/_0dp"
+                    app:cardCornerRadius="@dimen/_10dp"
+                    app:cardElevation="@dimen/_0dp">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        android:paddingTop="@dimen/_8dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvHighlightsSection"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="@dimen/_10dp"
+                                android:layout_marginTop="@dimen/_4dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:text="Highlights"
+                                android:textColor="@color/black_heading"
+                                android:textSize="@dimen/_16sp" />
+
+
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/tvHighlightsImg"
+                                android:layout_width="@dimen/_16dp"
+                                android:layout_height="@dimen/_16dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="92dp"
+                                android:layout_marginTop="@dimen/_4dp"
+                                android:src="@drawable/ic_calender_blue"
+                                />
+
+
+                            <!--TAG Text filed-->
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/input_textType"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                                android:layout_width="@dimen/_130dp"
+                                android:layout_height="@dimen/_28dp"
+                                app:hintEnabled="false"
+                                android:layout_marginLeft="@dimen/_100dp"
+                                app:boxCornerRadiusTopEnd="@dimen/_10dp"
+                                app:boxCornerRadiusTopStart="@dimen/_10dp"
+                                app:boxCornerRadiusBottomEnd="@dimen/_10dp"
+                                app:boxCornerRadiusBottomStart="@dimen/_10dp"
+                                android:layout_centerVertical="true"
+                                app:hintTextAppearance="@style/Editext.Theme"
+                                app:startIconContentDescription="$"
+                                android:layout_gravity="center_horizontal"
+                                android:backgroundTint="@color/color_main"
+                                android:gravity="center_horizontal"
+                                app:endIconTint="@color/color_main"
+                                app:placeholderTextAppearance="@style/Editext.Theme"
+                                >
+
+                                <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                                    android:id="@+id/tvMonthList"
+                                    android:layout_width="@dimen/_130dp"
+                                    android:layout_height="@dimen/_30dp"
+                                    android:focusable="false"
+                                    android:background="@drawable/bottom_line_textview_no"
+                                    android:focusableInTouchMode="false"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:hint="Select"
+                                    android:imeOptions="actionDone"
+                                    android:inputType="text"
+                                    android:gravity="right|center_vertical"
+                                    android:paddingVertical="@dimen/_6dp"
+                                    android:text=""
+                                    android:dropDownHeight="@dimen/_300dp"
+                                    android:textColor="@color/color_main"
+                                    android:textColorHint="@color/color_main"
+                                    android:textSize="@dimen/_13sp" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1.4dp"
+                            android:layout_marginTop="@dimen/_6dp"
+                            android:background="@color/light_grey_30" />
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_weight="1"
+                                android:gravity="center_horizontal"
+                                android:paddingVertical="@dimen/_10dp">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvAttendance"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:text="Attendance"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/pastel_orange"
+                                    android:textSize="@dimen/_13sp" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvAttendanceValue"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/tvAttendance"
+                                    android:layout_gravity="center"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:text="0 / 0"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/black_heading"
+                                    android:textSize="@dimen/_12sp" />
+                            </RelativeLayout>
+
+                            <View
+                                android:layout_width="1.4dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginVertical="@dimen/_10dp"
+                                android:background="@color/light_grey_30" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_weight="1"
+                                android:gravity="center_horizontal"
+                                android:paddingVertical="@dimen/_10dp">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvLeave"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:text="Late mark"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/pastel_orange"
+                                    android:textSize="@dimen/_13sp" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvLeaveValue"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/tvLeave"
+                                    android:layout_gravity="center"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:text="0 / 0"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/black_heading"
+                                    android:textSize="@dimen/_12sp" />
+                            </RelativeLayout>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/cardHigh"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/layout_round_shape_corners"
+                    android:orientation="vertical">
+
+
+                    <!--<androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_16dp"
+                        android:layout_marginTop="@dimen/_20dp"
+                        android:fontFamily="@font/gilroy_semibold"
+                        android:text="Photos"
+                        android:textColor="@color/back_text_colour"
+                        android:textSize="@dimen/_16sp" />-->
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardCal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_10dp"
+                        android:layout_marginTop="@dimen/_10dp"
+                        android:layout_marginBottom="@dimen/_0dp"
+                        android:layout_weight="1"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+                        android:elevation="@dimen/_0dp"
+                        app:cardCornerRadius="@dimen/_10dp"
+                        app:cardElevation="@dimen/_0dp">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:orientation="vertical"
+                            android:paddingTop="@dimen/_8dp">
+
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvCalenderText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="@dimen/_10dp"
+                                android:layout_marginTop="@dimen/_2dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:text="My Calender"
+                                android:textColor="@color/black_heading"
+                                android:textSize="@dimen/_16sp" />
+
+                            <com.ominfo.staff_original.zcustomcalendar.CustomCalendar
+                                android:id="@+id/custom_calendar"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginHorizontal="@dimen/_10dp"
+                                android:layout_marginTop="@dimen/_10dp"
+                                android:layout_marginBottom="@dimen/_4dp"
+                                android:background="@drawable/layout_round_shape_grey_border_small"
+                                android:gravity="center_horizontal"
+                                android:paddingHorizontal="@dimen/_1dp"
+                                android:paddingBottom="@dimen/_3dp"
+                                app:day_of_week_length="1"
+                                app:day_of_week_start_from="sunday" />
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/layIndicators"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_0dp"
+                                android:layout_marginRight="@dimen/_10dp"
+                                android:layout_marginBottom="@dimen/_10dp"
+                                android:orientation="horizontal"
+                                android:visibility="visible">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="@dimen/_10dp"
+                                    android:layout_weight="1.2"
+                                    android:drawableStart="@drawable/square_indicators"
+                                    android:drawablePadding="@dimen/_1dp"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:paddingLeft="@dimen/_0dp"
+                                    android:singleLine="true"
+                                    android:text="Accepted"
+                                    android:textColor="@color/gray"
+                                    android:textSize="@dimen/_12sp"
+                                    android:visibility="invisible" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvAcc"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="@dimen/_10dp"
+                                    android:layout_weight="1"
+                                    android:drawableStart="@drawable/square_indicators_green"
+                                    android:drawablePadding="@dimen/_1dp"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:gravity="center"
+                                    android:paddingLeft="@dimen/_0dp"
+                                    android:text="Accepted"
+                                    android:textColor="@color/gray"
+                                    android:textSize="@dimen/_10sp"
+                                    android:visibility="invisible" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvInProc"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="@dimen/_10dp"
+                                    android:layout_weight="1"
+                                    android:drawableStart="@drawable/square_indicators_yellow"
+                                    android:drawablePadding="@dimen/_1dp"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:gravity="center"
+                                    android:paddingLeft="@dimen/_0dp"
+                                    android:text="In Process"
+                                    android:textColor="@color/gray"
+                                    android:textSize="@dimen/_10sp"
+                                    android:visibility="invisible" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvRejected"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="@dimen/_10dp"
+                                    android:layout_weight="1.1"
+                                    android:drawableStart="@drawable/square_indicators_red"
+                                    android:drawablePadding="@dimen/_1dp"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:gravity="center"
+                                    android:paddingLeft="@dimen/_0dp"
+                                    android:text="Today"
+                                    android:textColor="@color/gray"
+                                    android:textSize="@dimen/_10sp" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvCancelled"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="@dimen/_10dp"
+                                    android:layout_weight="1.1"
+                                    android:drawableStart="@drawable/square_indicators"
+                                    android:drawablePadding="@dimen/_1dp"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:gravity="center"
+                                    android:paddingLeft="@dimen/_0dp"
+                                    android:text="Absent"
+                                    android:textColor="@color/gray"
+                                    android:textSize="@dimen/_10sp" />
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.cardview.widget.CardView>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </RelativeLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

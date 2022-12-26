@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="330dp"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
+    android:gravity="center"
+    android:paddingTop="@dimen/_12dp"
+    android:background="@drawable/shape_round_dialog"
+    android:layout_marginVertical="@dimen/_16dp"
+    android:layout_marginHorizontal="@dimen/_10dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/layCancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/_0dp"
+        android:layout_marginHorizontal="@dimen/_10dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:fontFamily="@font/gilroy_bold"
+            android:gravity="left"
+            android:text="@string/scr_lbl_attendance_details"
+            android:textColor="@color/color_main"
+            android:textSize="@dimen/_16sp"
+            android:visibility="visible" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAttDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/title"
+            android:fontFamily="@font/gilroy_bold"
+            android:gravity="left"
+            android:text=""
+            android:textColor="@color/back_text_colour"
+            android:textSize="@dimen/_15sp"
+            android:visibility="visible" />
+
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgCancel"
+            android:layout_width="@dimen/_16dp"
+            android:layout_height="@dimen/_16dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_close" />
+
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:gravity="center"
+        android:fillViewport="true"
+        android:paddingBottom="@dimen/_16dp"
+        android:paddingHorizontal="@dimen/_10dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/_6dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/layCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_1dp"
+                app:cardCornerRadius="@dimen/_8dp"
+                app:cardElevation="@dimen/_0dp"
+                app:cardBackgroundColor="@color/white"
+                >
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/_10dp"
+                    android:background="@drawable/shape_round_grey_round_dialog"
+                    >
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:background="@android:color/transparent"
+                        android:paddingVertical="@dimen/_8dp"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|center_vertical"
+                            android:layout_weight="1"
+                            android:paddingTop="@dimen/_0dp"
+                            android:paddingLeft="@dimen/_0dp"
+                            android:gravity="left|center_vertical"
+                            >
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvInTimefff"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/gilroy_regular"
+                                android:gravity="center_horizontal"
+                                android:text="Date :"
+                                android:textColor="@color/black_heading"
+                                android:textSize="@dimen/_13sp" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvDateCal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_toRightOf="@+id/tvInTimefff"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:inputType="textMultiLine"
+                                android:text="@string/scr_lbl_date"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/black_heading"
+                                android:textSize="@dimen/_13sp" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvStatusCal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tvDateCal"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:inputType="textMultiLine"
+                                android:text="@string/scr_lbl_status"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/green"
+                                android:textSize="@dimen/_14sp" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/tvTimings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right|center_vertical"
+                            android:layout_weight="1.1"
+                            android:gravity="right|center_horizontal"
+                            android:paddingTop="@dimen/_0dp">
+
+                            <RelativeLayout
+                                android:id="@+id/layOut"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="right">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvInTime"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/gilroy_regular"
+                                    android:gravity="center_horizontal"
+                                    android:text="@string/src_lbl_in_time"
+                                    android:textColor="@color/black_heading"
+                                    android:textSize="@dimen/_13sp" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvInTimeData"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_toRightOf="@+id/tvInTime"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:gravity="center_horizontal"
+                                    android:text="@string/scr_lbl_unavailable"
+                                    android:textColor="@color/black_heading"
+                                    android:textSize="@dimen/_13sp" />
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/layOut"
+                                android:gravity="right"
+                                >
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvOutTime"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/gilroy_regular"
+                                    android:gravity="center_horizontal"
+                                    android:text="@string/scr_lbl_out_time"
+                                    android:textColor="@color/black_heading"
+                                    android:textSize="@dimen/_13sp" />
+
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvOutTimeData"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_horizontal"
+                                    android:layout_toRightOf="@+id/tvOutTime"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:text="@string/scr_lbl_unavailable"
+                                    android:textColor="@color/black_heading"
+                                    android:textSize="@dimen/_13sp" />
+
+                              <!--  <de.hdodenhof.circleimageview.CircleImageView
+                                    android:id="@+id/imgIndicator"
+                                    android:layout_toRightOf="@+id/tvOutTime"
+                                    android:layout_width="@dimen/_8dp"
+                                    android:layout_height="@dimen/_8dp"
+                                    android:layout_marginLeft="@dimen/_3dp"
+                                    android:src="@color/deep_red"
+                                    android:layout_centerVertical="true"
+                                    android:visibility="gone"
+                                    app:civ_border_color="@color/back_text_colour"
+                                    app:civ_border_width="0dp" />-->
+                            </RelativeLayout>
+                        </RelativeLayout>
+                       <!-- <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgShowLoc"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_18dp"
+                            android:layout_marginLeft="@dimen/_4dp"
+                            android:layout_weight="1.6"
+                            />-->
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                    <RelativeLayout
+                        android:id="@+id/layInLoc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible"
+                        >
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/titleInLocation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/gilroy_regular"
+                            android:inputType="textMultiLine"
+                            android:text="In Location : "
+                            android:textAlignment="center"
+                            android:textColor="@color/back_text_colour"
+                            android:textSize="@dimen/_12sp" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvInLocation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/titleInLocation"
+                            android:fontFamily="@font/gilroy_semibold"
+                            android:inputType="textMultiLine"
+                            android:text="@string/scr_lbl_unavailable"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/back_text_colour"
+                            android:textSize="@dimen/_12sp" />
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/layOutLoc"
+                        android:visibility="visible"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2dp"
+                        android:layout_marginBottom="@dimen/_6dp"
+                        >
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/titleOutLocation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/gilroy_regular"
+                            android:inputType="textMultiLine"
+                            android:text="Out Location : "
+                            android:textAlignment="center"
+                            android:textColor="@color/back_text_colour"
+                            android:textSize="@dimen/_12sp" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvOutLocation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/titleOutLocation"
+                            android:fontFamily="@font/gilroy_semibold"
+                            android:inputType="textMultiLine"
+                            android:text="@string/scr_lbl_unavailable"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/back_text_colour"
+                            android:textSize="@dimen/_12sp" />
+
+                    </RelativeLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

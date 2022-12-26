@@ -21,7 +21,43 @@ public interface NetworkAPIServices {
     Observable<JsonElement> contacts(@Url String url,@Query("jsonreq")  String request);
 
     @POST()
+    Observable<JsonElement> getAppVersion(@Url String url,@Query("jsonreq")  String request);
+    @POST()
+    Observable<JsonElement> updateKey(@Url String url,@Query("jsonreq")  String request);
+
+    @POST()
+    Observable<JsonElement> getAttendanceStaff(@Url String url,@Query("jsonreq")  String request);
+    @POST()
+    Observable<JsonElement> SingleUser(@Url String url,@Query("jsonreq")  String request);
+
+    @Multipart
+    @POST()
+    Observable<JsonElement> updateAttendance(@Url String url,
+                                             @Part("action") RequestBody uploadType,
+                                             @Part("jsonreq") RequestBody uploadTypeImage);
+
+    @Multipart
+    @POST()
+    Observable<JsonElement> calenderHolidays(@Url String url,
+                                             @Part("action") RequestBody uploadType,
+                                             @Part("company_id") RequestBody company_id,
+                                             @Part("from_date") RequestBody from_date,
+                                             @Part("end_date") RequestBody end_date);
+
+    @POST()
+    Observable<JsonElement> calenderDetails(@Url String url,@Query("jsonreq")  String request);
+
+    @POST()
+    Observable<JsonElement> calenderAll(@Url String url,@Query("jsonreq")  String request);
+
+    @POST()
+    Observable<JsonElement> getHighlights(@Url String url,@Query("jsonreq")  String request);
+
+    @POST()
     Observable<JsonElement> fetchKataChitthi(@Url String url,@Query("jsonreq")  String request);
+
+    @POST()
+    Observable<JsonElement> fetchLoadingList(@Url String url,@Query("jsonreq")  String request);
 
     @POST()
     Observable<JsonElement> advanceToDriver(@Url String url,@Query("jsonreq")  String request);
@@ -32,6 +68,12 @@ public interface NetworkAPIServices {
     @Multipart
     @POST()
     Observable<JsonElement> saveKataChitthi(@Url String url,
+                                            @Part("action") RequestBody uploadType,
+                                            @Part("jsonreq") RequestBody uploadTypeImage);
+
+    @Multipart
+    @POST()
+    Observable<JsonElement> saveLoadingList(@Url String url,
                                             @Part("action") RequestBody uploadType,
                                             @Part("jsonreq") RequestBody uploadTypeImage);
 

@@ -12,17 +12,66 @@ public class Service {
     public Service(NetworkAPIServices networkAPIServices) {
         this.networkAPIServices = networkAPIServices;
     }
-
+    public Observable<JsonElement> executeGetAppVersionAPI(String request) {
+        return networkAPIServices.getAppVersion(DynamicAPIPath.makeDynamicEndpointAPIGateWay(NetworkURLs.BASE_URL, DynamicAPIPath.POST_GET_VERSION),request);
+    }
     public Observable<JsonElement> executeLoginAPI(String request) {
         return networkAPIServices.login(DynamicAPIPath.makeDynamicEndpointAPIGateWay(NetworkURLs.BASE_URL, DynamicAPIPath.POST_LOGIN),request);
     }
-
+    public Observable<JsonElement> executeUpdateKeyAPI(String request) {
+        return networkAPIServices.updateKey(DynamicAPIPath.makeDynamicEndpointAPIGateWay(NetworkURLs.BASE_URL, DynamicAPIPath.POST_UPDATE_KEY),request);
+    }
+    public Observable<JsonElement> executeSingleUserAPI(String request) {
+        return networkAPIServices.SingleUser(DynamicAPIPath.makeDynamicEndpointAPIGateWay(NetworkURLs.BASE_URL, DynamicAPIPath.POST_SINGLE_USER),request);
+    }
     public Observable<JsonElement> executeContactsAPI(String request) {
         return networkAPIServices.contacts(DynamicAPIPath.makeDynamicEndpointAPIGateWay(NetworkURLs.BASE_URL, DynamicAPIPath.POST_CONTACTS),request);
+    }
+    public Observable<JsonElement> executeGetAttendanceAPI(String markAttendanceRequest) {
+        return networkAPIServices.getAttendanceStaff(DynamicAPIPath.makeDynamicEndpointAPIGateWay(NetworkURLs.BASE_URL,
+                DynamicAPIPath.POST_GET_ATTENDANCE),
+                markAttendanceRequest);
+    }
+    public Observable<JsonElement> executeUpdateAttendanceAPI(RequestBody mRequestBodyType, RequestBody mRequestBodyTypeImage) {
+        return networkAPIServices.updateAttendance(DynamicAPIPath.makeDynamicEndpointAPIGateWay(NetworkURLs.BASE_URL, DynamicAPIPath.POST_UPDATE_ATTENDANCE),
+                mRequestBodyType,mRequestBodyTypeImage
+        );
+    }
+
+    public Observable<JsonElement> executeCalenderHolidaysListAPI(RequestBody action,RequestBody cId,RequestBody from
+            ,RequestBody to) {
+        return networkAPIServices.calenderHolidays(DynamicAPIPath.makeDynamicEndpointAPIGateWay(NetworkURLs.BASE_URL,
+                DynamicAPIPath.POST_CALENDER_HOLIDAY),
+                action,cId,from,to
+        );
+    }
+
+    public Observable<JsonElement> executeCalenderDetailsAPI(String calender) {
+        return networkAPIServices.calenderDetails(DynamicAPIPath.makeDynamicEndpointAPIGateWay(NetworkURLs.BASE_URL,
+                DynamicAPIPath.POST_CALENDER_HOLIDAY),
+                calender
+        );
+    }
+
+    public Observable<JsonElement> executeCalenderAllAPI(String calender) {
+        return networkAPIServices.calenderAll(DynamicAPIPath.makeDynamicEndpointAPIGateWay(NetworkURLs.BASE_URL,
+                DynamicAPIPath.POST_CALENDER_ALL),
+                calender
+        );
+    }
+    public Observable<JsonElement> executeHighlightsAPI(String calender) {
+        return networkAPIServices.getHighlights(DynamicAPIPath.makeDynamicEndpointAPIGateWay(NetworkURLs.BASE_URL,
+                DynamicAPIPath.POST_HIGHLIGHTS),
+                calender
+        );
     }
 
     public Observable<JsonElement> executeFetchKataChitthiAPI(String request) {
         return networkAPIServices.fetchKataChitthi(DynamicAPIPath.makeDynamicEndpointAPIGateWay(NetworkURLs.BASE_URL, DynamicAPIPath.POST_FETCH_KATA_CHITTI),request);
+    }
+
+    public Observable<JsonElement> executeFetchLoadingListAPI(String request) {
+        return networkAPIServices.fetchLoadingList(DynamicAPIPath.makeDynamicEndpointAPIGateWay(NetworkURLs.BASE_URL, DynamicAPIPath.POST_FETCH_LOADING_LIST),request);
     }
 
     public Observable<JsonElement> executeAdvanceToDriverAPI(String request) {
@@ -35,6 +84,10 @@ public class Service {
 
     public Observable<JsonElement> executeSaveKataChitthiAPI( RequestBody mRequestBodyType, RequestBody mRequestBodyTypeImage) {
         return networkAPIServices.saveKataChitthi(DynamicAPIPath.makeDynamicEndpointAPIGateWay(NetworkURLs.BASE_URL, DynamicAPIPath.POST_SAVE_KATA_CHITTI),mRequestBodyType,mRequestBodyTypeImage);
+    }
+
+    public Observable<JsonElement> executeSaveLoadingListAPI( RequestBody mRequestBodyType, RequestBody mRequestBodyTypeImage) {
+        return networkAPIServices.saveLoadingList(DynamicAPIPath.makeDynamicEndpointAPIGateWay(NetworkURLs.BASE_URL, DynamicAPIPath.POST_SAVE_LOADING_LIST),mRequestBodyType,mRequestBodyTypeImage);
     }
 
     public Observable<JsonElement> executeUserListApi(String mLimit) {

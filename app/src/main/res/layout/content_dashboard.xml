@@ -273,11 +273,148 @@
                     </androidx.cardview.widget.CardView>
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/layCardTwo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layCardOne"
+                    android:layout_marginTop="@dimen/_12dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardLoading"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_3dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="@dimen/_3dp"
+                        android:layout_weight="1"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+                        android:elevation="@dimen/_12dp"
+                        app:cardCornerRadius="@dimen/_15dp"
+                        app:cardElevation="@dimen/_3dp"
+                        >
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/layLoading"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:orientation="vertical"
+                            android:paddingVertical="@dimen/_50dp"
+                            >
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="75dp"
+                                android:layout_height="65dp"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:src="@drawable/ic_loading_list"
+                                />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="@dimen/_6dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:text="Loading List"
+                                android:textColor="@color/back_text_colour"
+                                android:textSize="@dimen/_14sp"
+                                />
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/layAttList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="@dimen/_3dp"
+                        android:layout_marginBottom="@dimen/_3dp"
+                        android:layout_weight="1"
+                        android:visibility="visible"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+                        android:elevation="@dimen/_12dp"
+                        app:cardCornerRadius="@dimen/_15dp"
+                        app:cardElevation="@dimen/_3dp"
+                        >
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/layAttendance"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:orientation="vertical"
+                            android:paddingVertical="@dimen/_50dp"
+                            >
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="@dimen/_55dp"
+                                android:layout_height="@dimen/_50dp"
+                                android:layout_marginTop="@dimen/_15dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_attendance_list" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="@dimen/_6dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:text="Attendance List"
+                                android:textColor="@color/back_text_colour"
+                                android:textSize="@dimen/_14sp" />
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
 
             </RelativeLayout>
 
         </androidx.core.widget.NestedScrollView>
+
+        <com.ominfo.staff_original.ui.attendance.ripple_effect.RippleBackground
+            android:id="@+id/rippleEffect"
+            android:layout_width="@dimen/_80dp"
+            android:layout_height="@dimen/_80dp"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right|bottom"
+            android:background="@drawable/layout_ripple_round"
+            android:clickable="true"
+            android:layout_marginRight="@dimen/_25dp"
+            android:layout_marginBottom="@dimen/_40dp"
+            android:focusable="true"
+            android:foreground="?selectableItemBackground"
+            android:visibility="gone"
+            app:rb_color="@color/blue_graph"
+            app:rb_duration="3000"
+            app:rb_radius="@dimen/_6dp"
+            app:rb_rippleAmount="6"
+            app:rb_scale="6"
+            app:rb_strokeWidth="@dimen/_4dp"
+            app:rb_type="fillRipple">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/add_attendance"
+                android:layout_width="@dimen/_60dp"
+                android:layout_height="@dimen/_60dp"
+                android:layout_centerInParent="true"
+                android:contentDescription="TODO"
+                android:foreground="@drawable/attention_gradient_blue"
+                app:fabSize="normal"
+                app:maxImageSize="@dimen/_16dp" />
+        </com.ominfo.staff_original.ui.attendance.ripple_effect.RippleBackground>
+
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

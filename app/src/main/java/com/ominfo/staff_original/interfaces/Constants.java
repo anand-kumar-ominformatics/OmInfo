@@ -10,6 +10,7 @@ public interface Constants {
     String SCANNER  = "/ScannerImages";
     String CAMERA  = "/CameraImages";
     String OTP = "otp";
+    int VERSION = 14;
     String RESEND_OTP = "resend_otp";
     String UPDATE_PROFILE_INFO = "update_profile_info";
     String FILE_NAME = "OmTuranth_Staff";
@@ -69,8 +70,9 @@ public interface Constants {
     String FORGOT_PASSWORD = "forgot_password";
     String CONFIRM_PIN = "confirm_pin";
     String SEND_MONEY = "send_money";
-    long INTERVAL = 5 * 1000;
-    long FASTEST_INTERVAL = 2 * 1000;
-
+    long INTERVAL = 4000; //5*60*1000;
+    long FASTEST_INTERVAL = 2000;//5*60*1000;
+    long INTERVAL_ATTENDENCE = 4000; //2*60*1000;//60 * 1 * 1000; //60 sec
+    long FASTEST_INTERVAL_ATTENDENCE = 2000;//30 * 1 * 1000; //30 sec
 
 }

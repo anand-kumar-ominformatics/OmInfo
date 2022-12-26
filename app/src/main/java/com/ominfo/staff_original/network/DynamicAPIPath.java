@@ -4,13 +4,23 @@ import com.ominfo.staff_original.util.LogUtil;
 
 public class DynamicAPIPath {
 
-    public static final String BASE = "index_with_DRapp_live.php";
+    public static final String BASE = "index_with_DRapp_test.php";//"index_with_DRapp_test.php"; //"index_with_DRapp_live.php";
     public static final String POST_LOGIN = BASE+"?action=login";
+    public static final String POST_UPDATE_KEY = BASE+"?action=updatemobilekey";
     public static final String POST_FETCH_KATA_CHITTI = BASE+"?action=getKantaChitthi";
+    public static final String POST_FETCH_LOADING_LIST = BASE+"?action=getLoadingList";
+    public static final String POST_SINGLE_USER = BASE+"?action=get_single_employee_list";
+    public static final String POST_GET_VERSION= "index_omtrucking_test.php"+"?action=getAppversion";
     public static final String POST_SAVE_KATA_CHITTI = BASE;
+    public static final String POST_CALENDER_HOLIDAY=BASE+"?action=getall_attendance_report";
+    public static final String POST_CALENDER_ALL=BASE+"?action=getall_attendance_calendar";
+    public static final String POST_HIGHLIGHTS=BASE+"?action=gethighlights_details";
+    public static final String POST_SAVE_LOADING_LIST = BASE;
+    public static final String POST_GET_VISIT_NO= BASE+"generatevisit_id";
     public static final String POST_ADV_TO_DRIVER = BASE+"?action=getAdvanceToDriverInfo";
     public static final String POST_CONTACTS = BASE+"?action=getcontacts";
     public static final String POST_VEHICLE = BASE+"?action=getAllVehicles";
+    public static final String POST_SINLE_EMPLOYEES_LIST = BASE+"?action=get_single_employee_list";
     public static final String GET_DASHBOARD = "dashboard_screen";
     public static final String RESEND_otp = "resend-otp";
     public static final String profile_update = "profile-update";
@@ -19,6 +29,10 @@ public class DynamicAPIPath {
     public static final String USER_CHARGE = "user-charges";
     public static final String DOCUMENT_UPDATE = "document-update";
     public static final String GET_USER_LIST = "user";
+    public static final String action_get_attendance = "get_today_attendance";
+    public static final String POST_UPDATE_ATTENDANCE= BASE+"?action=mark_attendance_new";
+    public static final String POST_GET_ATTENDANCE = BASE+"?action=getattendance_individual";
+    public static final String action_update_attendance = "mark_attendance_new";
 
 
     /**

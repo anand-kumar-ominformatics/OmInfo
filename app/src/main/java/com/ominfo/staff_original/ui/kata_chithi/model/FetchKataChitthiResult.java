@@ -11,9 +11,9 @@ import javax.annotation.Generated;
 @SuppressWarnings("unused")
 public class FetchKataChitthiResult {
 
-    @SerializedName("array1")
+    @SerializedName("Array1")
     private List<Array1> mArray1;
-    @SerializedName("array2")
+    @SerializedName("Array2")
     private List<Array2> mArray2;
 
     public List<Array1> getArray1() {

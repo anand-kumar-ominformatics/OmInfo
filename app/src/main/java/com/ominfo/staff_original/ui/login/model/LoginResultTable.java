@@ -193,6 +193,19 @@ public class LoginResultTable {
     @SerializedName("Year_Code")
     private String mYearCode;
 
+    @ColumnInfo(name = "0")
+    @Expose
+    @SerializedName("0")
+    private CompanyIdData Company_Id;
+
+    public CompanyIdData getCompany_Id() {
+        return Company_Id;
+    }
+
+    public void setCompany_Id(CompanyIdData company_Id) {
+        Company_Id = company_Id;
+    }
+
     public String getAllowBooking() {
         return mAllowBooking;
     }
