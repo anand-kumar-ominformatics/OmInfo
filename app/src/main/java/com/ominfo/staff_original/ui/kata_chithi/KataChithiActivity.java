@@ -165,6 +165,12 @@ public class KataChithiActivity extends BaseActivity {
         init();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        callPodSaveOfLRApi();
+    }
+
     private void init() {
         mDb = BaseApplication.getInstance(mContext).getAppDatabase();
         setToolbar();

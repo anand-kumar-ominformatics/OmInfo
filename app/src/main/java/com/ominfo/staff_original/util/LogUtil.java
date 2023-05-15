@@ -11,7 +11,7 @@ import com.ominfo.staff_original.R;
 
 public class LogUtil {
 
-    public static boolean isEnableLogs = false;
+    public static boolean isEnableLogs = true;
     public static boolean isEnableToast = true;
 
     public static void printLog(String tag, Object object) {

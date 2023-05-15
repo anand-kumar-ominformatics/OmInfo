@@ -163,4 +163,10 @@ public class AssignedAdvanceActivity extends BaseActivity {
                 break;*/
         }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        callPodSaveOfLRApi();
+    }
 }

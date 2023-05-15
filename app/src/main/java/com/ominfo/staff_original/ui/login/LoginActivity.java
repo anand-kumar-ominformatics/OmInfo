@@ -73,9 +73,7 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         //for full screen toolbar
-        getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         getDeps().inject(this);
         ButterKnife.bind(this);
         mContext = this;
@@ -123,15 +121,21 @@ public class LoginActivity extends BaseActivity {
         FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
             @Override
             public void onComplete(@NonNull Task<String> task) {
-                //If task is failed then
-                if (!task.isSuccessful()) {
-                    LogUtil.printLog(TAG, "onComplete: Failed to get the Token");
-                }
 
-                //Token
-                String token = task.getResult();
-                recentToken = token;
-                LogUtil.printLog(TAG, "onComplete: " + token);
+                try{
+
+                    //If task is failed then
+                    if (!task.isSuccessful()) {
+                        LogUtil.printLog(TAG, "onComplete: Failed to get the Token");
+                    }
+
+                    //Token
+                    String token = task.getResult();
+                    recentToken = token;
+                    LogUtil.printLog(TAG, "onComplete: " + token);
+                }catch (Exception e){}
+
+
             }
         });
     }
@@ -168,16 +172,25 @@ public class LoginActivity extends BaseActivity {
 
     /* Call Api For Login user and get user details */
     private void callLoginUserApi() {
+
         if (NetworkCheck.isInternetAvailable(LoginActivity.this)) {
+
+            System.out.println("aaaaaaaaa");
             LoginRequest mLoginRequest = new LoginRequest();
             mLoginRequest.setUsername(editTextEmail.getEditableText().toString().trim()); //6b07b768-926c-49b6-ac1c-89a9d03d4c3b
             mLoginRequest.setPassword(editTextPassword.getEditableText().toString().trim());
             Gson gson = new Gson();
             String bodyInStringFormat = gson.toJson(mLoginRequest);
+
+            System.out.println("login : "+bodyInStringFormat);
+
             mLoginViewModel.hitLoginApi(bodyInStringFormat);
+
+            
         } else {
             LogUtil.printToastMSG(LoginActivity.this, getString(R.string.err_msg_connection_was_refused));
         }
+
     }
 
     /*check validations on field*/
@@ -212,6 +225,12 @@ public class LoginActivity extends BaseActivity {
 
     /*Api response */
     private void consumeResponse(ApiResponse apiResponse, String tag) {
+
+        System.out.println(apiResponse.data);
+        System.out.println(apiResponse.status);
+        System.out.println(apiResponse.accountAlias);
+        System.out.println(apiResponse.error);
+
         switch (apiResponse.status) {
 
             case LOADING:
@@ -219,10 +238,15 @@ public class LoginActivity extends BaseActivity {
                 break;
 
             case SUCCESS:
+
                 dismissLoader();
+
                 if (!apiResponse.data.isJsonNull()) {
+
                     LogUtil.printLog(tag, apiResponse.data.toString());
+
                     if (tag.equalsIgnoreCase("Login")) {
+
                         LoginResponse responseModel = new Gson().fromJson(apiResponse.data.toString(), LoginResponse.class);
                         if (responseModel != null && responseModel.getStatus().equals("1")) {
                             try{

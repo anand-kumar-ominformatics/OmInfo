@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/manifestNoText"
+                android:layout_width="@dimen/_80dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/gilroy_semibold"
+                android:gravity="left"
+                android:text="Manifest No"
+                android:textColor="@color/back_text_colour"
+                android:textSize="@dimen/_12sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/manifestNoDot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/manifestNoText"
+                android:fontFamily="@font/gilroy_semibold"
+                android:text="  :   "
+                android:textColor="@color/back_text_colour"
+                android:textSize="@dimen/_12sp" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/manifestNoValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/manifestNoDot"
+                android:fontFamily="@font/font_regular"
+                android:text="No Available"
+                android:textColor="@color/back_text_colour"
+                android:textSize="@dimen/_12sp" />
+        </RelativeLayout>
+
+
+
+        <RelativeLayout
+            android:layout_marginLeft="@dimen/_5dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/manifestDateText"
+                android:layout_width="@dimen/_80dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/gilroy_semibold"
+                android:gravity="left"
+                android:text="Manifest Date"
+                android:textColor="@color/back_text_colour"
+                android:textSize="@dimen/_12sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/manifestDateDot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/manifestDateText"
+                android:fontFamily="@font/gilroy_semibold"
+                android:text="  :   "
+                android:textColor="@color/back_text_colour"
+                android:textSize="@dimen/_12sp" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/manifestDateValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/manifestDateDot"
+                android:fontFamily="@font/font_regular"
+                android:text="No Available"
+                android:textColor="@color/back_text_colour"
+                android:textSize="@dimen/_12sp" />
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_marginTop="@dimen/_10dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/manifestTypeText"
+                android:layout_width="@dimen/_80dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/gilroy_semibold"
+                android:gravity="left"
+                android:text="Manifest Type"
+                android:textColor="@color/back_text_colour"
+                android:textSize="@dimen/_12sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/manifestTypeDot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/manifestTypeText"
+                android:fontFamily="@font/gilroy_semibold"
+                android:text="  :   "
+                android:textColor="@color/back_text_colour"
+                android:textSize="@dimen/_12sp" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/manifestTypeValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/manifestTypeDot"
+                android:fontFamily="@font/font_regular"
+                android:text="No Available"
+                android:textColor="@color/back_text_colour"
+                android:textSize="@dimen/_12sp" />
+        </RelativeLayout>
+
+
+
+        <RelativeLayout
+            android:layout_marginLeft="@dimen/_5dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/vehicleNoText"
+                android:layout_width="@dimen/_80dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/gilroy_semibold"
+                android:gravity="left"
+                android:text="Vehicle No."
+                android:textColor="@color/back_text_colour"
+                android:textSize="@dimen/_12sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/vehicleNoDot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/vehicleNoText"
+                android:fontFamily="@font/gilroy_semibold"
+                android:text="  :   "
+                android:textColor="@color/back_text_colour"
+                android:textSize="@dimen/_12sp" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/vehicleNoValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/vehicleNoDot"
+                android:fontFamily="@font/font_regular"
+                android:text="No Available"
+                android:textColor="@color/back_text_colour"
+                android:textSize="@dimen/_12sp" />
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_marginTop="@dimen/_10dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/manifestFromText"
+                android:layout_width="@dimen/_80dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/gilroy_semibold"
+                android:gravity="left"
+                android:text="Manifest From"
+                android:textColor="@color/back_text_colour"
+                android:textSize="@dimen/_12sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/manifestFromDot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/manifestFromText"
+                android:fontFamily="@font/gilroy_semibold"
+                android:text="  :   "
+                android:textColor="@color/back_text_colour"
+                android:textSize="@dimen/_12sp" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/manifestFromValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/manifestFromDot"
+                android:fontFamily="@font/font_regular"
+                android:text="No Available"
+                android:textColor="@color/back_text_colour"
+                android:textSize="@dimen/_12sp" />
+        </RelativeLayout>
+
+
+
+        <RelativeLayout
+            android:layout_marginLeft="@dimen/_5dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/manifestToText"
+                android:layout_width="@dimen/_80dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/gilroy_semibold"
+                android:gravity="left"
+                android:text="Manifest To"
+                android:textColor="@color/back_text_colour"
+                android:textSize="@dimen/_12sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/manifestToDot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/manifestToText"
+                android:fontFamily="@font/gilroy_semibold"
+                android:text="  :   "
+                android:textColor="@color/back_text_colour"
+                android:textSize="@dimen/_12sp" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/manifestToValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/manifestToDot"
+                android:fontFamily="@font/font_regular"
+                android:text="No Available"
+                android:textColor="@color/back_text_colour"
+                android:textSize="@dimen/_12sp" />
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View
+        android:id="@+id/seperatorLine"
+        android:layout_marginVertical="@dimen/_10dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1dp"
+        android:background="@color/app_gray"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

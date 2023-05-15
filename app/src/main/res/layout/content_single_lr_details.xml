@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_below="@+id/toolbar_layout"
+    android:background="@color/color_main"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar_layout"
+        android:layout_gravity="center"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/imgDashBg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar_layout"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:layout_marginBottom="@dimen/_100dp"
+            android:orientation="vertical">
+
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:id="@+id/cl_mainlayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/bottom_layout">
+
+                <include layout="@layout/content_collapse_common_header" />
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fillViewport="true"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_marginHorizontal="@dimen/_15dp"
+                            android:padding="@dimen/_10dp"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/layout_round_shape_corners_15">
+
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:weightSum="2">
+
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:orientation="horizontal"
+                                    android:layout_width="@dimen/_0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content">
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/gilroy_semibold"
+                                        android:gravity="left"
+                                        android:textColor="@color/back_text_colour"
+                                        android:textSize="@dimen/_12sp"
+                                        android:text="PDS No. : "/>
+
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/pdsNoValue"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/gilroy_semibold"
+                                        android:gravity="left"
+                                        android:textColor="@color/back_text_colour"
+                                        android:textSize="@dimen/_12sp"
+                                        android:text="456756"/>
+
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:orientation="horizontal"
+                                    android:layout_width="@dimen/_0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content">
+
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/gilroy_semibold"
+                                        android:gravity="left"
+                                        android:textColor="@color/back_text_colour"
+                                        android:textSize="@dimen/_12sp"
+                                        android:text="PDS Date. : "/>
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/pdsDateValue"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/gilroy_semibold"
+                                        android:gravity="left"
+                                        android:textColor="@color/back_text_colour"
+                                        android:textSize="@dimen/_12sp"
+                                        android:text="23-3-3320"/>
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_marginTop="@dimen/_8dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:weightSum="2">
+
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:orientation="horizontal"
+                                    android:layout_width="@dimen/_0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content">
+
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/gilroy_semibold"
+                                        android:gravity="left"
+                                        android:textColor="@color/back_text_colour"
+                                        android:textSize="@dimen/_12sp"
+                                        android:text="Vehicle No. : "/>
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/vehicleNoValue"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/gilroy_semibold"
+                                        android:gravity="left"
+                                        android:textColor="@color/back_text_colour"
+                                        android:textSize="@dimen/_12sp"
+                                        android:text="HM773647"/>
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:orientation="horizontal"
+                                    android:layout_width="@dimen/_0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content">
+
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/gilroy_semibold"
+                                        android:gravity="left"
+                                        android:textColor="@color/back_text_colour"
+                                        android:textSize="@dimen/_12sp"
+                                        android:text="Driver : "/>
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/driverNameValue"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/gilroy_semibold"
+                                        android:gravity="left"
+                                        android:textColor="@color/back_text_colour"
+                                        android:textSize="@dimen/_12sp"
+                                        android:text="Ram dular"/>
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="10dp"
+                            android:padding="@dimen/_10dp"
+                            android:background="@drawable/layout_round_shape_corners"
+                            android:orientation="vertical">
+
+
+                            <RelativeLayout
+                                android:id="@+id/searchLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_45dp"
+                                android:paddingHorizontal="@dimen/_16dp"
+                                android:imeOptions="actionDone"
+                                android:background="@drawable/layout_round_shape_corners_15"
+                                android:orientation="vertical">
+
+                                <androidx.appcompat.widget.AppCompatEditText
+                                    android:id="@+id/tvSearchView"
+                                    android:layout_width="match_parent"
+                                    android:layout_marginLeft="@dimen/_5dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_alignParentLeft="true"
+                                    android:backgroundTint="@android:color/transparent"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:layout_toLeftOf="@+id/clearSearchBTN"
+                                    android:hint="@string/scr_lbl_enter_lp_no"
+                                    android:imeOptions="actionDone"
+                                    android:inputType="text"
+                                    android:textColor="@color/back_text_colour"
+                                    android:textColorHint="@color/light_grey"
+                                    android:textSize="@dimen/_16sp" />
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/clearSearchBTN"
+                                    android:layout_width="@dimen/_17dp"
+                                    android:layout_height="@dimen/_17dp"
+                                    android:layout_centerVertical="true"
+                                    android:layout_alignParentRight="true"
+                                    android:src="@drawable/ic_close" />
+
+                            </RelativeLayout>
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:orientation="vertical"
+                                android:layout_marginTop="@dimen/_10dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/round_corner_shape_without_fill_thin_grey_test">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:weightSum="3"
+                                    android:layout_marginVertical="@dimen/_10dp"
+                                    android:layout_marginHorizontal="@dimen/_15dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/white"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="0dp"
+                                        android:layout_weight="1"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentStart="true"
+                                        android:layout_centerVertical="true"
+                                        android:fontFamily="@font/gilroy_bold"
+                                        android:text="Lr No."
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/_14sp"
+                                        android:visibility="visible" />
+
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="0dp"
+                                        android:layout_weight="1"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerVertical="true"
+                                        android:fontFamily="@font/gilroy_bold"
+                                        android:text="Consignee"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/_14sp"
+                                        android:visibility="visible" />
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="0dp"
+                                        android:layout_weight="1"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerVertical="true"
+                                        android:fontFamily="@font/gilroy_bold"
+                                        android:text="Status"
+                                        android:layout_gravity="right"
+                                        android:gravity="right"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/_14sp"
+                                        android:visibility="visible" />
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1.2dip"
+                                    android:background="@color/light_grey"/>
+
+                                <include layout="@layout/content_empty_activity_layout"/>
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/recyclerView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center"
+                                    android:layout_marginBottom="@dimen/_16dp"
+                                    android:focusable="false"
+                                    android:visibility="visible"
+                                    android:focusableInTouchMode="false"
+                                    android:nestedScrollingEnabled="true"
+                                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                    tools:listitem="@layout/row_upload_psd_list" />
+
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.core.widget.NestedScrollView>
+
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

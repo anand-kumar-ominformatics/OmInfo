@@ -42,7 +42,7 @@
             app:popupTheme="@style/AppTheme.White"
             app:statusBarScrim="@android:color/transparent"
             android:background="@android:color/transparent"
-             >
+            >
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/layHeaderToolbar"
@@ -54,37 +54,37 @@
                 android:paddingTop="@dimen/_10dp"
                 >
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_weight="1"
-                >
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgBack"
-                    android:layout_width="@dimen/_22dp"
-                    android:layout_height="@dimen/_22dp"
-                    android:layout_gravity="left|center"
-                    android:gravity="left"
-                    android:onClick="onClick"
-                    android:clickable="true"
-                    android:src="@drawable/ic_back" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/toolbarTitle"
-                    android:layout_width="match_parent"
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/_20dp"
-                    android:fontFamily="@font/gilroy_semibold"
-                    android:gravity="center_vertical"
-                    android:paddingTop="@dimen/_0dp"
-                    android:text="ड्राइवर हिसाब"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_23sp" />
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    >
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgBack"
+                        android:layout_width="@dimen/_22dp"
+                        android:layout_height="@dimen/_22dp"
+                        android:layout_gravity="left|center"
+                        android:gravity="left"
+                        android:onClick="onClick"
+                        android:clickable="true"
+                        android:src="@drawable/ic_back" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/toolbarTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/_20dp"
+                        android:fontFamily="@font/gilroy_semibold"
+                        android:gravity="center_vertical"
+                        android:paddingTop="@dimen/_0dp"
+                        android:text="ड्राइवर हिसाब"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_23sp" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
 
                 <RelativeLayout

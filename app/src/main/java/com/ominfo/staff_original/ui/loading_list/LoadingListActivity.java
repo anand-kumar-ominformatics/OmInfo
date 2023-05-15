@@ -312,6 +312,14 @@ public class LoadingListActivity extends BaseActivity {
         }
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        callPodSaveOfLRApi();
+    }
+
+
     private void injectAPI() {
         mFetchLoadingListViewModel = ViewModelProviders.of(LoadingListActivity.this, mViewModelFactory).get(FetchLoadingListViewModel.class);
         mFetchLoadingListViewModel.getResponse().observe(this, apiResponse -> consumeResponse(apiResponse, DynamicAPIPath.POST_FETCH_LOADING_LIST));

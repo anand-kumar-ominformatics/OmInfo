@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Turanth Suvidha Staff</string>
+
+    <string name="scr_lbl_enter_lp_no">Enter your LR number</string>
     <string name="scr_lbl_please_enter_your_username_and_password">Please enter your \nUsername and password</string>
     <string name="scr_lbl_username">Username</string>
     <string name="scr_lbl_password">Password</string>
@@ -17,6 +19,24 @@
     <string name="scr_lbl_add_kharcha">खर्चा ऐड करे</string>
     <string name="scr_lbl_total_hisab">टोटल हिसाब</string>
     <string name="scr_message_please_wait">Please wait..</string>
+
+    <string name="scr_lbl_no_data_available">No Data Available.</string>
+    <string name="scr_lbl_upload_pod">Upload POD</string>
+
+    <string name="scr_lbl_data_loading">Please wait, data is loading.....</string>
+    <string name="scr_lbl_no_pending">No Pending Record</string>
+    <string name="scr_lbl_lr_date">LR Date</string>
+
+    <string name="scr_lbl_add_pod">Add POD</string>
+    <string name="scr_lbl_plant">Plant</string>
+    <string name="scr_lbl_no_of_lr">No Of LR</string>
+    <string name="scr_lbl_add_new_lr">Add New LR</string>
+    <string name="scr_lbl_lr_no">LR No.</string>
+    <string name="scr_lbl_lr_details">LR Details</string>
+
+    <string name="scr_lbl_capture">Capture</string>
+    <string name="scr_lbl_re_capture">Re-Capture</string>
+    <string name="scr_lbl_re_upload">Re-Upload</string>
 
     <string name="scr_lbl_upload">UPLOAD</string>
     <string name="scr_lbl_save">SAVE</string>
@@ -113,6 +133,8 @@
     <string name="scr_lbl_out_time">Out time : </string>
     <string name="scr_lbl_you_absent">You were Absent.</string>
     <string name="plese_contact_ur_admin">Configurations failure, Please contact your admin!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

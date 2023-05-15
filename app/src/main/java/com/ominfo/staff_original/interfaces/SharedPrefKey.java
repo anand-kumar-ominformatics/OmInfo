@@ -18,6 +18,8 @@ public interface SharedPrefKey {
     String SHA256_PUBLICKEYHASH = "SHA256_PUBLICKEYHASH";
     String RANDOM_STRING = "random_string";
 
+    String CURRENT_DATE = "CURRENT_DATE";
+
     String IS_LOGGED_IN = "is_logged_in";
     String KATA_CHITTI_DATE = "KATA_CHITTI_DATE";
 
@@ -41,5 +43,9 @@ public interface SharedPrefKey {
     String ATTENDANCE_CHECKIN_TIME = "ATTENDANCE_CHECKIN_TIME";
 
     String ATT_INFO = "ATT_INFO";
+
+    String POD_FILTER_BY_PDS_NO = "POD_FILTER_BY_PDS_NO";
+    String POD_FILTER_BY_VEH_NO = "POD_FILTER_BY_VEH_NO";
+    String POD_FILTER_BY_DRIVER_NAME = "POD_FILTER_BY_DRIVER_NAME";
 
 }

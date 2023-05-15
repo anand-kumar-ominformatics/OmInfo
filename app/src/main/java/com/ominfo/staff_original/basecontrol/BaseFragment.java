@@ -20,10 +20,35 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.gson.Gson;
+import com.ominfo.staff_original.R;
+
+import com.ominfo.staff_original.basecontrol.deps.DaggerDeps;
+import com.ominfo.staff_original.basecontrol.deps.Deps;
+import com.ominfo.staff_original.database.AppDatabase;
 import com.ominfo.staff_original.interfaces.CustomDialogHelper;
+import com.ominfo.staff_original.network.ApiResponse;
+import com.ominfo.staff_original.network.DynamicAPIPath;
+import com.ominfo.staff_original.network.NetworkCheck;
+import com.ominfo.staff_original.network.NetworkModule;
+import com.ominfo.staff_original.network.ViewModelFactory;
+import com.ominfo.staff_original.ui.contacts.model.CallResponse;
+import com.ominfo.staff_original.ui.upload_pod.model.FetchPendingListViewModel;
+import com.ominfo.staff_original.ui.upload_pod.model.PodSaveOfLRViewModel;
+import com.ominfo.staff_original.ui.upload_pod.model.UploadPodRequest;
+import com.ominfo.staff_original.ui.upload_pod.model.UploadPodResponse;
 import com.ominfo.staff_original.util.CustomAnimationUtil;
+import com.ominfo.staff_original.util.LogUtil;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 
 /* base fragment for all fragments
@@ -46,11 +71,127 @@ public class BaseFragment extends Fragment {
     private AlertDialog alertDialog;
     private CustomAnimationUtil customAnimationUtil;
 
+    private PodSaveOfLRViewModel podSaveOfLRViewModel;
+
+    private AppDatabase mDb;
+    private Deps mDeps;
+
+    @Inject
+    ViewModelFactory mViewModelFactory;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         return super.onCreateView(inflater, container, savedInstanceState);
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mDeps = DaggerDeps.builder().networkModule(new NetworkModule()).build();
+        mDeps.inject(this);
+        mDb =BaseApplication.getInstance(getActivity()).getAppDatabase();
+        injectAPI();
+    }
+
+    private void injectAPI() {
+
+        podSaveOfLRViewModel = ViewModelProviders.of(this, mViewModelFactory).get(PodSaveOfLRViewModel.class);
+        podSaveOfLRViewModel.getResponse().observe(getViewLifecycleOwner(), apiResponse -> consumeResponse(apiResponse, DynamicAPIPath.POD_SAVE_FOR_LR1));
+
+    }
+
+
+
+    public void callPodSaveOfLRApi() {
+
+        if (NetworkCheck.isInternetAvailable( getContext() )) {
+
+            try{
+                AppDatabase mDb = BaseApplication.getInstance().getAppDatabase();
+
+                List<UploadPodRequest> loginResultTable = mDb.getDbDAO().getPdsList();
+
+                LogUtil.printLog("pending",loginResultTable.size() );
+
+                for( UploadPodRequest item1 : loginResultTable ){
+
+                    LogUtil.printLog("may","api calling");
+                    try {
+
+                        item1.setId(null);
+                        item1.setGcNo(null);
+                        item1.setUploadDate(null);
+
+                        Gson gson = new Gson();
+                        String bodyInStringFormat = gson.toJson(item1);
+
+                        RequestBody action = RequestBody.create(MediaType.parse("text/plain"), DynamicAPIPath.POD_SAVE_FOR_LR1);
+                        RequestBody json = RequestBody.create(MediaType.parse("text/plain"), bodyInStringFormat);
+                        podSaveOfLRViewModel.hitPodSaveOfLr(action,json);
+                        LogUtil.printLog("may","api called");
+                    }catch (Exception e){
+                        LogUtil.printLog("may",e);
+                    }
+                }
+
+            }catch (Exception e){ LogUtil.printLog("may", " fully exe"+e );}
+
+        } else {
+            LogUtil.printToastMSG(getContext(), getString(R.string.err_msg_connection_was_refused));
+        }
+    }
+
+
+
+
+    /*Api response */
+    private void consumeResponse(ApiResponse apiResponse, String tag) {
+
+        LogUtil.printLog("may",tag +" base frg consume call" + apiResponse.data + " "+ apiResponse.status);
+
+
+        switch (apiResponse.status) {
+
+            case LOADING:
+                break;
+
+            case SUCCESS:
+                if (!apiResponse.data.isJsonNull()) {
+                    LogUtil.printLog(tag, apiResponse.data.toString());
+
+
+                    try {
+
+                        if (tag.equalsIgnoreCase(DynamicAPIPath.POD_SAVE_FOR_LR1)) {
+
+
+                            UploadPodResponse responseModel = new Gson().fromJson(apiResponse.data.toString(), UploadPodResponse.class);
+
+                            if (responseModel != null && responseModel.getStatus().equals("1")) {
+
+                                String message = responseModel.getMessage();
+                                int arrOfStr = message.indexOf(".");
+                                mDb.getDbDAO().deletePdsById( Integer.parseInt( message.substring(arrOfStr+1, message.length() )) );
+
+                            }else
+                                LogUtil.printLog("may", "fiallled " +responseModel.getMessage());
+
+                        }
+                    } catch (Exception e) {
+                        LogUtil.printLog("may", "fiallled ex " +e);
+                    }
+
+                }
+                break;
+            case ERROR:
+                LogUtil.printLog("may",tag +" frg base  err consume call");
+                //LogUtil.printToastMSG(DashbooardActivity.this, getString(R.string.err_msg_connection_was_refused));
+                break;
+        }
+    }
+
 
 
     public void showCustomAlertDialog(Context mContext, String title, String msg, String yesBTNTxt

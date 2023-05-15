@@ -284,6 +284,12 @@ public class HisabDetailsActivity extends BaseActivity {
         mDialog.show();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        callPodSaveOfLRApi();
+    }
+
     //perform click actions
     @OnClick({R.id.complaintButton,R.id.driverNamValue, R.id.cleanerNamValue,R.id.tvHisabName, R.id.layAurJaniye, R.id.okayButton, R.id.imgInfo, R.id.notOkayButton})
     public void onClick(View view) {

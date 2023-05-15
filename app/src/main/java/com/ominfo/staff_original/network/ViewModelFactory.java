@@ -13,6 +13,7 @@ import com.ominfo.staff_original.ui.contacts.model.GetContactsViewModel;
 import com.ominfo.staff_original.ui.dashboard.model.AdvToDriverViewModel;
 import com.ominfo.staff_original.ui.dashboard.model.AppVersionViewModel;
 import com.ominfo.staff_original.ui.dashboard.model.SingleEmployeeListViewModel;
+import com.ominfo.staff_original.ui.dashboard.model.TrackAndTraceLRViewModel;
 import com.ominfo.staff_original.ui.kata_chithi.model.FetchKataChitthiViewModel;
 import com.ominfo.staff_original.ui.kata_chithi.model.SaveKataChitthiViewModel;
 import com.ominfo.staff_original.ui.kata_chithi.model.VehicleViewModel;
@@ -20,6 +21,12 @@ import com.ominfo.staff_original.ui.loading_list.model.FetchLoadingListViewModel
 import com.ominfo.staff_original.ui.loading_list.model.SaveLoadingListViewModel;
 import com.ominfo.staff_original.ui.login.model.LoginViewModel;
 import com.ominfo.staff_original.ui.login.model.UpdateKeyViewModel;
+
+import com.ominfo.staff_original.ui.upload_pod.model.FetchPendingListViewModel;
+import com.ominfo.staff_original.ui.upload_pod.model.GetVehicleViewModel;
+import com.ominfo.staff_original.ui.upload_pod.model.PdsGcListForPodViewModel;
+import com.ominfo.staff_original.ui.upload_pod.model.PodSaveOfLRViewModel;
+
 
 import javax.inject.Inject;
 
@@ -73,6 +80,16 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
              return (T) new AppVersionViewModel(service);
          }else  if (modelClass.isAssignableFrom(UpdateKeyViewModel.class)) {
              return (T) new UpdateKeyViewModel(service);
+         }else  if (modelClass.isAssignableFrom(TrackAndTraceLRViewModel.class)) {
+             return (T) new TrackAndTraceLRViewModel(service);
+         }else  if (modelClass.isAssignableFrom(GetVehicleViewModel.class)) {
+             return (T) new GetVehicleViewModel(service);
+         } else  if (modelClass.isAssignableFrom(PodSaveOfLRViewModel.class)) {
+             return (T) new PodSaveOfLRViewModel(service);
+         } else  if (modelClass.isAssignableFrom(FetchPendingListViewModel.class)) {
+             return (T) new FetchPendingListViewModel(service);
+         }else  if (modelClass.isAssignableFrom(PdsGcListForPodViewModel.class)) {
+             return (T) new PdsGcListForPodViewModel(service);
          }
 
          throw new IllegalArgumentException("Unknown class name");

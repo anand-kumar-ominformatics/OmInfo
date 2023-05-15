@@ -1,0 +1,1576 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_below="@+id/toolbar_layout"
+    android:background="@color/color_main"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/cl_mainlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_layout">
+
+        <include layout="@layout/content_collapse_common_header" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_10dp"
+                android:background="@drawable/layout_round_shape_corners"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_marginHorizontal="@dimen/_13dp"
+                        android:layout_marginVertical="@dimen/_20dp"
+                        android:weightSum="2"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:orientation="horizontal"
+                            android:layout_gravity="left"
+                            android:gravity="left"
+                            android:layout_width="@dimen/_0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="8dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:text="LR No. :  "
+                                android:textColor="@color/back_text_colour"
+                                android:textSize="@dimen/_15sp" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/topLrNoValue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="8dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:text="No Available"
+                                android:textColor="@color/color_main"
+                                android:textSize="@dimen/_14sp" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:orientation="horizontal"
+                            android:layout_width="@dimen/_0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="8dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:text="Status :  "
+                                android:textColor="@color/back_text_colour"
+                                android:textSize="@dimen/_15sp" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/deliveryStatus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="8dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:text="No Available"
+                                android:textColor="@color/green"
+                                android:textSize="@dimen/_14sp" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_3dp"
+                        android:layout_marginHorizontal="@dimen/_6dp"
+                        android:layout_weight="1"
+                        android:visibility="visible"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+                        android:elevation="@dimen/_12dp"
+                        app:cardCornerRadius="@dimen/_15dp"
+                        app:cardElevation="@dimen/_2dp"
+                        >
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:orientation="horizontal">
+
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_marginLeft="0dp"
+                                    android:fontFamily="@font/gilroy_bold"
+                                    android:gravity="left"
+                                    android:layout_centerVertical="true"
+                                    android:text="General Details"
+                                    android:textColor="@color/color_main"
+                                    android:textSize="@dimen/_14sp" />
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/genDetailsDrop"
+                                    android:layout_width="@dimen/_30dp"
+                                    android:layout_height="@dimen/_30dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerInParent="true"
+                                    android:src="@drawable/ic_up" />
+
+                            </RelativeLayout>
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/genDetailsConLay"
+                                android:visibility="visible"
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:background="@color/color_main"/>
+
+
+
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:orientation="horizontal"
+                                    android:weightSum="2"
+                                    android:layout_gravity="center_vertical"
+                                    android:gravity="center_vertical"
+                                    android:layout_marginTop="@dimen/_15dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+
+                                    <RelativeLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1">
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/lrNoText"
+                                            android:layout_width="@dimen/_80dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentStart="true"
+                                            android:layout_centerVertical="true"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:gravity="left"
+                                            android:text="LR No."
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/lrNoDot"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/lrNoText"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:text="  :   "
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/lrNoValue"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/lrNoDot"
+                                            android:fontFamily="@font/font_regular"
+                                            android:text="No Available"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+                                    </RelativeLayout>
+
+
+
+                                    <RelativeLayout
+                                        android:layout_marginLeft="@dimen/_5dp"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1">
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/lrDateText"
+                                            android:layout_width="@dimen/_80dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentStart="true"
+                                            android:layout_centerVertical="true"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:gravity="left"
+                                            android:text="LR Date"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/lrDateDot"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/lrDateText"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:text="  :   "
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/lrDateValue"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/lrDateDot"
+                                            android:fontFamily="@font/font_regular"
+                                            android:text="No Available"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+                                    </RelativeLayout>
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:orientation="horizontal"
+                                    android:weightSum="2"
+                                    android:layout_gravity="center_vertical"
+                                    android:gravity="center_vertical"
+                                    android:layout_marginTop="@dimen/_15dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+
+                                    <RelativeLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1">
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/qtyText"
+                                            android:layout_width="@dimen/_80dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentStart="true"
+                                            android:layout_centerVertical="true"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:gravity="left"
+                                            android:text="Qty"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/qtyDot"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/qtyText"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:text="  :   "
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/qtyValue"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/qtyDot"
+                                            android:fontFamily="@font/font_regular"
+                                            android:text="No Available"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+                                    </RelativeLayout>
+
+
+
+                                    <RelativeLayout
+                                        android:layout_marginLeft="@dimen/_5dp"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1">
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/bookingBranchText"
+                                            android:layout_width="@dimen/_80dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentStart="true"
+                                            android:layout_centerVertical="true"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:gravity="left"
+                                            android:text="Booking branch"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/bookingBranchDot"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/bookingBranchText"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:text="  :   "
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/bookingBranchValue"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/bookingBranchDot"
+                                            android:fontFamily="@font/font_regular"
+                                            android:text="No Available"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+                                    </RelativeLayout>
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:orientation="horizontal"
+                                    android:weightSum="2"
+                                    android:layout_gravity="center_vertical"
+                                    android:gravity="center_vertical"
+                                    android:layout_marginTop="@dimen/_15dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+
+                                    <RelativeLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1">
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/deliveryBranchText"
+                                            android:layout_width="@dimen/_80dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentStart="true"
+                                            android:layout_centerVertical="true"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:gravity="left"
+                                            android:text="Delivery Branch"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/deliveryBranchDot"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/deliveryBranchText"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:text="  :   "
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/deliveryBranchValue"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/deliveryBranchDot"
+                                            android:fontFamily="@font/font_regular"
+                                            android:text="No Available"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+                                    </RelativeLayout>
+
+
+
+                                    <RelativeLayout
+                                        android:layout_marginLeft="@dimen/_5dp"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1">
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/deliveryLocationText"
+                                            android:layout_width="@dimen/_80dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentStart="true"
+                                            android:layout_centerVertical="true"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:gravity="left"
+                                            android:text="Delivery Location"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/deliveryLocationDot"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/deliveryLocationText"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:text="  :   "
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/deliveryLocationValue"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/deliveryLocationDot"
+                                            android:fontFamily="@font/font_regular"
+                                            android:text="No Available"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+                                    </RelativeLayout>
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:orientation="horizontal"
+                                    android:weightSum="2"
+                                    android:layout_gravity="center_vertical"
+                                    android:gravity="center_vertical"
+                                    android:layout_marginTop="@dimen/_15dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+
+                                    <RelativeLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1">
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/deliveryAreaText"
+                                            android:layout_width="@dimen/_80dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentStart="true"
+                                            android:layout_centerVertical="true"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:gravity="left"
+                                            android:text="Delivery Area"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/deliveryAreaDot"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/deliveryAreaText"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:text="  :   "
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/deliveryAreaValue"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/deliveryAreaDot"
+                                            android:fontFamily="@font/font_regular"
+                                            android:text="No Available"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+                                    </RelativeLayout>
+
+
+
+                                    <RelativeLayout
+                                        android:layout_marginLeft="@dimen/_5dp"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1">
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/deliveryTypeText"
+                                            android:layout_width="@dimen/_80dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentStart="true"
+                                            android:layout_centerVertical="true"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:gravity="left"
+                                            android:text="Delivery Type"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/deliveryTypeDot"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/deliveryTypeText"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:text="  :   "
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/deliveryTypeValue"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/deliveryTypeDot"
+                                            android:fontFamily="@font/font_regular"
+                                            android:text="No Available"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+                                    </RelativeLayout>
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:orientation="horizontal"
+                                    android:weightSum="2"
+                                    android:layout_gravity="center_vertical"
+                                    android:gravity="center_vertical"
+                                    android:layout_marginTop="@dimen/_15dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+
+                                    <RelativeLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1">
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/invoidValueText"
+                                            android:layout_width="@dimen/_80dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentStart="true"
+                                            android:layout_centerVertical="true"
+                                            android:fontFamily="@font/font_semibold"
+                                            android:gravity="left"
+                                            android:text="Invoice Value"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/invoidValueDot"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/invoidValueText"
+                                            android:fontFamily="@font/font_regular"
+                                            android:text="  :   "
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/invoidValueValue"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/invoidValueDot"
+                                            android:fontFamily="@font/font_regular"
+                                            android:text="No Available"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+                                    </RelativeLayout>
+
+
+
+                                    <RelativeLayout
+                                        android:layout_marginLeft="@dimen/_5dp"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1">
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/eWayBillNoText"
+                                            android:layout_width="@dimen/_80dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentStart="true"
+                                            android:layout_centerVertical="true"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:gravity="left"
+                                            android:text="E-way Bill No."
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/eWayBillNoDot"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/eWayBillNoText"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:text="  :   "
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/eWayBillNoValue"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/eWayBillNoDot"
+                                            android:fontFamily="@font/font_regular"
+                                            android:text="No Available"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+                                    </RelativeLayout>
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:orientation="horizontal"
+                                    android:weightSum="2"
+                                    android:layout_gravity="center_vertical"
+                                    android:gravity="center_vertical"
+                                    android:layout_marginTop="@dimen/_15dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+
+                                    <RelativeLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1">
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/paymentTypeText"
+                                            android:layout_width="@dimen/_80dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentStart="true"
+                                            android:layout_centerVertical="true"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:gravity="left"
+                                            android:text="Payment Type"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/paymentTypeDot"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/paymentTypeText"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:text="  :   "
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/paymentTypeValue"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/paymentTypeDot"
+                                            android:fontFamily="@font/font_regular"
+                                            android:text="No Available"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+                                    </RelativeLayout>
+
+
+
+                                    <RelativeLayout
+                                        android:layout_marginLeft="@dimen/_5dp"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1">
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/totalAmountText"
+                                            android:layout_width="@dimen/_80dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentStart="true"
+                                            android:layout_centerVertical="true"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:gravity="left"
+                                            android:text="Total Amount"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/totalAmountDot"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/totalAmountText"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:text="  :   "
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/totalAmountValue"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/totalAmountDot"
+                                            android:fontFamily="@font/font_regular"
+                                            android:text="No Available"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+                                    </RelativeLayout>
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.cardview.widget.CardView>
+
+
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_6dp"
+                        android:layout_marginBottom="@dimen/_3dp"
+                        android:layout_weight="1"
+                        android:clipChildren="false"
+                        android:layout_marginTop="@dimen/_10dp"
+                        android:clipToPadding="false"
+                        android:elevation="@dimen/_12dp"
+                        app:cardCornerRadius="@dimen/_15dp"
+                        app:cardElevation="@dimen/_2dp"
+                        >
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10dp">
+
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:orientation="horizontal">
+
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_marginLeft="0dp"
+                                    android:fontFamily="@font/gilroy_bold"
+                                    android:layout_centerVertical="true"
+                                    android:gravity="left"
+                                    android:text="Crossing Details"
+                                    android:textColor="@color/color_main"
+                                    android:textSize="@dimen/_14sp" />
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/crossingDetailsDrop"
+                                    android:layout_width="@dimen/_30dp"
+                                    android:layout_height="@dimen/_30dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerInParent="true"
+                                    android:src="@drawable/ic_down" />
+
+
+
+                            </RelativeLayout>
+
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/crossingDetailsConLay"
+                                android:visibility="gone"
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:background="@color/color_main"/>
+
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:layout_marginTop="@dimen/_10dp"
+                                    android:id="@+id/crossingRecyclerView"
+                                    android:visibility="visible"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    tools:listitem="@layout/row_crossing_details"/>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_6dp"
+                        android:layout_marginBottom="@dimen/_3dp"
+                        android:layout_weight="1"
+                        android:clipChildren="false"
+                        android:layout_marginTop="@dimen/_10dp"
+                        android:clipToPadding="false"
+                        android:elevation="@dimen/_12dp"
+                        app:cardCornerRadius="@dimen/_15dp"
+                        app:cardElevation="@dimen/_2dp"
+                        >
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10dp">
+
+
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:orientation="horizontal">
+
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_marginLeft="0dp"
+                                    android:fontFamily="@font/gilroy_bold"
+                                    android:gravity="left"
+                                    android:layout_centerVertical="true"
+                                    android:text="Consigner Details"
+                                    android:textColor="@color/color_main"
+                                    android:textSize="@dimen/_14sp" />
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/consignerDetailsDrop"
+                                    android:layout_width="@dimen/_30dp"
+                                    android:layout_height="@dimen/_30dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerInParent="true"
+                                    android:src="@drawable/ic_down" />
+
+                            </RelativeLayout>
+
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/consignerDetailsConLay"
+                                android:visibility="gone"
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:background="@color/color_main"/>
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:orientation="vertical"
+                                    android:layout_marginTop="@dimen/_15dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/consignorNameText"
+                                            android:layout_width="@dimen/_80dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentStart="true"
+                                            android:layout_centerVertical="true"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:gravity="left"
+                                            android:text="Name"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/consignorNameDot"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/consignorNameText"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:text="  :   "
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/consignorNameValue"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/consignorNameDot"
+                                            android:fontFamily="@font/font_regular"
+                                            android:text="No Available"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+                                    </RelativeLayout>
+
+
+
+                                    <RelativeLayout
+                                        android:layout_marginTop="@dimen/_10dp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/consignorMobNoText"
+                                            android:layout_width="@dimen/_80dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentStart="true"
+                                            android:layout_centerVertical="true"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:gravity="left"
+                                            android:text="Mobile No."
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/consignorMobNoDot"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/consignorMobNoText"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:text="  :   "
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/consignorMobNoValue"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/consignorMobNoDot"
+                                            android:fontFamily="@font/font_regular"
+                                            android:text="No Available"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+                                    </RelativeLayout>
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                    </androidx.cardview.widget.CardView>
+
+
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_6dp"
+                        android:layout_marginBottom="@dimen/_3dp"
+                        android:layout_weight="1"
+                        android:clipChildren="false"
+                        android:layout_marginTop="@dimen/_10dp"
+                        android:clipToPadding="false"
+                        android:elevation="@dimen/_12dp"
+                        app:cardCornerRadius="@dimen/_15dp"
+                        app:cardElevation="@dimen/_2dp"
+                        >
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10dp">
+
+
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:orientation="horizontal">
+
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_marginLeft="0dp"
+                                    android:fontFamily="@font/gilroy_bold"
+                                    android:layout_centerVertical="true"
+                                    android:gravity="left"
+                                    android:text="Consignee Details"
+                                    android:textColor="@color/color_main"
+                                    android:textSize="@dimen/_14sp" />
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/consigneeDetailsDrop"
+                                    android:layout_width="@dimen/_30dp"
+                                    android:layout_height="@dimen/_30dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerInParent="true"
+                                    android:src="@drawable/ic_down" />
+
+                            </RelativeLayout>
+
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/consigneeDetailsConLay"
+                                android:visibility="gone"
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:background="@color/color_main"/>
+
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:orientation="vertical"
+                                    android:layout_marginTop="@dimen/_15dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/consigneeNameText"
+                                            android:layout_width="@dimen/_80dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentStart="true"
+                                            android:layout_centerVertical="true"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:gravity="left"
+                                            android:text="Name"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/consigneeNameDot"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/consigneeNameText"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:text="  :   "
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/consigneeNameValue"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/consigneeNameDot"
+                                            android:fontFamily="@font/font_regular"
+                                            android:text="No Available"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+                                    </RelativeLayout>
+
+
+
+                                    <RelativeLayout
+                                        android:layout_marginTop="@dimen/_10dp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/consigneeMobNoText"
+                                            android:layout_width="@dimen/_80dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentStart="true"
+                                            android:layout_centerVertical="true"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:gravity="left"
+                                            android:text="Mobile No."
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/consigneeMobNoDot"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/consigneeMobNoText"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:text="  :   "
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/consigneeMobNoValue"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/consigneeMobNoDot"
+                                            android:fontFamily="@font/font_regular"
+                                            android:text="No Available"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+                                    </RelativeLayout>
+
+
+                                    <RelativeLayout
+                                        android:layout_marginTop="@dimen/_10dp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/consigneeAddressText"
+                                            android:layout_width="@dimen/_80dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentStart="true"
+                                            android:layout_centerVertical="true"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:gravity="left"
+                                            android:text="Address"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/consigneeAddressDot"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/consigneeAddressText"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:text="  :   "
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/consigneeAddressValue"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/consigneeAddressDot"
+                                            android:fontFamily="@font/font_regular"
+                                            android:text="No Available"
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_12sp" />
+                                    </RelativeLayout>
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_6dp"
+                        android:layout_marginBottom="@dimen/_10dp"
+                        android:layout_weight="1"
+                        android:clipChildren="false"
+                        android:layout_marginTop="@dimen/_10dp"
+                        android:clipToPadding="false"
+                        android:elevation="@dimen/_12dp"
+                        app:cardCornerRadius="@dimen/_15dp"
+                        app:cardElevation="@dimen/_2dp"
+                        >
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10dp">
+
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:orientation="horizontal">
+
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_marginLeft="0dp"
+                                    android:fontFamily="@font/gilroy_bold"
+                                    android:layout_centerVertical="true"
+                                    android:gravity="left"
+                                    android:text="Delivery Details "
+                                    android:textColor="@color/color_main"
+                                    android:textSize="@dimen/_14sp" />
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/deliveryDetailsDrop"
+                                    android:layout_width="@dimen/_30dp"
+                                    android:layout_height="@dimen/_30dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerInParent="true"
+                                    android:src="@drawable/ic_down" />
+
+                            </RelativeLayout>
+
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/deliveryDetailsConLay"
+                                android:visibility="gone"
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:background="@color/color_main"/>
+
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/deliveryRecyclerView"
+                                    android:layout_marginTop="@dimen/_10dp"
+                                    android:visibility="visible"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    tools:listitem="@layout/row_delivery_details"/>
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_6dp"
+                        android:layout_marginBottom="@dimen/_10dp"
+                        android:layout_weight="1"
+                        android:clipChildren="false"
+                        android:layout_marginTop="@dimen/_10dp"
+                        android:clipToPadding="false"
+                        android:elevation="@dimen/_12dp"
+                        app:cardCornerRadius="@dimen/_15dp"
+                        app:cardElevation="@dimen/_2dp"
+                        >
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10dp">
+
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:orientation="horizontal">
+
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_marginLeft="0dp"
+                                    android:fontFamily="@font/gilroy_bold"
+                                    android:layout_centerVertical="true"
+                                    android:gravity="left"
+                                    android:text="POD"
+                                    android:textColor="@color/color_main"
+                                    android:textSize="@dimen/_14sp" />
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/podDrop"
+                                    android:layout_width="@dimen/_30dp"
+                                    android:layout_height="@dimen/_30dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerInParent="true"
+                                    android:src="@drawable/ic_down" />
+
+                            </RelativeLayout>
+
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/podMainLay"
+                                android:visibility="gone"
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:id="@+id/podLay1"
+                                    android:visibility="visible"
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+
+                                    <View
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1dp"
+                                        android:background="@color/color_main"/>
+
+
+                                    <RelativeLayout
+                                        android:layout_marginTop="@dimen/_10dp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="@color/white"
+                                        android:orientation="horizontal">
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/photo1"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentLeft="true"
+                                            android:layout_centerVertical="true"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:text="Photo 1 : "
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_14sp" />
+
+
+                                        <LinearLayout
+                                            android:id="@+id/mainImageCard1"
+                                            android:layout_marginLeft="@dimen/_30dp"
+                                            android:layout_toRightOf="@+id/photo1"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:background="@color/white"
+                                            android:orientation="horizontal">
+
+                                            <androidx.cardview.widget.CardView
+                                                android:id="@+id/imgNoImage1"
+                                                android:layout_width="@dimen/_70dp"
+                                                android:layout_height="@dimen/_70dp"
+                                                android:elevation="10dp"
+                                                android:gravity="center"
+                                                android:visibility="visible"
+                                                app:cardCornerRadius="@dimen/_8dp">
+
+                                                <androidx.appcompat.widget.AppCompatImageView
+                                                    android:id="@+id/imgCamera1"
+                                                    android:layout_width="@dimen/_70dp"
+                                                    android:layout_height="@dimen/_70dp"
+                                                    android:layout_weight="1"
+                                                    android:gravity="center"
+                                                    android:scaleType="fitXY"
+                                                    android:src="@drawable/ic_camera_with_card"
+                                                    android:visibility="visible" />
+
+                                            </androidx.cardview.widget.CardView>
+
+                                        </LinearLayout>
+
+                                        <androidx.appcompat.widget.AppCompatImageView
+                                            android:id="@+id/changeBTN1"
+                                            android:layout_width="@dimen/_30dp"
+                                            android:layout_height="@dimen/_30dp"
+                                            android:layout_marginLeft="@dimen/_30dp"
+                                            android:layout_toRightOf="@+id/mainImageCard1"
+                                            android:layout_centerVertical="true"
+                                            android:gravity="center"
+                                            android:scaleType="fitXY"
+                                            android:src="@drawable/rotate_arrow"
+                                            android:visibility="visible" />
+
+                                    </RelativeLayout>
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:id="@+id/podLay2"
+                                    android:visibility="visible"
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+
+                                    <RelativeLayout
+                                        android:layout_marginTop="@dimen/_10dp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="@color/white"
+                                        android:orientation="horizontal">
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/photo2"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentLeft="true"
+                                            android:layout_centerVertical="true"
+                                            android:fontFamily="@font/gilroy_semibold"
+                                            android:text="Photo 2 : "
+                                            android:textColor="@color/back_text_colour"
+                                            android:textSize="@dimen/_14sp" />
+
+
+                                        <LinearLayout
+                                            android:id="@+id/mainImageCard"
+                                            android:layout_marginLeft="@dimen/_30dp"
+                                            android:layout_toRightOf="@+id/photo2"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:background="@color/white"
+                                            android:orientation="horizontal">
+
+                                            <androidx.cardview.widget.CardView
+                                                android:id="@+id/imgNoImage2"
+                                                android:layout_width="@dimen/_70dp"
+                                                android:layout_height="@dimen/_70dp"
+                                                android:elevation="10dp"
+                                                android:gravity="center"
+                                                android:visibility="visible"
+                                                app:cardCornerRadius="@dimen/_8dp">
+
+                                                <androidx.appcompat.widget.AppCompatImageView
+                                                    android:id="@+id/imgCamera2"
+                                                    android:layout_width="@dimen/_70dp"
+                                                    android:layout_height="@dimen/_70dp"
+                                                    android:layout_weight="1"
+                                                    android:gravity="center"
+                                                    android:scaleType="fitXY"
+                                                    android:src="@drawable/ic_camera_with_card"
+                                                    android:visibility="visible" />
+
+
+
+                                            </androidx.cardview.widget.CardView>
+
+                                        </LinearLayout>
+
+                                        <androidx.appcompat.widget.AppCompatImageView
+                                            android:id="@+id/changeBTN2"
+                                            android:layout_width="@dimen/_30dp"
+                                            android:layout_height="@dimen/_30dp"
+                                            android:layout_marginLeft="@dimen/_30dp"
+                                            android:layout_toRightOf="@+id/mainImageCard"
+                                            android:layout_centerVertical="true"
+                                            android:gravity="center"
+                                            android:scaleType="fitXY"
+                                            android:src="@drawable/rotate_arrow"
+                                            android:visibility="visible" />
+
+
+
+                                    </RelativeLayout>
+
+                                    <androidx.appcompat.widget.AppCompatButton
+                                        android:id="@+id/uploadBTN"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="@dimen/_40dp"
+                                        android:layout_weight="1"
+                                        android:layout_marginTop="@dimen/_18dp"
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_gravity="bottom|center"
+                                        android:visibility="gone"
+                                        android:background="@drawable/bg_button_round_corner_5"
+                                        android:fontFamily="@font/poppins_semibold"
+                                        android:gravity="center"
+                                        android:paddingTop="@dimen/_2dp"
+                                        android:text="@string/scr_lbl_upload_pod"
+                                        android:textColor="@color/white"
+                                        android:textSize="@dimen/_14sp" />
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

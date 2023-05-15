@@ -182,6 +182,15 @@ public class AllContactsActivity extends BaseActivity {
         mDialog.show();
     }
 
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        callPodSaveOfLRApi();
+    }
+
+
     //perform click actions
     @OnClick({/*R.id.imgBack*/})
     public void onClick(View view) {

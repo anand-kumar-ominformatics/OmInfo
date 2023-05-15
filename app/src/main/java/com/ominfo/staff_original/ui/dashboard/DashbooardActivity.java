@@ -4,11 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.appcompat.widget.SearchView;
-import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +18,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -27,6 +27,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
@@ -34,7 +36,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.github.amlcurran.showcaseview.OnShowcaseEventListener;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
@@ -58,6 +59,8 @@ import com.ominfo.staff_original.network.ApiResponse;
 import com.ominfo.staff_original.network.DynamicAPIPath;
 import com.ominfo.staff_original.network.NetworkCheck;
 import com.ominfo.staff_original.network.ViewModelFactory;
+import com.ominfo.staff_original.ui.dashboard.model.TrackAndTraceLRViewModel;
+
 import com.ominfo.staff_original.ui.attendance.StartAttendanceActivity;
 import com.ominfo.staff_original.ui.attendance.CalenderActivity;
 import com.ominfo.staff_original.ui.attendance.model.AttendanceList;
@@ -74,26 +77,22 @@ import com.ominfo.staff_original.ui.dashboard.model.GetSingleEmployeeResponse;
 import com.ominfo.staff_original.ui.dashboard.model.SingleEmployeeListViewModel;
 import com.ominfo.staff_original.ui.dashboard.model.SingleEmployeeRequest;
 import com.ominfo.staff_original.ui.dashboard.model.SingleEmployeeResult;
-import com.ominfo.staff_original.ui.driver_hisab.DriverHisabActivity;
+import com.ominfo.staff_original.ui.dashboard.model.TrackAndTraceLrResponse;
+import com.ominfo.staff_original.ui.dashboard.model.TrackAndTrackLrRequest;
 import com.ominfo.staff_original.ui.driver_hisab.model.DriverHisabModel;
 import com.ominfo.staff_original.ui.kata_chithi.KataChithiActivity;
 import com.ominfo.staff_original.ui.kata_chithi.model.Array6;
-import com.ominfo.staff_original.ui.kata_chithi.model.FetchKataChitthiResponse;
-import com.ominfo.staff_original.ui.kata_chithi.model.FetchKataChitthiViewModel;
-import com.ominfo.staff_original.ui.kata_chithi.model.SaveKataChitthiResponse;
-import com.ominfo.staff_original.ui.kata_chithi.model.SaveKataChitthiViewModel;
-import com.ominfo.staff_original.ui.kata_chithi.model.VehicleRequest;
-import com.ominfo.staff_original.ui.kata_chithi.model.VehicleResponse;
-import com.ominfo.staff_original.ui.kata_chithi.model.VehicleViewModel;
 import com.ominfo.staff_original.ui.loading_list.LoadingListActivity;
-import com.ominfo.staff_original.ui.pay_advance.PayAdvanceActivity;
 import com.ominfo.staff_original.ui.login.model.LoginResultTable;
-import com.ominfo.staff_original.ui.purana_hisab.PuranaHisabActivity;
+import com.ominfo.staff_original.ui.track_and_track.TrackAndTraceLRActivity;
+import com.ominfo.staff_original.ui.upload_pod.SelectetUploadPODActivity;
+
 import com.ominfo.staff_original.util.AppUtils;
 import com.ominfo.staff_original.util.LogUtil;
 import com.ominfo.staff_original.util.SharedPref;
 
 import java.io.File;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -101,13 +100,14 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Random;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 public class DashbooardActivity extends BaseActivity implements
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
@@ -123,12 +123,28 @@ public class DashbooardActivity extends BaseActivity implements
     AppCompatTextView tvUser;
     @BindView(R.id.tvBranch)
     AppCompatTextView tvBranch;
+
+
+    private TrackAndTraceLRViewModel mTrackAndTraceLRViewModel;
+
+
+    @BindView(R.id.tvSearchView)
+    AppCompatEditText etSearch;
+
+    @BindView(R.id.clearSearchBTN)
+    AppCompatImageView clearSearchBTN;
+
+
+
+
     AdvanceToDriverAdapter advanceToDriverAdapter;
     @Inject
     ViewModelFactory mViewModelFactory;
     AdvToDriverViewModel advToDriverViewModel;
     List<Alldetail> mAdvToDriverList = new ArrayList<>();
     private SingleEmployeeListViewModel employeeListViewModel;
+
+
     GoogleApiClient googleApiClient;
     LocationManager locationManager;
     private static final int REQUEST_LOCATION = 1;
@@ -152,6 +168,24 @@ public class DashbooardActivity extends BaseActivity implements
         ButterKnife.bind(this);
         injectAPI();
         init();
+
+        etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                if( s.toString().trim().length() != 0 )
+                    clearSearchBTN.setVisibility(View.VISIBLE);
+                else
+                    clearSearchBTN.setVisibility(View.GONE);
+
+            }
+        });
     }
 
     private void init() {
@@ -409,16 +443,28 @@ public class DashbooardActivity extends BaseActivity implements
     }
 
     private void injectAPI() {
+
         advToDriverViewModel = ViewModelProviders.of(DashbooardActivity.this, mViewModelFactory).get(AdvToDriverViewModel.class);
         advToDriverViewModel.getResponse().observe(this, apiResponse -> consumeResponse(apiResponse, DynamicAPIPath.POST_ADV_TO_DRIVER));
 
         employeeListViewModel = ViewModelProviders.of(this, mViewModelFactory).get(SingleEmployeeListViewModel.class);
         employeeListViewModel.getResponse().observe(this, apiResponse ->consumeResponse(apiResponse, DynamicAPIPath.POST_SINLE_EMPLOYEES_LIST));
+
+        mTrackAndTraceLRViewModel = ViewModelProviders.of(this, mViewModelFactory).get(TrackAndTraceLRViewModel.class);
+        mTrackAndTraceLRViewModel.getResponse().observe(this, apiResponse -> consumeResponse(apiResponse, DynamicAPIPath.TRACK_AND_TRACE_LR));
+
+
+
+
+
     }
 
     private void setToolbar() {
         initToolbar(0, mContext, R.id.imgBack, R.id.imgReport, R.id.imgNotify, R.id.imgLogout, R.id.imgCall);
     }
+
+
+
 
     /* Call Api For employee list */
     private void callEmployeeListApi() {
@@ -508,8 +554,9 @@ public class DashbooardActivity extends BaseActivity implements
     }
 
     //perform click actions
-    @OnClick({R.id.layKataChithi, R.id.layAdvanceToDriver, R.id.layLoading,
-            R.id.rippleEffect, R.id.layAttList})
+    @OnClick({R.id.layKataChithi, R.id.layUploadPOD,R.id.layUploadPDS, R.id.layAdvanceToDriver, R.id.layLoading,R.id.imgSearchLr,
+            R.id.rippleEffect, R.id.layAttList,R.id.clearSearchBTN})
+
     public void onClick(View view) {
         int id = view.getId();
         switch (id) {
@@ -525,9 +572,50 @@ public class DashbooardActivity extends BaseActivity implements
             case R.id.layLoading:
                 launchScreen(mContext, LoadingListActivity.class);
                 break;
+            case R.id.layUploadPOD:
+                launchScreen(mContext, SelectetUploadPODActivity.class);
+                break;
             case R.id.layAdvanceToDriver:
                 callAdvToDriverApi();
                 break;
+            case R.id.imgSearchLr:
+                if( !etSearch.getText().toString().trim().equals("") )
+                    callTrackAndTraceLRApi();
+                else
+                    LogUtil.printToastMSG(getApplicationContext(),"Please Enter LR No.");
+                break;
+
+            case R.id.clearSearchBTN:
+                etSearch.setText( "");
+                clearSearchBTN.setVisibility(View.GONE);
+                break;
+
+        }
+    }
+
+
+
+
+
+
+    /* Call Api to Advance to driver */
+    private void callTrackAndTraceLRApi() {
+        if (NetworkCheck.isInternetAvailable(DashbooardActivity.this)) {
+            LoginResultTable loginResultTable = mDb.getDbDAO().getLoginData();
+            //DashboardResult dashboardResult = mDb.getDbDAO().getVehicleDetails();
+            if (loginResultTable != null) {
+
+                TrackAndTrackLrRequest mLoginRequest = new TrackAndTrackLrRequest();
+                mLoginRequest.setUserkey(loginResultTable.getUserKey());
+                mLoginRequest.setGcNo( etSearch.getText().toString().trim() );
+                Gson gson = new Gson();
+                String bodyInStringFormat = gson.toJson(mLoginRequest);
+                LogUtil.printLog("request fetch", bodyInStringFormat);
+                mTrackAndTraceLRViewModel.hitTrackAndTraceApi(bodyInStringFormat);
+
+            }
+        } else {
+            LogUtil.printToastMSG(DashbooardActivity.this, getString(R.string.err_msg_connection_was_refused));
         }
     }
 
@@ -695,7 +783,13 @@ public class DashbooardActivity extends BaseActivity implements
             case SUCCESS:
                 dismissLoader();
                 if (!apiResponse.data.isJsonNull()) {
+
                     LogUtil.printLog(tag, apiResponse.data.toString());
+
+
+
+
+
                     try {
                         if (tag.equalsIgnoreCase(DynamicAPIPath.POST_ADV_TO_DRIVER)) {
                             AdvToDriverResponse responseModel = new Gson().fromJson(apiResponse.data.toString(), AdvToDriverResponse.class);
@@ -710,6 +804,33 @@ public class DashbooardActivity extends BaseActivity implements
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+
+
+                    try {
+                        if (tag.equalsIgnoreCase(DynamicAPIPath.TRACK_AND_TRACE_LR)) {
+
+                            TrackAndTraceLrResponse responseModel = new Gson().fromJson(apiResponse.data.toString(), TrackAndTraceLrResponse.class);
+
+                            System.out.println("Thoda achha : "+ apiResponse.data.toString() );
+
+                            if (responseModel != null && responseModel.getStatus().equals("1")) {
+
+                                Intent intent = new Intent(getApplicationContext(), TrackAndTraceLRActivity.class);
+                                intent.putExtra("result", (Serializable) responseModel.getResult());
+                                intent.putExtra("searchText",etSearch.getText().toString().trim() );
+                                startActivity(intent);
+
+                            } else {
+                                LogUtil.printToastMSG(DashbooardActivity.this, responseModel.getMessage());
+                            }
+
+                        }
+                    } catch (Exception e) {
+                        LogUtil.printToastMSG(DashbooardActivity.this, "No data Available");
+                    }
+
+
+
                     try {
                         if (tag.equalsIgnoreCase(DynamicAPIPath.POST_SINLE_EMPLOYEES_LIST)) {
                             GetSingleEmployeeResponse responseModel = new Gson().fromJson(apiResponse.data.toString(), GetSingleEmployeeResponse.class);
@@ -923,5 +1044,6 @@ public class DashbooardActivity extends BaseActivity implements
     protected void onResume() {
         super.onResume();
         callEmployeeListApi();
+        callPodSaveOfLRApi();
     }
 }

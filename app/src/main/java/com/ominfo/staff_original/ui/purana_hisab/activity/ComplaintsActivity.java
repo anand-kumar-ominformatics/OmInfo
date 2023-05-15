@@ -95,4 +95,10 @@ public class ComplaintsActivity extends BaseActivity {
                 break;*/
         }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        callPodSaveOfLRApi();
+    }
 }

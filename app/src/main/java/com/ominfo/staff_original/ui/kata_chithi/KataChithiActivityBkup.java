@@ -234,6 +234,12 @@ public class KataChithiActivityBkup extends BaseActivity {
         initToolbar(1, mContext, R.id.imgBack, R.id.imgReport, R.id.imgNotify, R.id.imgLogout, R.id.imgCall);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        callPodSaveOfLRApi();
+    }
+
     private void reqPermissionCode(){
         if(cam==0) {
             cameraIntent();

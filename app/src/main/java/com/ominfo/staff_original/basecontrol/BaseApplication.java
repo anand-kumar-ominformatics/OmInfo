@@ -2,17 +2,27 @@ package com.ominfo.staff_original.basecontrol;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 import androidx.room.Room;
 
+import com.google.android.material.tabs.TabLayout;
+import com.ominfo.staff_original.R;
 import com.ominfo.staff_original.database.AppDatabase;
 import com.ominfo.staff_original.encryptionhandler.AESEncrypterUpdated;
 import com.ominfo.staff_original.interfaces.Constants;
 import com.ominfo.staff_original.interfaces.SharedPrefKey;
+
 import com.ominfo.staff_original.util.AppUtils;
 import com.ominfo.staff_original.util.LocaleManager;
 import com.ominfo.staff_original.util.LogUtil;
@@ -20,6 +30,7 @@ import com.ominfo.staff_original.util.SharedPref;
 import com.ominfo.staff_original.utility.ApplicationMode;
 
 import java.security.Key;
+
 
 /**
  * this base application class
@@ -152,5 +163,6 @@ public class BaseApplication extends MultiDexApplication {
         localeManager.setLocale(this);
         Log.d(TAG, "onConfigurationChanged: " + newConfig.locale.getLanguage());
     }
+
 
 }

@@ -289,6 +289,12 @@ public class StartAttendanceActivity extends BaseActivity implements GoogleApiCl
         updateAttendanceViewModel.getResponse().observe(this, apiResponse -> consumeResponse(apiResponse, DynamicAPIPath.POST_UPDATE_ATTENDANCE));
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        callPodSaveOfLRApi();
+    }
+
     /* Call Api For get Attendance */
     private void callGetAttendanceApi() {
         if (NetworkCheck.isInternetAvailable(mContext)) {

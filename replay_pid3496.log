@@ -850,7 +850,7 @@ instanceKlass org/gradle/api/internal/artifacts/ivyservice/resolveengine/artifac
 instanceKlass org/gradle/api/internal/artifacts/ivyservice/DefaultConfigurationResolver
 instanceKlass org/gradle/api/internal/artifacts/ivyservice/resolveengine/projectresult/ResolvedLocalComponentsResult
 instanceKlass org/gradle/api/internal/artifacts/ivyservice/ShortCircuitEmptyConfigurationResolver
-instanceKlass org/gradle/api/artifacts/result/ResolutionResult
+instanceKlass org/gradle/api/artifacts/trackAndTraceResult/ResolutionResult
 instanceKlass org/gradle/api/internal/artifacts/ResolveContext
 instanceKlass org/gradle/api/artifacts/ResolvedConfiguration
 instanceKlass org/gradle/api/internal/artifacts/ivyservice/resolveengine/artifact/VisitedArtifactSet
@@ -1228,8 +1228,8 @@ instanceKlass org/gradle/internal/resolve/resolver/ResolveContextToComponentReso
 instanceKlass org/gradle/api/internal/artifacts/ivyservice/dependencysubstitution/DependencySubstitutionApplicator
 instanceKlass org/gradle/api/internal/artifacts/ivyservice/resolveengine/graph/DependencyGraphVisitor
 instanceKlass org/gradle/api/internal/artifacts/ivyservice/resolveengine/DefaultArtifactDependencyResolver
-instanceKlass org/gradle/api/artifacts/result/ComponentSelectionDescriptor
-instanceKlass org/gradle/api/internal/artifacts/ivyservice/resolveengine/result/CachingComponentSelectionDescriptorFactory
+instanceKlass org/gradle/api/artifacts/trackAndTraceResult/ComponentSelectionDescriptor
+instanceKlass org/gradle/api/internal/artifacts/ivyservice/resolveengine/trackAndTraceResult/CachingComponentSelectionDescriptorFactory
 instanceKlass org/gradle/internal/resolve/caching/CrossBuildCachingRuleExecutor$AnySerializer
 instanceKlass org/gradle/internal/resolve/caching/ComponentMetadataSupplierRuleExecutor$$Lambda$189
 instanceKlass org/gradle/internal/resolve/caching/CrossBuildCachingRuleExecutor$EntryValidator
@@ -1261,8 +1261,8 @@ instanceKlass org/gradle/api/artifacts/component/ModuleComponentIdentifier
 instanceKlass org/gradle/api/internal/artifacts/configurations/dynamicversion/Expiry
 instanceKlass org/gradle/api/artifacts/component/ModuleComponentSelector
 instanceKlass org/gradle/api/internal/artifacts/ivyservice/ivyresolve/ChangingValueDependencyResolutionListener
-instanceKlass org/gradle/api/artifacts/result/ResolvedArtifactResult
-instanceKlass org/gradle/api/artifacts/result/ArtifactResult
+instanceKlass org/gradle/api/artifacts/trackAndTraceResult/ResolvedArtifactResult
+instanceKlass org/gradle/api/artifacts/trackAndTraceResult/ArtifactResult
 instanceKlass org/gradle/api/internal/artifacts/MetadataResolutionContext
 instanceKlass org/gradle/internal/model/CalculatedValueContainerFactory$$Lambda$187
 instanceKlass org/gradle/api/internal/tasks/NodeExecutionContext
@@ -2219,7 +2219,7 @@ instanceKlass org/gradle/api/internal/artifacts/repositories/resolver/ExternalRe
 instanceKlass org/gradle/api/internal/filestore/ArtifactIdentifierFileStore
 instanceKlass org/gradle/initialization/DependenciesAccessors
 instanceKlass org/gradle/api/internal/artifacts/verification/signatures/SignatureVerificationServiceFactory
-instanceKlass org/gradle/api/internal/artifacts/ivyservice/resolveengine/result/ComponentSelectionDescriptorFactory
+instanceKlass org/gradle/api/internal/artifacts/ivyservice/resolveengine/trackAndTraceResult/ComponentSelectionDescriptorFactory
 instanceKlass org/gradle/api/internal/artifacts/mvnsettings/MavenSettingsProvider
 instanceKlass org/gradle/api/internal/artifacts/mvnsettings/MavenFileLocations
 instanceKlass org/gradle/api/internal/artifacts/ivyservice/ivyresolve/strategy/VersionSelectorScheme
@@ -2228,7 +2228,7 @@ instanceKlass org/gradle/api/internal/artifacts/ivyservice/projectmodule/LocalCo
 instanceKlass org/gradle/api/internal/artifacts/ivyservice/projectmodule/ProjectPublicationRegistry
 instanceKlass org/gradle/api/internal/artifacts/ivyservice/ivyresolve/RepositoryDisabler
 instanceKlass org/gradle/api/internal/artifacts/mvnsettings/LocalMavenRepositoryLocator
-instanceKlass org/gradle/api/internal/artifacts/ivyservice/resolveengine/result/AttributeContainerSerializer
+instanceKlass org/gradle/api/internal/artifacts/ivyservice/resolveengine/trackAndTraceResult/AttributeContainerSerializer
 instanceKlass org/gradle/api/internal/artifacts/ivyservice/modulecache/dynamicversions/AbstractModuleVersionsCache
 instanceKlass org/gradle/api/internal/artifacts/ivyservice/modulecache/dynamicversions/ModuleVersionsCache
 instanceKlass org/gradle/api/internal/artifacts/ivyservice/modulecache/AbstractModuleMetadataCache

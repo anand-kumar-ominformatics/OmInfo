@@ -2,7 +2,6 @@ package com.ominfo.staff_original.basecontrol;
 
 import static com.ominfo.staff_original.ui.attendance.StartAttendanceActivity.result;
 import static com.ominfo.staff_original.ui.attendance.StartAttendanceActivity.tvCurrLocation;
-import static com.ominfo.staff_original.ui.attendance.StartAttendanceActivity.tvCurrLocation;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -12,6 +11,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.location.Address;
@@ -25,6 +26,7 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -54,10 +56,11 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 import com.ominfo.staff_original.R;
+import com.ominfo.staff_original.basecontrol.deps.DaggerDeps;
 import com.ominfo.staff_original.common.BackgroundAttentionService;
 import com.ominfo.staff_original.database.AppDatabase;
-import com.ominfo.staff_original.deps.DaggerDeps;
-import com.ominfo.staff_original.deps.Deps;
+
+import com.ominfo.staff_original.basecontrol.deps.Deps;
 import com.ominfo.staff_original.dialog.ViewDialog;
 import com.ominfo.staff_original.interfaces.ServiceCallBackInterface;
 import com.ominfo.staff_original.interfaces.SharedPrefKey;
@@ -66,7 +69,6 @@ import com.ominfo.staff_original.network.DynamicAPIPath;
 import com.ominfo.staff_original.network.NetworkCheck;
 import com.ominfo.staff_original.network.NetworkModule;
 import com.ominfo.staff_original.network.ViewModelFactory;
-import com.ominfo.staff_original.ui.attendance.StartAttendanceActivity;
 import com.ominfo.staff_original.ui.contacts.AllContactsActivity;
 import com.ominfo.staff_original.ui.contacts.adapter.CallManagerAdapter;
 import com.ominfo.staff_original.ui.contacts.model.CallRequest;
@@ -77,16 +79,25 @@ import com.ominfo.staff_original.ui.login.LoginActivity;
 import com.ominfo.staff_original.ui.login.model.LoginResultTable;
 import com.ominfo.staff_original.ui.notifications.NotificationsActivity;
 import com.ominfo.staff_original.ui.purana_hisab.activity.ComplaintsActivity;
+import com.ominfo.staff_original.ui.upload_pod.model.PodSaveOfLRViewModel;
+import com.ominfo.staff_original.ui.upload_pod.model.UploadPodRequest;
+import com.ominfo.staff_original.ui.upload_pod.model.UploadPodResponse;
 import com.ominfo.staff_original.util.CustomAnimationUtil;
 import com.ominfo.staff_original.util.LogUtil;
 import com.ominfo.staff_original.util.SharedPref;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 /* base activity for all activity
 * please use this naming convention
@@ -113,6 +124,8 @@ public class BaseActivity extends AppCompatActivity implements ServiceCallBackIn
     @Inject
     ViewModelFactory mViewModelFactory;
     Location location;
+    private PodSaveOfLRViewModel podSaveOfLRViewModel;
+
     CallManagerAdapter mCallManagerAdapter;
     private GetContactsViewModel getContactsViewModel;
     List<CallResult> callResultList =new ArrayList<>();
@@ -133,8 +146,55 @@ public class BaseActivity extends AppCompatActivity implements ServiceCallBackIn
     }
 
     private void injectAPI() {
+
         getContactsViewModel = ViewModelProviders.of(BaseActivity.this, mViewModelFactory).get(GetContactsViewModel.class);
         getContactsViewModel.getResponse().observe(this, apiResponse ->consumeResponse(apiResponse, DynamicAPIPath.POST_CONTACTS));
+
+        podSaveOfLRViewModel = ViewModelProviders.of(this, mViewModelFactory).get(PodSaveOfLRViewModel.class);
+        podSaveOfLRViewModel.getResponse().observe(this, apiResponse -> consumeResponse(apiResponse, DynamicAPIPath.POD_SAVE_FOR_LR1));
+
+    }
+
+
+    public void callPodSaveOfLRApi() {
+
+        if (NetworkCheck.isInternetAvailable( getApplicationContext() )) {
+
+            try{
+                AppDatabase mDb = BaseApplication.getInstance().getAppDatabase();
+
+                List<UploadPodRequest> loginResultTable = mDb.getDbDAO().getPdsList();
+
+                LogUtil.printLog("pending",loginResultTable.size() );
+
+                for( UploadPodRequest item1 : loginResultTable ){
+
+                    LogUtil.printLog("may","api calling");
+                    try {
+
+                        item1.setId(null);
+                        item1.setGcNo(null);
+                        item1.setUploadDate(null);
+
+
+                        Gson gson = new Gson();
+                        String bodyInStringFormat = gson.toJson(item1);
+
+                        RequestBody action = RequestBody.create(MediaType.parse("text/plain"), DynamicAPIPath.POD_SAVE_FOR_LR1);
+                        RequestBody json = RequestBody.create(MediaType.parse("text/plain"), bodyInStringFormat);
+                        podSaveOfLRViewModel.hitPodSaveOfLr(action,json);
+                        LogUtil.printLog("may","api called");
+                    }catch (Exception e){
+                        LogUtil.printLog("may",e);
+                    }
+                }
+
+            }catch (Exception e){ LogUtil.printLog("may", " fully exe"+e );}
+            
+
+        } else {
+            LogUtil.printToastMSG(getApplicationContext(), getString(R.string.err_msg_connection_was_refused));
+        }
     }
 
     public void setToolbar(AppCompatActivity appCompatActivity, Toolbar toolbar, String title) {
@@ -146,6 +206,7 @@ public class BaseActivity extends AppCompatActivity implements ServiceCallBackIn
         }
     }
     public static class DarkStatusBar {
+
         public static void setLightStatusBar(View view, Activity activity) {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -157,6 +218,7 @@ public class BaseActivity extends AppCompatActivity implements ServiceCallBackIn
             }
         }
     }
+
     /**
      * Receiver for broadcasts sent by {@link }.
      */
@@ -262,6 +324,24 @@ public class BaseActivity extends AppCompatActivity implements ServiceCallBackIn
         }
     }
 
+    public static Bitmap getBitmapFromURL(String src) {
+        try {
+            Log.e("src", src);
+            URL url = new URL(src);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            Log.e("Bitmap", "returned");
+            return myBitmap;
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e("Exception", e.getMessage());
+            return null;
+        }
+    }
+
     public void showSmallProgressBar(FrameLayout mProgressBarHolder) {
         inAnimation = new AlphaAnimation(0f, 1f);
         inAnimation.setDuration(200);
@@ -311,16 +391,22 @@ public class BaseActivity extends AppCompatActivity implements ServiceCallBackIn
 
     /*Api response */
     private void consumeResponse(ApiResponse apiResponse, String tag) {
+
+        LogUtil.printLog("may",tag +" base act consume call" + apiResponse.data + " "+ apiResponse.status);
+
         switch (apiResponse.status) {
 
             case LOADING:
-                showProgressLoader(getString(R.string.scr_message_please_wait));
+                if( !tag.equalsIgnoreCase(DynamicAPIPath.POD_SAVE_FOR_LR1) )
+                    showProgressLoader(getString(R.string.scr_message_please_wait));
+
                 break;
 
             case SUCCESS:
                 dismissLoader();
                 if (!apiResponse.data.isJsonNull()) {
                     LogUtil.printLog(tag, apiResponse.data.toString());
+
                     try{
                         if (tag.equalsIgnoreCase(DynamicAPIPath.POST_CONTACTS)) {
                             CallResponse responseModel = new Gson().fromJson(apiResponse.data.toString(), CallResponse.class);
@@ -334,9 +420,31 @@ public class BaseActivity extends AppCompatActivity implements ServiceCallBackIn
                             }
                         }
                     }catch (Exception e){e.printStackTrace();}
+
+                    try {
+
+                        if (tag.equalsIgnoreCase(DynamicAPIPath.POD_SAVE_FOR_LR1)) {
+
+                            UploadPodResponse responseModel = new Gson().fromJson(apiResponse.data.toString(), UploadPodResponse.class);
+
+                            if (responseModel != null && responseModel.getStatus().equals("1")) {
+
+                                String message = responseModel.getMessage();
+                                int arrOfStr = message.indexOf(".");
+                                mDb.getDbDAO().deletePdsById( Integer.parseInt( message.substring(arrOfStr+1, message.length() )) );
+
+                                LogUtil.printLog("may", "success fully " +responseModel.getMessage());
+                            }else
+                                LogUtil.printLog("may", "fiallled " +responseModel.getMessage());
+
+                        }
+                    } catch (Exception e) {
+                        LogUtil.printLog("may", "fiallled ex " +e);
+                    }
                 }
                 break;
             case ERROR:
+                LogUtil.printLog("may",tag +" base act err consume errow");
                 dismissLoader();
                 //LogUtil.printToastMSG(DashbooardActivity.this, getString(R.string.err_msg_connection_was_refused));
                 break;
@@ -643,7 +751,7 @@ public class BaseActivity extends AppCompatActivity implements ServiceCallBackIn
 
     public void showSuccessDialog(String msg) {
         Dialog mDialog = new Dialog(this, R.style.ThemeDialogCustom);
-        mDialog.setContentView(R.layout.dialog_weight_submitted);
+        mDialog.setContentView(R.layout.dialog_weight_submitted1);
         mDialog.setCanceledOnTouchOutside(true);
         AppCompatTextView mTextViewTitle = mDialog.findViewById(R.id.tv_dialogTitle);
         mTextViewTitle.setText(msg);
@@ -840,11 +948,11 @@ public class BaseActivity extends AppCompatActivity implements ServiceCallBackIn
         //}
     }
 
-        public void setCallDialor(String number){
-            Intent intent = new Intent(Intent.ACTION_DIAL);
-            intent.setData(Uri.parse("tel:"+number));
-            startActivity(intent);
-        }
+    public void setCallDialor(String number){
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:"+number));
+        startActivity(intent);
+    }
 
     private void setAdapterForPuranaHisabList(RecyclerView recyclerView,Context mContext,Dialog mDialog,AppCompatTextView tvNoContacts ) {
 

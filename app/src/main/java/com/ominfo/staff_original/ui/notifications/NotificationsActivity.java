@@ -116,6 +116,12 @@ public class NotificationsActivity extends BaseActivity {
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        callPodSaveOfLRApi();
+    }
+
     private void showInfoDialog() {
         Dialog mDialog = new Dialog(this, R.style.ThemeDialogCustom);
         mDialog.setContentView(R.layout.dialog_get_otp);

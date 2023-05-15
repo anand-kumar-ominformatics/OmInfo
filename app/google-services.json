@@ -7,6 +7,43 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:558476385509:android:542e7f09895b18a345880c",
+        "android_client_info": {
+          "package_name": "com.ominfo.driver_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "558476385509-ipmbnrqu94g37s6dokmelvt7fnh36uoc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ominfo.driver_app",
+            "certificate_hash": "a7aa23aff7be5f79153c3eeafff58e2ab53582db"
+          }
+        },
+        {
+          "client_id": "558476385509-d18eufm8165fhm2mglit8u9mfci0hopb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYicP9lqaTDFMViTkx0CipRk2U2fzbiHk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "558476385509-d18eufm8165fhm2mglit8u9mfci0hopb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:558476385509:android:4e989da77f90129f45880c",
         "android_client_info": {
           "package_name": "com.ominfo.staff_original"

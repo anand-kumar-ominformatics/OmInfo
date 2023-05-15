@@ -215,6 +215,14 @@ public class PayAdvanceActivity extends BaseActivity {
         mDialog.show();
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        callPodSaveOfLRApi();
+    }
+
+
     //show truck details popup
     public void showFullImageDialog(KataChitthiImageModel model,Bitmap imgUrl) {
         Dialog mDialog = new Dialog(this, R.style.ThemeDialogCustom);

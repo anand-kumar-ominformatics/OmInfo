@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginHorizontal="@dimen/_10dp"
+    android:layout_marginTop="@dimen/_10dp"
+    android:background="@drawable/shape_round_dialog"
+    android:fitsSystemWindows="true"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/_16dp"
+    android:paddingVertical="@dimen/_16dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:fontFamily="@font/gilroy_bold"
+            android:gravity="left"
+            android:text="LR No. : 34343"
+            android:textColor="@color/color_main"
+            android:textSize="@dimen/_16sp" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgCancel"
+            android:layout_width="@dimen/_16dp"
+            android:layout_height="@dimen/_16dp"
+            android:layout_centerInParent="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_close" />
+
+    </RelativeLayout>
+
+
+
+    <View
+        android:layout_marginTop="@dimen/_5dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/light_grey"/>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/imageAndCameraRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_10dp"
+        android:layout_marginBottom="@dimen/_25dp"
+        android:focusable="false"
+        android:visibility="visible"
+        android:focusableInTouchMode="false"
+        android:nestedScrollingEnabled="false"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/row_camera_capture" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/okayButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:background="@drawable/bg_button_round_corner_5"
+        android:fontFamily="@font/gilroy_semibold"
+        android:gravity="center"
+        android:paddingTop="@dimen/_2dp"
+        android:text="@string/scr_lbl_submit"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14sp" />
+
+</RelativeLayout>

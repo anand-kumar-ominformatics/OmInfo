@@ -10,7 +10,7 @@ public interface Constants {
     String SCANNER  = "/ScannerImages";
     String CAMERA  = "/CameraImages";
     String OTP = "otp";
-    int VERSION = 14;
+    int VERSION = 18;
     String RESEND_OTP = "resend_otp";
     String UPDATE_PROFILE_INFO = "update_profile_info";
     String FILE_NAME = "OmTuranth_Staff";
@@ -34,6 +34,8 @@ public interface Constants {
     String CHANGE_PASSWORD = "CHANGE_PASSWORD";
     String CHANGE_PIN = "CHANGE_PIN";
     String KEY_OBJECT = "KEY_Object";
+    String SEARCH = "SEARCH";
+    String TRANSACTION_ID = "TRANSACTION_ID";
 
     /*SCREEEN NAME */
     String DASHBOARD = "DASHBOARD";

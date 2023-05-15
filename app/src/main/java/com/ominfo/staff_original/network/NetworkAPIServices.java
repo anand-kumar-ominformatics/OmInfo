@@ -1,10 +1,13 @@
 package com.ominfo.staff_original.network;
 
 import com.google.gson.JsonElement;
+import com.ominfo.staff_original.ui.upload_pod.model.UploadPodRequest;
+import com.ominfo.staff_original.ui.upload_pod.model.UploadPodResponse;
 
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -13,6 +16,40 @@ import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 public interface NetworkAPIServices {
+
+    @POST()
+    Observable<JsonElement> vehicleNo(@Url String url,@Query("jsonreq")  String request);
+
+
+    @POST()
+    Observable<JsonElement> podSaveOfLr(@Url String url,@Query("jsonreq")  String request);
+
+
+    @Multipart
+    @POST()
+    Observable<JsonElement> podSaveOfLr(@Url String url,
+                                           @Part("action") RequestBody uploadType,
+                                           @Part("jsonreq") RequestBody uploadTypeImage);
+
+
+    @Multipart
+    @POST()
+    Call<UploadPodResponse> uploadPodImage(@Url String url,
+                                                @Part("action") RequestBody uploadType,
+                                                @Part("jsonreq") RequestBody uploadTypeImage);
+
+
+    @POST()
+    Observable<JsonElement> trackAndTraceLR(@Url String url,@Query("jsonreq")  String request);
+
+    @POST()
+    Observable<JsonElement> getPdsListForPod(@Url String url,@Query("jsonreq")  String request);
+
+
+
+    @POST()
+    Observable<JsonElement> addVehicleList(@Url String url,@Query("jsonreq")  String request);
+
 
     @POST()
     Observable<JsonElement> login(@Url String url,@Query("jsonreq")  String request);
@@ -52,6 +89,10 @@ public interface NetworkAPIServices {
 
     @POST()
     Observable<JsonElement> getHighlights(@Url String url,@Query("jsonreq")  String request);
+
+    @POST()
+    Observable<JsonElement> fetchPdsListForPod(@Url String url,@Query("jsonreq")  String request);
+
 
     @POST()
     Observable<JsonElement> fetchKataChitthi(@Url String url,@Query("jsonreq")  String request);

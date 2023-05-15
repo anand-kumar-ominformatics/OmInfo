@@ -7,7 +7,28 @@ import okhttp3.RequestBody;
 
 public class Service {
 
+
     private NetworkAPIServices networkAPIServices;
+
+    public Observable<JsonElement> executeVehicleNoAPI(String request) {
+        return networkAPIServices.vehicleNo(DynamicAPIPath.makeDynamicEndpointAPIGateWay(NetworkURLs.BASE_URL, DynamicAPIPath.POST_VEHICLE_NO),request);
+    }
+
+
+    public Observable<JsonElement> executeAddVehicleAPI(String request) {
+        return networkAPIServices.addVehicleList(DynamicAPIPath.makeDynamicEndpointAPIGateWay(NetworkURLs.BASE_URL, DynamicAPIPath.action_get_attendance),request);
+    }
+
+    public Observable<JsonElement> executePodSaveOfLr(RequestBody action, RequestBody json) {
+        return networkAPIServices.podSaveOfLr(DynamicAPIPath.makeDynamicEndpointAPIGateWay(NetworkURLs.BASE_URL, DynamicAPIPath.POD_SAVE_FOR_LR),action,json);
+    }
+
+    public Observable<JsonElement> executeTrackAndTraceLrAPI(String request) {
+        return networkAPIServices.trackAndTraceLR(DynamicAPIPath.makeDynamicEndpointAPIGateWay(NetworkURLs.BASE_URL, DynamicAPIPath.TRACK_AND_TRACE_LR),request);
+    }
+    public Observable<JsonElement> executeGetPdsListForPodAPI(String request) {
+        return networkAPIServices.getPdsListForPod(DynamicAPIPath.makeDynamicEndpointAPIGateWay(NetworkURLs.BASE_URL, DynamicAPIPath.GET_PDS_LIST_FOR_POD),request);
+    }
 
     public Service(NetworkAPIServices networkAPIServices) {
         this.networkAPIServices = networkAPIServices;
@@ -64,6 +85,10 @@ public class Service {
                 DynamicAPIPath.POST_HIGHLIGHTS),
                 calender
         );
+    }
+
+    public Observable<JsonElement> executePdsListForPodAPI(String request) {
+        return networkAPIServices.fetchPdsListForPod(DynamicAPIPath.makeDynamicEndpointAPIGateWay(NetworkURLs.BASE_URL, DynamicAPIPath.GET_PDS_GC_LIST_FOR_POD),request);
     }
 
     public Observable<JsonElement> executeFetchKataChitthiAPI(String request) {

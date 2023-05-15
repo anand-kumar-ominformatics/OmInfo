@@ -54,6 +54,14 @@ public class DriverHisabActivity extends BaseActivity {
         initToolbar(1,mContext,R.id.imgBack,R.id.imgReport,R.id.imgNotify,0,R.id.imgCall);
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        callPodSaveOfLRApi();
+    }
+
+
     private void setAdapterForActivityList() {
         driverHisabModelList.add(new DriverHisabModel("भराई",""));
         driverHisabModelList.add(new DriverHisabModel("वराई",""));

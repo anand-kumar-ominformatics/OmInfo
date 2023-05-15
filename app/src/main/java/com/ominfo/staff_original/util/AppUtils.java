@@ -97,6 +97,80 @@ public class AppUtils {
         }
     }
 */
+
+
+    public static void loadImageURL(Context context, String url, AppCompatImageView mImageView, ProgressBar mProgressBar) {
+        Glide.with(context)
+                .load(url)
+                .placeholder(R.drawable.ic_launcher_background)
+                .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) // don't use target size, load full image
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .fitCenter()
+                .listener(new RequestListener<Drawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                        // log exception
+                        Log.e("TAG", "Error loading image", e);
+                        try {
+                            mProgressBar.setVisibility(View.GONE);
+                        } catch (Exception en) {
+                        }
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                        try {
+                            mProgressBar.setVisibility(View.GONE);
+                        } catch (Exception en) {
+                        }
+                        return false;
+                    }
+                })
+                .into(mImageView);
+    }
+
+
+    public static String getCurrDate() {
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DATE, -1);
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        String formattedDate = df.format(c.getTime());
+        return formattedDate;
+    }
+
+    public static void loadImage(Context context, Uri url, AppCompatImageView mImageView, ProgressBar mProgressBar) {
+        Glide.with(context)
+                .load(url)
+                .placeholder(R.drawable.ic_camera_with_card)
+                .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) // don't use target size, load full image
+                //.diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .fitCenter()
+                .listener(new RequestListener<Drawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                        try {
+                            mProgressBar.setVisibility(View.GONE);
+                        } catch (Exception en) {
+                        }
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                        try {
+                            mProgressBar.setVisibility(View.GONE);
+                        } catch (Exception en) {
+                        }
+                        return false;
+                    }
+                })
+                .into(mImageView);
+    }
+
+
     public static String getCurrentMonth() {
         String sDateFormate = "";
         String sDate = getCurrentDateInyyyymmdd();
@@ -363,6 +437,17 @@ public class AppUtils {
             return date12;
         }
     }
+
+    public static String getCurrentTime1() {
+        Calendar c = Calendar.getInstance();
+        //System.out.println("Current time => "+c.getTime());
+        //2021-04-08 16:45:14.084445
+        SimpleDateFormat df = new SimpleDateFormat("hh:mm");
+        String formattedDate = df.format(c.getTime());
+        // formattedDate have current date/time
+        return formattedDate;
+    }
+
     public static String getCurrentTime() {
         Calendar c = Calendar.getInstance();
         //System.out.println("Current time => "+c.getTime());
