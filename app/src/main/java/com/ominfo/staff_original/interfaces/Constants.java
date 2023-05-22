@@ -10,7 +10,9 @@ public interface Constants {
     String SCANNER  = "/ScannerImages";
     String CAMERA  = "/CameraImages";
     String OTP = "otp";
-    int VERSION = 18;
+
+    int VERSION = 20;
+
     String RESEND_OTP = "resend_otp";
     String UPDATE_PROFILE_INFO = "update_profile_info";
     String FILE_NAME = "OmTuranth_Staff";

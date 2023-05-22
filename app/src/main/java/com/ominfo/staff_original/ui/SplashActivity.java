@@ -185,6 +185,7 @@ public class SplashActivity extends BaseActivity {
                     if (tag.equalsIgnoreCase(DynamicAPIPath.POST_GET_VERSION)) {
                         try {
                             AppVersionResponse responseModel = new Gson().fromJson(apiResponse.data.toString(), AppVersionResponse.class);
+
                             if (responseModel != null && responseModel.getStatus().equals("1")) {
                                 if (responseModel.getResult() != null && responseModel.getResult().size() > 0) {
                                     String versionYour = responseModel.getResult().get(0).getVersion() == null

@@ -1,4 +1,4 @@
-package com.ominfo.staff_original.basecontrol.deps;
+package com.ominfo.staff_original.deps;
 
 
 import com.ominfo.staff_original.basecontrol.BaseActivity;
@@ -44,15 +44,15 @@ public interface Deps
 
     void inject(SplashActivity splashActivity);
 
-    void inject(PendingFragment pendingFragment);
+        void inject(PendingFragment pendingFragment);
 
-    void inject(SelectetUploadPODActivity selectetUploadPODActivity);
+        void inject(SelectetUploadPODActivity selectetUploadPODActivity);
 
-    void inject(TrackAndTraceLRActivity trackAndTraceLRActivity);
+        void inject(TrackAndTraceLRActivity trackAndTraceLRActivity);
 
-    void inject(SingleLrDetails trackAndTraceLRActivity);
+        void inject(SingleLrDetails trackAndTraceLRActivity);
 
-    void inject(PendingForUpload pendingForUpload);
+        void inject(PendingForUpload pendingForUpload);
 
 
 

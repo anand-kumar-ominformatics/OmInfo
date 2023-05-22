@@ -4,7 +4,7 @@ import com.ominfo.staff_original.util.LogUtil;
 
 public class DynamicAPIPath {
 
-    public static final String BASE = "index_with_DRapp.php";//"index_with_DRapp_test.php"; //"index_with_DRapp_live.php";
+    public static final String BASE = "index_with_DRapp_live.php";//"index_with_DRapp_test.php"; //"index_with_DRapp_live.php";
 
     public static final String POST_LOGIN = BASE+"?action=login";
 

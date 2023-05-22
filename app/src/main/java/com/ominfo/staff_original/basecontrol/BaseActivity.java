@@ -56,11 +56,11 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 import com.ominfo.staff_original.R;
-import com.ominfo.staff_original.basecontrol.deps.DaggerDeps;
 import com.ominfo.staff_original.common.BackgroundAttentionService;
 import com.ominfo.staff_original.database.AppDatabase;
 
-import com.ominfo.staff_original.basecontrol.deps.Deps;
+import com.ominfo.staff_original.deps.DaggerDeps;
+import com.ominfo.staff_original.deps.Deps;
 import com.ominfo.staff_original.dialog.ViewDialog;
 import com.ominfo.staff_original.interfaces.ServiceCallBackInterface;
 import com.ominfo.staff_original.interfaces.SharedPrefKey;
