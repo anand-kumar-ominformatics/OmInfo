@@ -18,6 +18,10 @@ import retrofit2.http.Url;
 public interface NetworkAPIServices {
 
     @POST()
+    Observable<JsonElement> getUserRights(@Url String url,@Query("jsonreq")  String request);
+
+
+    @POST()
     Observable<JsonElement> vehicleNo(@Url String url,@Query("jsonreq")  String request);
 
 
@@ -45,6 +49,8 @@ public interface NetworkAPIServices {
     @POST()
     Observable<JsonElement> getPdsListForPod(@Url String url,@Query("jsonreq")  String request);
 
+    @POST()
+    Observable<JsonElement> getGdsListForPod(@Url String url,@Query("jsonreq")  String request);
 
 
     @POST()
@@ -92,6 +98,9 @@ public interface NetworkAPIServices {
 
     @POST()
     Observable<JsonElement> fetchPdsListForPod(@Url String url,@Query("jsonreq")  String request);
+
+    @POST()
+    Observable<JsonElement> fetchGdsListForPod(@Url String url,@Query("jsonreq")  String request);
 
 
     @POST()

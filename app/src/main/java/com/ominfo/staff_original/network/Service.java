@@ -10,6 +10,10 @@ public class Service {
 
     private NetworkAPIServices networkAPIServices;
 
+    public Observable<JsonElement> executeUserRightsAPI(String request) {
+        return networkAPIServices.getUserRights(DynamicAPIPath.makeDynamicEndpointAPIGateWay(NetworkURLs.BASE_URL, DynamicAPIPath.GET_USER_RIGHTS),request);
+    }
+
     public Observable<JsonElement> executeVehicleNoAPI(String request) {
         return networkAPIServices.vehicleNo(DynamicAPIPath.makeDynamicEndpointAPIGateWay(NetworkURLs.BASE_URL, DynamicAPIPath.POST_VEHICLE_NO),request);
     }
@@ -28,6 +32,10 @@ public class Service {
     }
     public Observable<JsonElement> executeGetPdsListForPodAPI(String request) {
         return networkAPIServices.getPdsListForPod(DynamicAPIPath.makeDynamicEndpointAPIGateWay(NetworkURLs.BASE_URL, DynamicAPIPath.GET_PDS_LIST_FOR_POD),request);
+    }
+
+    public Observable<JsonElement> executeGetGdsListForPodAPI(String request) {
+        return networkAPIServices.getGdsListForPod(DynamicAPIPath.makeDynamicEndpointAPIGateWay(NetworkURLs.BASE_URL, DynamicAPIPath.GET_GDS_LIST_FOR_POD),request);
     }
 
     public Service(NetworkAPIServices networkAPIServices) {
@@ -89,6 +97,10 @@ public class Service {
 
     public Observable<JsonElement> executePdsListForPodAPI(String request) {
         return networkAPIServices.fetchPdsListForPod(DynamicAPIPath.makeDynamicEndpointAPIGateWay(NetworkURLs.BASE_URL, DynamicAPIPath.GET_PDS_GC_LIST_FOR_POD),request);
+    }
+
+    public Observable<JsonElement> executeGdsListForPodAPI(String request) {
+        return networkAPIServices.fetchGdsListForPod(DynamicAPIPath.makeDynamicEndpointAPIGateWay(NetworkURLs.BASE_URL, DynamicAPIPath.GET_GDS_GC_LIST_FOR_POD),request);
     }
 
     public Observable<JsonElement> executeFetchKataChitthiAPI(String request) {

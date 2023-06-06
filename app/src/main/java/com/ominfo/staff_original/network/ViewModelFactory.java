@@ -14,6 +14,7 @@ import com.ominfo.staff_original.ui.dashboard.model.AdvToDriverViewModel;
 import com.ominfo.staff_original.ui.dashboard.model.AppVersionViewModel;
 import com.ominfo.staff_original.ui.dashboard.model.SingleEmployeeListViewModel;
 import com.ominfo.staff_original.ui.dashboard.model.TrackAndTraceLRViewModel;
+import com.ominfo.staff_original.ui.dashboard.model.UserRightsViewModel;
 import com.ominfo.staff_original.ui.kata_chithi.model.FetchKataChitthiViewModel;
 import com.ominfo.staff_original.ui.kata_chithi.model.SaveKataChitthiViewModel;
 import com.ominfo.staff_original.ui.kata_chithi.model.VehicleViewModel;
@@ -22,6 +23,8 @@ import com.ominfo.staff_original.ui.loading_list.model.SaveLoadingListViewModel;
 import com.ominfo.staff_original.ui.login.model.LoginViewModel;
 import com.ominfo.staff_original.ui.login.model.UpdateKeyViewModel;
 
+import com.ominfo.staff_original.ui.upload_gds.model.FetchGDSPendingListViewModel;
+import com.ominfo.staff_original.ui.upload_gds.model.GdsGcListForPodViewModel;
 import com.ominfo.staff_original.ui.upload_pod.model.FetchPendingListViewModel;
 import com.ominfo.staff_original.ui.upload_pod.model.GetVehicleViewModel;
 import com.ominfo.staff_original.ui.upload_pod.model.PdsGcListForPodViewModel;
@@ -90,7 +93,18 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
              return (T) new FetchPendingListViewModel(service);
          }else  if (modelClass.isAssignableFrom(PdsGcListForPodViewModel.class)) {
              return (T) new PdsGcListForPodViewModel(service);
+         }else  if (modelClass.isAssignableFrom(UserRightsViewModel.class)) {
+             return (T) new UserRightsViewModel(service);
          }
+         else  if (modelClass.isAssignableFrom(FetchGDSPendingListViewModel.class)) {
+             return (T) new FetchGDSPendingListViewModel(service);
+         }
+         else  if (modelClass.isAssignableFrom(GdsGcListForPodViewModel.class)) {
+             return (T) new GdsGcListForPodViewModel(service);
+         }
+
+
+
 
          throw new IllegalArgumentException("Unknown class name");
     }

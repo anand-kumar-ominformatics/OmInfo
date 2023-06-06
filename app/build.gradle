@@ -9,10 +9,10 @@ android {
 
     defaultConfig {
         applicationId "com.ominfo.staff_original"
-        minSdk 29
+        minSdk 21
         targetSdk 33
-        versionCode 18 //change in constant file also
-        versionName "1.4"
+        versionCode 25 //change in constant file also
+        versionName "2.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         javaCompileOptions {
             annotationProcessorOptions {

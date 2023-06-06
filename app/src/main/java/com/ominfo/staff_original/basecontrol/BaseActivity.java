@@ -176,7 +176,6 @@ public class BaseActivity extends AppCompatActivity implements ServiceCallBackIn
                         item1.setGcNo(null);
                         item1.setUploadDate(null);
 
-
                         Gson gson = new Gson();
                         String bodyInStringFormat = gson.toJson(item1);
 

@@ -6,6 +6,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import com.ominfo.staff_original.ui.dashboard.model.AttendanceDaysTable;
+import com.ominfo.staff_original.ui.dashboard.model.GetUserRightsResult;
 import com.ominfo.staff_original.ui.login.model.LoginResultTable;
 import com.ominfo.staff_original.ui.login.model.LoginTable;
 import com.ominfo.staff_original.ui.upload_pod.model.UploadPodRequest;
@@ -53,6 +54,29 @@ public interface DBDAO {
 
     default void insertOrUpdate(UploadPodRequest item) {
         List<UploadPodRequest> itemsFromDB = getItemByGcId(item.getGcId());
+        if (itemsFromDB.isEmpty())
+        {
+            insert(item);
+        }
+    }
+
+
+
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insert(GetUserRightsResult getUserRightsResult);
+
+    @Query("DELETE from user_rights WHERE App_Button_Name= :id ")
+    void deleteUserRightByButtonName(String id);
+
+    @Query("SELECT * from user_rights WHERE id= :buttonId ")
+    List<GetUserRightsResult> getItemByButtonId(String buttonId);
+
+    @Query("SELECT * FROM user_rights")
+    List<GetUserRightsResult> getUserRightsList();
+
+    default void insertOrUpdate(GetUserRightsResult item) {
+        List<GetUserRightsResult> itemsFromDB = getItemByButtonId(item.getAppButtonID());
         if (itemsFromDB.isEmpty())
         {
             insert(item);

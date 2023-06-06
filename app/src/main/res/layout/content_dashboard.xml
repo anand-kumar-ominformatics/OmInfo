@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,13 +16,14 @@
 
         <include layout="@layout/content_collapse_dashboard_header" />
 
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+<!--        <androidx.core.widget.NestedScrollView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:fillViewport="true"-->
+<!--            app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
 
             <RelativeLayout
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 android:id="@+id/layMain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -170,6 +172,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/searchLayoutMain"
                     android:orientation="vertical"
                     android:layout_below="@+id/cardOne"
                     android:layout_width="match_parent"
@@ -178,14 +181,12 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:clipChildren="false"
-                        android:layout_marginTop="@dimen/_10dp"
+                        android:layout_marginTop="@dimen/_7dp"
                         android:clipToPadding="false"
                         android:elevation="@dimen/_12dp"
                         app:cardCornerRadius="@dimen/_10dp"
-                        app:cardElevation="@dimen/_3dp"
-                        >
+                        app:cardElevation="@dimen/_3dp">
 
                         <RelativeLayout
                             android:id="@+id/searchLayout"
@@ -235,349 +236,344 @@
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
 
-                    <androidx.appcompat.widget.LinearLayoutCompat
+
+
+                    <GridView
+                        android:layout_marginTop="@dimen/_7dp"
+                        android:layout_below="@+id/searchLayoutMain"
+                        android:id="@+id/gridView"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/searchLayout"
-                        android:layout_marginTop="@dimen/_12dp"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
+                        android:layout_height="match_parent"
+                        android:numColumns="2" />
 
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/cardKataChithi"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/_3dp"
-                            android:layout_marginRight="8dp"
-                            android:layout_marginBottom="@dimen/_3dp"
-                            android:layout_weight="1"
-                            android:clipChildren="false"
-                            android:clipToPadding="false"
-                            android:elevation="@dimen/_12dp"
-                            app:cardCornerRadius="@dimen/_15dp"
-                            app:cardElevation="@dimen/_3dp"
-                            >
+<!--                    <androidx.appcompat.widget.LinearLayoutCompat-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_below="@+id/searchLayout"-->
+<!--                        android:layout_marginTop="@dimen/_12dp"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        android:weightSum="2">-->
 
-                            <androidx.appcompat.widget.LinearLayoutCompat
-                                android:id="@+id/layKataChithi"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/white"
-                                android:orientation="vertical"
-                                android:paddingVertical="@dimen/_50dp"
-                                >
+<!--                        <androidx.cardview.widget.CardView-->
+<!--                            android:id="@+id/cardKataChithi"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginLeft="@dimen/_3dp"-->
+<!--                            android:layout_marginRight="8dp"-->
+<!--                            android:layout_marginBottom="@dimen/_3dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:clipChildren="false"-->
+<!--                            android:clipToPadding="false"-->
+<!--                            android:elevation="@dimen/_12dp"-->
+<!--                            app:cardCornerRadius="@dimen/_15dp"-->
+<!--                            app:cardElevation="@dimen/_3dp"-->
+<!--                            >-->
 
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="@dimen/_50dp"
-                                    android:layout_height="@dimen/_50dp"
-                                    android:layout_centerVertical="true"
-                                    android:layout_gravity="center"
-                                    android:layout_weight="1"
-                                    android:src="@drawable/ic_kata_chitti"
-                                    />
+<!--                            <androidx.appcompat.widget.LinearLayoutCompat-->
+<!--                                android:id="@+id/layKataChithi"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="match_parent"-->
+<!--                                android:background="@color/white"-->
+<!--                                android:orientation="vertical"-->
+<!--                                android:paddingVertical="@dimen/_50dp"-->
+<!--                                >-->
 
-                                <androidx.appcompat.widget.AppCompatTextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_marginTop="@dimen/_6dp"
-                                    android:fontFamily="@font/gilroy_semibold"
-                                    android:text="Kanta Chitthi"
-                                    android:textColor="@color/back_text_colour"
-                                    android:textSize="@dimen/_14sp"
-                                    />
+<!--                                <androidx.appcompat.widget.AppCompatImageView-->
+<!--                                    android:layout_width="@dimen/_50dp"-->
+<!--                                    android:layout_height="@dimen/_50dp"-->
+<!--                                    android:layout_centerVertical="true"-->
+<!--                                    android:layout_gravity="center"-->
+<!--                                    android:layout_weight="1"-->
+<!--                                    android:src="@drawable/ic_kata_chitti"-->
+<!--                                    />-->
 
-
-                            </androidx.appcompat.widget.LinearLayoutCompat>
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginRight="@dimen/_3dp"
-                            android:layout_marginBottom="@dimen/_3dp"
-                            android:layout_weight="1"
-                            android:clipChildren="false"
-                            android:clipToPadding="false"
-                            android:elevation="@dimen/_12dp"
-                            app:cardCornerRadius="@dimen/_15dp"
-                            app:cardElevation="@dimen/_3dp"
-                            >
-
-                            <androidx.appcompat.widget.LinearLayoutCompat
-                                android:id="@+id/layAdvanceToDriver"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/white"
-                                android:orientation="vertical"
-                                android:paddingVertical="@dimen/_50dp"
-                                >
-
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="@dimen/_50dp"
-                                    android:layout_height="@dimen/_50dp"
-                                    android:layout_centerVertical="true"
-                                    android:layout_gravity="center"
-                                    android:layout_weight="1"
-                                    android:src="@drawable/ic_payment_to_drive" />
-
-                                <androidx.appcompat.widget.AppCompatTextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_marginTop="@dimen/_6dp"
-                                    android:fontFamily="@font/gilroy_semibold"
-                                    android:text="Advance to Driver"
-                                    android:textColor="@color/back_text_colour"
-                                    android:textSize="@dimen/_14sp" />
+<!--                                <androidx.appcompat.widget.AppCompatTextView-->
+<!--                                    android:layout_width="wrap_content"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_gravity="center"-->
+<!--                                    android:layout_marginTop="@dimen/_6dp"-->
+<!--                                    android:fontFamily="@font/gilroy_semibold"-->
+<!--                                    android:text="Kanta Chitthi"-->
+<!--                                    android:textColor="@color/back_text_colour"-->
+<!--                                    android:textSize="@dimen/_14sp"-->
+<!--                                    />-->
 
 
-                            </androidx.appcompat.widget.LinearLayoutCompat>
-                        </androidx.cardview.widget.CardView>
+<!--                            </androidx.appcompat.widget.LinearLayoutCompat>-->
+<!--                        </androidx.cardview.widget.CardView>-->
 
-                    </androidx.appcompat.widget.LinearLayoutCompat>
+<!--                        <androidx.cardview.widget.CardView-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginLeft="8dp"-->
+<!--                            android:layout_marginRight="@dimen/_3dp"-->
+<!--                            android:layout_marginBottom="@dimen/_3dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:clipChildren="false"-->
+<!--                            android:clipToPadding="false"-->
+<!--                            android:elevation="@dimen/_12dp"-->
+<!--                            app:cardCornerRadius="@dimen/_15dp"-->
+<!--                            app:cardElevation="@dimen/_3dp"-->
+<!--                            >-->
 
+<!--                            <androidx.appcompat.widget.LinearLayoutCompat-->
+<!--                                android:id="@+id/layAdvanceToDriver"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="match_parent"-->
+<!--                                android:background="@color/white"-->
+<!--                                android:orientation="vertical"-->
+<!--                                android:paddingVertical="@dimen/_50dp"-->
+<!--                                >-->
 
+<!--                                <androidx.appcompat.widget.AppCompatImageView-->
+<!--                                    android:layout_width="@dimen/_50dp"-->
+<!--                                    android:layout_height="@dimen/_50dp"-->
+<!--                                    android:layout_centerVertical="true"-->
+<!--                                    android:layout_gravity="center"-->
+<!--                                    android:layout_weight="1"-->
+<!--                                    android:src="@drawable/ic_payment_to_drive" />-->
 
-
-
-
-
-
-
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/layCardTwo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/layCardOne"
-                        android:layout_marginTop="@dimen/_12dp"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/cardLoading"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/_3dp"
-                            android:layout_marginRight="8dp"
-                            android:layout_marginBottom="@dimen/_3dp"
-                            android:layout_weight="1"
-                            android:clipChildren="false"
-                            android:clipToPadding="false"
-                            android:elevation="@dimen/_12dp"
-                            app:cardCornerRadius="@dimen/_15dp"
-                            app:cardElevation="@dimen/_3dp"
-                            >
-
-                            <androidx.appcompat.widget.LinearLayoutCompat
-                                android:id="@+id/layLoading"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/white"
-                                android:orientation="vertical"
-                                android:paddingVertical="@dimen/_50dp"
-                                >
-
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="75dp"
-                                    android:layout_height="65dp"
-                                    android:layout_centerVertical="true"
-                                    android:layout_gravity="center"
-                                    android:layout_weight="1"
-                                    android:src="@drawable/ic_loading_list"
-                                    />
-
-                                <androidx.appcompat.widget.AppCompatTextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_marginTop="@dimen/_6dp"
-                                    android:fontFamily="@font/gilroy_semibold"
-                                    android:text="Loading List"
-                                    android:textColor="@color/back_text_colour"
-                                    android:textSize="@dimen/_14sp"
-                                    />
+<!--                                <androidx.appcompat.widget.AppCompatTextView-->
+<!--                                    android:layout_width="wrap_content"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_gravity="center"-->
+<!--                                    android:layout_marginTop="@dimen/_6dp"-->
+<!--                                    android:fontFamily="@font/gilroy_semibold"-->
+<!--                                    android:text="Advance to Driver"-->
+<!--                                    android:textColor="@color/back_text_colour"-->
+<!--                                    android:textSize="@dimen/_14sp" />-->
 
 
-                            </androidx.appcompat.widget.LinearLayoutCompat>
-                        </androidx.cardview.widget.CardView>
+<!--                            </androidx.appcompat.widget.LinearLayoutCompat>-->
+<!--                        </androidx.cardview.widget.CardView>-->
 
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/layAttList"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginRight="@dimen/_3dp"
-                            android:layout_marginBottom="@dimen/_3dp"
-                            android:layout_weight="1"
-                            android:visibility="visible"
-                            android:clipChildren="false"
-                            android:clipToPadding="false"
-                            android:elevation="@dimen/_12dp"
-                            app:cardCornerRadius="@dimen/_15dp"
-                            app:cardElevation="@dimen/_3dp"
-                            >
-
-                            <androidx.appcompat.widget.LinearLayoutCompat
-                                android:id="@+id/layAttendance"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/white"
-                                android:orientation="vertical"
-                                android:paddingVertical="@dimen/_50dp"
-                                >
-
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="@dimen/_55dp"
-                                    android:layout_height="@dimen/_50dp"
-                                    android:layout_marginTop="@dimen/_15dp"
-                                    android:layout_gravity="center"
-                                    android:src="@drawable/ic_attendance_list" />
-
-                                <androidx.appcompat.widget.AppCompatTextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_marginTop="@dimen/_6dp"
-                                    android:fontFamily="@font/gilroy_semibold"
-                                    android:text="Attendance List"
-                                    android:textColor="@color/back_text_colour"
-                                    android:textSize="@dimen/_14sp" />
-
-
-                            </androidx.appcompat.widget.LinearLayoutCompat>
-                        </androidx.cardview.widget.CardView>
-
-                    </androidx.appcompat.widget.LinearLayoutCompat>
+<!--                    </androidx.appcompat.widget.LinearLayoutCompat>-->
 
 
 
 
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_12dp"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/layUploadPOD"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/_3dp"
-                            android:layout_marginRight="8dp"
-                            android:layout_marginBottom="@dimen/_3dp"
-                            android:layout_weight="1"
-                            android:clipChildren="false"
-                            android:clipToPadding="false"
-                            android:elevation="@dimen/_12dp"
-                            app:cardCornerRadius="@dimen/_15dp"
-                            app:cardElevation="@dimen/_3dp"
-                            >
-
-                            <androidx.appcompat.widget.LinearLayoutCompat
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/white"
-                                android:orientation="vertical"
-                                android:paddingVertical="@dimen/_50dp"
-                                >
-
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="75dp"
-                                    android:layout_height="65dp"
-                                    android:layout_centerVertical="true"
-                                    android:layout_gravity="center"
-                                    android:layout_weight="1"
-                                    android:src="@drawable/upload_pod"
-                                    />
-
-                                <androidx.appcompat.widget.AppCompatTextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_marginTop="@dimen/_6dp"
-                                    android:fontFamily="@font/gilroy_semibold"
-                                    android:text="PDS pending POD"
-                                    android:textColor="@color/back_text_colour"
-                                    android:textSize="@dimen/_14sp" />
-
-
-                            </androidx.appcompat.widget.LinearLayoutCompat>
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/layUploadPDS"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/_3dp"
-                            android:layout_marginRight="8dp"
-                            android:layout_marginBottom="@dimen/_3dp"
-                            android:layout_weight="1"
-                            android:visibility="invisible"
-                            android:clipChildren="false"
-                            android:clipToPadding="false"
-                            android:elevation="@dimen/_12dp"
-                            app:cardCornerRadius="@dimen/_15dp"
-                            app:cardElevation="@dimen/_3dp"
-                            >
-
-                            <androidx.appcompat.widget.LinearLayoutCompat
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/white"
-                                android:orientation="vertical"
-                                android:paddingVertical="@dimen/_50dp"
-                                >
-
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="75dp"
-                                    android:layout_height="65dp"
-                                    android:layout_centerVertical="true"
-                                    android:layout_gravity="center"
-                                    android:layout_weight="1"
-                                    android:src="@drawable/upload_pod"
-                                    />
-
-                                <androidx.appcompat.widget.AppCompatTextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_marginTop="@dimen/_6dp"
-                                    android:fontFamily="@font/gilroy_semibold"
-                                    android:text="Upload PDS"
-                                    android:textColor="@color/back_text_colour"
-                                    android:textSize="@dimen/_14sp" />
-
-
-                            </androidx.appcompat.widget.LinearLayoutCompat>
-                        </androidx.cardview.widget.CardView>
-
-                    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
 
+
+
+<!--                    <androidx.appcompat.widget.LinearLayoutCompat-->
+<!--                        android:id="@+id/layCardTwo"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_below="@+id/layCardOne"-->
+<!--                        android:layout_marginTop="@dimen/_12dp"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        android:weightSum="2">-->
+
+<!--                        <androidx.cardview.widget.CardView-->
+<!--                            android:id="@+id/cardLoading"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginLeft="@dimen/_3dp"-->
+<!--                            android:layout_marginRight="8dp"-->
+<!--                            android:layout_marginBottom="@dimen/_3dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:clipChildren="false"-->
+<!--                            android:clipToPadding="false"-->
+<!--                            android:elevation="@dimen/_12dp"-->
+<!--                            app:cardCornerRadius="@dimen/_15dp"-->
+<!--                            app:cardElevation="@dimen/_3dp"-->
+<!--                            >-->
+
+<!--                            <androidx.appcompat.widget.LinearLayoutCompat-->
+<!--                                android:id="@+id/layLoading"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="match_parent"-->
+<!--                                android:background="@color/white"-->
+<!--                                android:orientation="vertical"-->
+<!--                                android:paddingVertical="@dimen/_50dp"-->
+<!--                                >-->
+
+<!--                                <androidx.appcompat.widget.AppCompatImageView-->
+<!--                                    android:layout_width="75dp"-->
+<!--                                    android:layout_height="65dp"-->
+<!--                                    android:layout_centerVertical="true"-->
+<!--                                    android:layout_gravity="center"-->
+<!--                                    android:layout_weight="1"-->
+<!--                                    android:src="@drawable/ic_loading_list"-->
+<!--                                    />-->
+
+<!--                                <androidx.appcompat.widget.AppCompatTextView-->
+<!--                                    android:layout_width="wrap_content"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_gravity="center"-->
+<!--                                    android:layout_marginTop="@dimen/_6dp"-->
+<!--                                    android:fontFamily="@font/gilroy_semibold"-->
+<!--                                    android:text="Loading List"-->
+<!--                                    android:textColor="@color/back_text_colour"-->
+<!--                                    android:textSize="@dimen/_14sp"-->
+<!--                                    />-->
+
+
+<!--                            </androidx.appcompat.widget.LinearLayoutCompat>-->
+<!--                        </androidx.cardview.widget.CardView>-->
+
+<!--                        <androidx.cardview.widget.CardView-->
+<!--                            android:id="@+id/layAttList"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginLeft="8dp"-->
+<!--                            android:layout_marginRight="@dimen/_3dp"-->
+<!--                            android:layout_marginBottom="@dimen/_3dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:visibility="visible"-->
+<!--                            android:clipChildren="false"-->
+<!--                            android:clipToPadding="false"-->
+<!--                            android:elevation="@dimen/_12dp"-->
+<!--                            app:cardCornerRadius="@dimen/_15dp"-->
+<!--                            app:cardElevation="@dimen/_3dp"-->
+<!--                            >-->
+
+<!--                            <androidx.appcompat.widget.LinearLayoutCompat-->
+<!--                                android:id="@+id/layAttendance"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="match_parent"-->
+<!--                                android:background="@color/white"-->
+<!--                                android:orientation="vertical"-->
+<!--                                android:paddingVertical="@dimen/_50dp"-->
+<!--                                >-->
+
+<!--                                <androidx.appcompat.widget.AppCompatImageView-->
+<!--                                    android:layout_width="@dimen/_55dp"-->
+<!--                                    android:layout_height="@dimen/_50dp"-->
+<!--                                    android:layout_marginTop="@dimen/_15dp"-->
+<!--                                    android:layout_gravity="center"-->
+<!--                                    android:src="@drawable/ic_attendance_list" />-->
+
+<!--                                <androidx.appcompat.widget.AppCompatTextView-->
+<!--                                    android:layout_width="wrap_content"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_gravity="center"-->
+<!--                                    android:layout_marginTop="@dimen/_6dp"-->
+<!--                                    android:fontFamily="@font/gilroy_semibold"-->
+<!--                                    android:text="Attendance List"-->
+<!--                                    android:textColor="@color/back_text_colour"-->
+<!--                                    android:textSize="@dimen/_14sp" />-->
+
+
+<!--                            </androidx.appcompat.widget.LinearLayoutCompat>-->
+<!--                        </androidx.cardview.widget.CardView>-->
+
+<!--                    </androidx.appcompat.widget.LinearLayoutCompat>-->
+
+
+
+
+<!--                    <androidx.appcompat.widget.LinearLayoutCompat-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="@dimen/_12dp"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        android:weightSum="2">-->
+
+<!--                        <androidx.cardview.widget.CardView-->
+<!--                            android:id="@+id/layUploadPOD"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginLeft="@dimen/_3dp"-->
+<!--                            android:layout_marginRight="8dp"-->
+<!--                            android:layout_marginBottom="@dimen/_3dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:clipChildren="false"-->
+<!--                            android:clipToPadding="false"-->
+<!--                            android:elevation="@dimen/_12dp"-->
+<!--                            app:cardCornerRadius="@dimen/_15dp"-->
+<!--                            app:cardElevation="@dimen/_3dp"-->
+<!--                            >-->
+
+<!--                            <androidx.appcompat.widget.LinearLayoutCompat-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="match_parent"-->
+<!--                                android:background="@color/white"-->
+<!--                                android:orientation="vertical"-->
+<!--                                android:paddingVertical="@dimen/_50dp"-->
+<!--                                >-->
+
+<!--                                <androidx.appcompat.widget.AppCompatImageView-->
+<!--                                    android:layout_width="75dp"-->
+<!--                                    android:layout_height="65dp"-->
+<!--                                    android:layout_centerVertical="true"-->
+<!--                                    android:layout_gravity="center"-->
+<!--                                    android:layout_weight="1"-->
+<!--                                    android:src="@drawable/upload_pod"-->
+<!--                                    />-->
+
+<!--                                <androidx.appcompat.widget.AppCompatTextView-->
+<!--                                    android:layout_width="wrap_content"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_gravity="center"-->
+<!--                                    android:layout_marginTop="@dimen/_6dp"-->
+<!--                                    android:fontFamily="@font/gilroy_semibold"-->
+<!--                                    android:text="PDS pending POD"-->
+<!--                                    android:textColor="@color/back_text_colour"-->
+<!--                                    android:textSize="@dimen/_14sp" />-->
+
+
+<!--                            </androidx.appcompat.widget.LinearLayoutCompat>-->
+<!--                        </androidx.cardview.widget.CardView>-->
+
+<!--                        <androidx.cardview.widget.CardView-->
+<!--                            android:id="@+id/layUploadPDS"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginLeft="@dimen/_3dp"-->
+<!--                            android:layout_marginRight="8dp"-->
+<!--                            android:layout_marginBottom="@dimen/_3dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:visibility="invisible"-->
+<!--                            android:clipChildren="false"-->
+<!--                            android:clipToPadding="false"-->
+<!--                            android:elevation="@dimen/_12dp"-->
+<!--                            app:cardCornerRadius="@dimen/_15dp"-->
+<!--                            app:cardElevation="@dimen/_3dp"-->
+<!--                            >-->
+
+<!--                            <androidx.appcompat.widget.LinearLayoutCompat-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="match_parent"-->
+<!--                                android:background="@color/white"-->
+<!--                                android:orientation="vertical"-->
+<!--                                android:paddingVertical="@dimen/_50dp"-->
+<!--                                >-->
+
+<!--                                <androidx.appcompat.widget.AppCompatImageView-->
+<!--                                    android:layout_width="75dp"-->
+<!--                                    android:layout_height="65dp"-->
+<!--                                    android:layout_centerVertical="true"-->
+<!--                                    android:layout_gravity="center"-->
+<!--                                    android:layout_weight="1"-->
+<!--                                    android:src="@drawable/upload_pod"-->
+<!--                                    />-->
+
+<!--                                <androidx.appcompat.widget.AppCompatTextView-->
+<!--                                    android:layout_width="wrap_content"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_gravity="center"-->
+<!--                                    android:layout_marginTop="@dimen/_6dp"-->
+<!--                                    android:fontFamily="@font/gilroy_semibold"-->
+<!--                                    android:text="Upload PDS"-->
+<!--                                    android:textColor="@color/back_text_colour"-->
+<!--                                    android:textSize="@dimen/_14sp" />-->
+
+
+<!--                            </androidx.appcompat.widget.LinearLayoutCompat>-->
+<!--                        </androidx.cardview.widget.CardView>-->
+
+<!--                    </androidx.appcompat.widget.LinearLayoutCompat>-->
 
 
 
                 </LinearLayout>
 
-
-
-
-
-
-
-
-
-
-
-
-
             </RelativeLayout>
 
-        </androidx.core.widget.NestedScrollView>
+<!--        </androidx.core.widget.NestedScrollView>-->
 
         <com.ominfo.staff_original.ui.attendance.ripple_effect.RippleBackground
             android:id="@+id/rippleEffect"
@@ -607,6 +603,7 @@
                 android:layout_centerInParent="true"
                 android:contentDescription="TODO"
                 android:foreground="@drawable/attention_gradient_blue"
+                android:visibility="gone"
                 app:fabSize="normal"
                 app:maxImageSize="@dimen/_16dp" />
         </com.ominfo.staff_original.ui.attendance.ripple_effect.RippleBackground>

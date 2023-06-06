@@ -4,7 +4,9 @@ import com.ominfo.staff_original.util.LogUtil;
 
 public class DynamicAPIPath {
 
-    public static final String BASE = "index_with_DRapp.php";//"index_with_DRapp_test.php"; //"index_with_DRapp_live.php";
+    public static final String BASE = "index_with_DRapp_live.php";//"index_with_DRapp_test.php"; //"index_with_DRapp_live.php";
+
+    public static final String POST_GET_VERSION= "index_omtrucking_live.php"+"?action=getAppversion";
 
     public static final String POST_LOGIN = BASE+"?action=login";
 
@@ -12,16 +14,18 @@ public class DynamicAPIPath {
     public static final String POD_SAVE_FOR_LR= BASE;//+"?action=podSaveforLR";
     public static final String POD_SAVE_FOR_LR1 = "podSaveforLR";
 
+    public static final String GET_USER_RIGHTS= BASE+"?action=getUserRights";
+
     public static final String GET_PDS_GC_LIST_FOR_POD= BASE+"?action=getPDSGCListforPOD";
+    public static final String GET_GDS_GC_LIST_FOR_POD= BASE+"?action=podgetGDSgclist";
 
     public static final String GET_PDS_LIST_FOR_POD= BASE+"?action=getPDSListforPOD";
+    public static final String GET_GDS_LIST_FOR_POD= BASE+"?action=podgetGDSlist";
 
     public static final String POST_UPDATE_KEY = BASE+"?action=updatemobilekey";
     public static final String POST_FETCH_KATA_CHITTI = BASE+"?action=getKantaChitthi";
     public static final String POST_FETCH_LOADING_LIST = BASE+"?action=getLoadingList";
     public static final String POST_SINGLE_USER = BASE+"?action=get_single_employee_list";
-
-    public static final String POST_GET_VERSION= "index_omtrucking.php"+"?action=getAppversion";
 
     public static final String POST_SAVE_KATA_CHITTI = BASE;
     public static final String POST_CALENDER_HOLIDAY=BASE+"?action=getall_attendance_report";
