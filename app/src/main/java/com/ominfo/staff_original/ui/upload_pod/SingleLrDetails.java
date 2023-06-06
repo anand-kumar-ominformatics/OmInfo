@@ -573,6 +573,7 @@ public class SingleLrDetails extends BaseActivity implements Filterable {
         mDialog.setCancelable(false);
         //mDialog.setCanceledOnTouchOutside(true);
 
+
         AppCompatTextView lrNoValue = mDialog.findViewById(R.id.lrNoValue);
         if( data.getGCNo() !=null && !data.getGCNo().trim().equals("") ) {
             lrNoValue.setText(data.getGCNo());
@@ -595,7 +596,12 @@ public class SingleLrDetails extends BaseActivity implements Filterable {
         AppCompatImageView capturePhoto2 = mDialog.findViewById(R.id.capturePhoto2);
         AppCompatImageView retakePhoto2 = mDialog.findViewById(R.id.retakePhoto2);
 
+        AppCompatButton submitBTN = mDialog.findViewById(R.id.submitButton);
+
         enableCamera( previewView1 );
+
+        boolean isImage1 =false;
+        boolean isImage2 =false;
 
         try{
             String image1Url = data.getPODPhoto1() == null ? "no" : data.getPODPhoto1().toString();
@@ -607,33 +613,58 @@ public class SingleLrDetails extends BaseActivity implements Filterable {
 
                     podImage1.setImageBitmap(bitmap1[0]);
                     setVisiblityLayout( true, frameLayout1,podImage1 );
-                    retakePhoto1.setVisibility(View.VISIBLE);
+
+
+                    retakePhoto1.setVisibility(View.GONE);
+                    retakePhoto2.setVisibility(View.GONE);
+                    capturePhoto1.setVisibility(View.GONE);
+                    submitBTN.setVisibility(View.GONE);
+
                     uploadPodRequest.setPodPhoto1( "data:image/png;base64,"+ AppUtils.convertBitmapToBas64(bitmap1[0]) );
 
                 }else{
+
                     setVisiblityLayout( false, frameLayout1,podImage1 );
+
+
                     capturePhoto1.setVisibility(View.VISIBLE);
                     retakePhoto1.setVisibility(View.VISIBLE);
+
 
                     isOnGoing1Camera[0] = true;
                 }
             }else{
+
+                if( isImage1 || isImage2 ){
+                    capturePhoto1.setVisibility(View.GONE);
+                }else
+                    capturePhoto1.setVisibility(View.VISIBLE);
+
                 retakePhoto1.setVisibility(View.GONE);
-                capturePhoto1.setVisibility(View.VISIBLE);
+
+
+
                 setVisiblityLayout( false, frameLayout1,podImage1 );
             }
         }catch (Exception e){}
 
         try{
             String image2Url = data.getPODPhoto2() == null ? "no" : data.getPODPhoto2().toString();
+
             if( !image2Url.equals("no") ){
                 bitmap2[0] = getBitmapFromURL( image2Url );
 
                 if( bitmap2[0] != null){
+
                     isOnGoing2Camera[0] = false;
                     podImage2.setImageBitmap(bitmap2[0]);
                     setVisiblityLayout( true, frameLayout2,podImage2 );
-                    retakePhoto2.setVisibility(View.VISIBLE);
+
+                    retakePhoto1.setVisibility(View.GONE);
+                    retakePhoto2.setVisibility(View.GONE);
+                    capturePhoto2.setVisibility(View.GONE);
+                    submitBTN.setVisibility(View.GONE);
+
                     uploadPodRequest.setPodPhoto2( "data:image/png;base64,"+ AppUtils.convertBitmapToBas64(bitmap2[0]) );
                 }else{
                     capturePhoto2.setVisibility(View.VISIBLE);
@@ -641,8 +672,16 @@ public class SingleLrDetails extends BaseActivity implements Filterable {
                 }
 
             }else{
+
                 retakePhoto2.setVisibility(View.GONE);
-                capturePhoto2.setVisibility(View.VISIBLE);
+
+                if( isImage1 || isImage2 ){
+                    capturePhoto2.setVisibility(View.GONE);
+                }else
+                    capturePhoto2.setVisibility(View.VISIBLE);
+
+                retakePhoto1.setVisibility(View.GONE);
+
                 setVisiblityLayout( false, frameLayout2,podImage2 );
 
                 if( !isOnGoing1Camera[0]){
@@ -792,7 +831,7 @@ public class SingleLrDetails extends BaseActivity implements Filterable {
         });
 
 
-        AppCompatButton submitBTN = mDialog.findViewById(R.id.submitButton);
+
         submitBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

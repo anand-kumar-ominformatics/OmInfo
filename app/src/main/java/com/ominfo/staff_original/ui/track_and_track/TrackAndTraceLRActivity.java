@@ -23,14 +23,28 @@ import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
+import android.util.Size;
+import android.view.Surface;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.camera.core.Camera;
+import androidx.camera.core.CameraSelector;
+import androidx.camera.core.ImageAnalysis;
+import androidx.camera.core.ImageProxy;
+import androidx.camera.core.Preview;
+import androidx.camera.lifecycle.ProcessCameraProvider;
+import androidx.camera.view.PreviewView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,6 +54,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.common.util.concurrent.ListenableFuture;
 import com.google.gson.Gson;
 import com.ominfo.staff_original.R;
 import com.ominfo.staff_original.basecontrol.BaseActivity;
@@ -59,6 +74,7 @@ import com.ominfo.staff_original.ui.dashboard.model.TrackAndTraceLRResult;
 import com.ominfo.staff_original.ui.login.model.LoginResultTable;
 import com.ominfo.staff_original.ui.track_and_track.adapters.CrossingAdapter;
 import com.ominfo.staff_original.ui.track_and_track.adapters.DeliveryAdapter;
+import com.ominfo.staff_original.ui.upload_pod.model.GetPdsGcListForPodResult;
 import com.ominfo.staff_original.ui.upload_pod.model.PodSaveOfLRViewModel;
 import com.ominfo.staff_original.ui.upload_pod.model.UploadPodRequest;
 import com.ominfo.staff_original.ui.upload_pod.model.UploadPodResponse;
@@ -88,6 +104,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Random;
+import java.util.concurrent.ExecutionException;
 
 import javax.inject.Inject;
 
@@ -230,6 +247,7 @@ public class TrackAndTraceLRActivity extends BaseActivity {
         setToolbar();
         getIntentDate();
 
+
     }
 
     private void setToolbar(){
@@ -248,11 +266,139 @@ public class TrackAndTraceLRActivity extends BaseActivity {
     }
 
 
-    private void cameraIntent() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent, 0);
+    ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
+
+    ProcessCameraProvider cameraProvider;
+
+    CameraSelector cameraSelector;
+
+    Preview preview;
+
+    public void enableCamera(PreviewView previewView) {
+
+        cameraProviderFuture = ProcessCameraProvider.getInstance( mContext );
+
+        cameraProviderFuture.addListener(() -> {
+            try {
+
+                cameraProvider = cameraProviderFuture.get();
+
+                cameraSelector = new CameraSelector.Builder()
+                        .requireLensFacing(CameraSelector.LENS_FACING_BACK)
+                        .build();
+
+                preview = new Preview.Builder().build();
+                preview.setSurfaceProvider( previewView.getSurfaceProvider() );
+                preview.setTargetRotation(Surface.ROTATION_0);
+
+                Camera camera = cameraProvider.bindToLifecycle((LifecycleOwner)mContext, cameraSelector, preview);
+
+
+
+            } catch ( ExecutionException | InterruptedException e ) {
+                System.out.println("exc : "+e);
+            }
+        }, ContextCompat.getMainExecutor( mContext ));
+
     }
 
+
+    public Dialog showCameraDialog( boolean flag ) {
+
+        final Bitmap[] bitmap = {null};
+
+        final boolean[] isCaptured = {false};
+
+        Dialog mDialog = new Dialog(mContext, R.style.ThemeDialogCustom);
+        mDialog.setContentView(R.layout.activity_my_camera);
+        mDialog.setCancelable(false);
+        //mDialog.setCanceledOnTouchOutside(true);
+
+        AppCompatImageView podImage1 = mDialog.findViewById(R.id.podImage1);
+        FrameLayout frameLayout1 = mDialog.findViewById(R.id.container1);
+        PreviewView previewView1 = mDialog.findViewById(R.id.previewView1);
+        AppCompatImageView capturePhoto1 = mDialog.findViewById(R.id.capturePhoto1);
+        AppCompatImageView retakePhoto1 = mDialog.findViewById(R.id.retakePhoto1);
+
+        enableCamera( previewView1 );
+
+
+        podImage1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showFullImageDialog( bitmap[0] );
+            }
+        });
+
+        capturePhoto1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                try {
+
+                    if( isCaptured[0] ){
+
+                        mDialog.dismiss();
+                        cameraProvider.unbindAll();
+
+                        boolean con1 = uploadPodRequest.getPodPhoto1() != null && !uploadPodRequest.getPodPhoto1().trim().equals("");
+                        boolean con2 = uploadPodRequest.getPodPhoto2() != null && !uploadPodRequest.getPodPhoto2().trim().equals("");
+
+                        if(  con1 && con2 ){
+                            uploadBTN.setVisibility( View.VISIBLE );
+                        }
+
+                    }else{
+
+                        bitmap[0] = previewView1.getBitmap();
+
+                        if( flag ){
+                            imgCamera1.setImageBitmap( bitmap[0] );
+                            uploadPodRequest.setPodPhoto1( "data:image/png;base64,"+AppUtils.convertBitmapToBas64(bitmap[0]) );
+                        }else{
+                            imgCamera2.setImageBitmap( bitmap[0] );
+                            uploadPodRequest.setPodPhoto2( "data:image/png;base64,"+AppUtils.convertBitmapToBas64(bitmap[0]) );
+                        }
+
+                        podImage1.setImageBitmap(bitmap[0]);
+                        retakePhoto1.setVisibility( View.VISIBLE );
+
+                        isCaptured[0] = true;
+
+                        capturePhoto1.setImageDrawable( getResources().getDrawable( R.drawable.correct ) );
+
+                        podImage1.setVisibility(View.VISIBLE);
+                        frameLayout1.setVisibility(View.GONE);
+
+                    }
+
+                }catch (Exception e){}
+            }
+        });
+
+        retakePhoto1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                try {
+
+                    if( isCaptured[0] ){
+
+                        capturePhoto1.setImageDrawable( getResources().getDrawable( R.drawable.ic_camera_with_card ) );
+                        retakePhoto1.setVisibility(View.GONE);
+                        isCaptured[0] = false;
+                        podImage1.setVisibility(View.GONE);
+                        frameLayout1.setVisibility(View.VISIBLE);
+                    }
+
+                }catch (Exception e){}
+            }
+        });
+
+        mDialog.show();
+
+        return  mDialog;
+    }
 
 
     /*
@@ -279,55 +425,6 @@ public class TrackAndTraceLRActivity extends BaseActivity {
     }
 
 
-    int flag = 1;
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-
-            if (requestCode == 0  && resultCode == Activity.RESULT_OK) {
-                if (resultCode == RESULT_OK) {
-                    try {
-
-                        Bitmap mImgaeBitmap = (Bitmap) data.getExtras().get("data");
-
-
-                            if( flag == 1) {
-                                bitmap1 = mImgaeBitmap;
-                                imgCamera1.setImageBitmap(mImgaeBitmap);
-                            }
-                            else if( flag == 2 ) {
-                                bitmap2 = mImgaeBitmap;
-                                imgCamera2.setImageBitmap(mImgaeBitmap);
-                            }
-
-
-                            if( flag == 1 ){
-                                uploadPodRequest.setPodPhoto1( "data:image/png;base64,"+ AppUtils.convertBitmapToBas64( mImgaeBitmap) );
-                            }else if( flag == 2 ){
-                                uploadPodRequest.setPodPhoto2( "data:image/png;base64,"+AppUtils.convertBitmapToBas64( mImgaeBitmap)  );
-                            }
-
-
-                            boolean con1 = uploadPodRequest.getPodPhoto1() != null && !uploadPodRequest.getPodPhoto1().trim().equals("");
-                            boolean con2 = uploadPodRequest.getPodPhoto2() != null && !uploadPodRequest.getPodPhoto2().trim().equals("");
-
-                            if(  con1 && con2 ){
-                                uploadBTN.setVisibility( View.VISIBLE );
-                            }
-
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }
-    }
-
-
-
-
 
     @Override
     public void onResume() {
@@ -344,7 +441,7 @@ public class TrackAndTraceLRActivity extends BaseActivity {
             uploadPodRequest.setId( Integer.parseInt( searchText) );
 
             if ( mTrackAndTraceResult.getGeneralDetails().get(0).getCurrentStatus().toUpperCase().equals("DELIVERED") ) {
-                deliveryStatus.setTextColor( getColor(R.color.green_dark));
+                deliveryStatus.setTextColor( getResources().getColor(R.color.green_dark));
             } else{
                 deliveryStatus.setTextColor(Color.BLACK);
             }
@@ -420,23 +517,36 @@ public class TrackAndTraceLRActivity extends BaseActivity {
             public void run() {
 
                 if( image1Url != null && !image1Url.trim().equals("") ){
+
                     bitmap1 = getBitmapFromURL( image1Url );
                     if( bitmap1 != null){
                         imgCamera1.setImageBitmap( bitmap1 );
-                        changeBTN1.setVisibility(View.VISIBLE);
+
+                        changeBTN1.setVisibility(View.GONE);
+                        changeBTN2.setVisibility(View.GONE);
+                        uploadBTN.setVisibility( View.GONE );
+
                         uploadPodRequest.setPodPhoto1( "data:image/png;base64,"+AppUtils.convertBitmapToBas64( bitmap1) );
                     }else{
                         imgCamera1.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.ic_camera_with_card));
                     }
                 }else{
+
                     changeBTN1.setVisibility(View.GONE);
+
                 }
 
                 if( image2Url != null && !image2Url.trim().equals("") ){
+
                     bitmap2 = getBitmapFromURL( image2Url );
                     if( bitmap2 != null){
+
                         imgCamera2.setImageBitmap( bitmap2 );
-                        changeBTN2.setVisibility(View.VISIBLE);
+
+                        changeBTN1.setVisibility(View.GONE);
+                        changeBTN2.setVisibility(View.GONE);
+                        uploadBTN.setVisibility( View.GONE );
+
                         uploadPodRequest.setPodPhoto2( "data:image/png;base64,"+AppUtils.convertBitmapToBas64( bitmap2) );
                     }else{
                         imgCamera2.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.ic_camera_with_card));
@@ -626,29 +736,25 @@ public class TrackAndTraceLRActivity extends BaseActivity {
 
             case R.id.imgCamera1: {
                 if( uploadPodRequest.getPodPhoto1() == null  ) {
-                    flag = 1;
-                    requestPermission();
+                    requestPermission( true );
                 }else
                     showFullImageDialog( bitmap1 );
             }break;
 
             case R.id.imgCamera2: {
                 if( uploadPodRequest.getPodPhoto2() ==null   ) {
-                    flag = 2;
-                    requestPermission();
+                    requestPermission( false );
                 }else
                     showFullImageDialog( bitmap2 );
             }break;
 
 
             case R.id.changeBTN1: {
-                flag = 1;
-                requestPermission();
+                requestPermission ( true );
             }break;
 
             case R.id.changeBTN2: {
-                flag = 2;
-                requestPermission();
+                requestPermission( false );
             }break;
 
 
@@ -730,7 +836,7 @@ public class TrackAndTraceLRActivity extends BaseActivity {
 
 
     //request camera and storage permission
-    private void requestPermission() {
+    private void requestPermission( boolean flag ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (mContext.checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
                     || mContext.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
@@ -745,10 +851,10 @@ public class TrackAndTraceLRActivity extends BaseActivity {
                         1000);
 
             } else {
-                cameraIntent();
+                showCameraDialog( flag );
             }
         } else {
-            cameraIntent();
+            showCameraDialog( flag );
         }
     }
 
@@ -757,12 +863,12 @@ public class TrackAndTraceLRActivity extends BaseActivity {
     private boolean isValidDetails() {
 
         if( uploadPodRequest.getPodPhoto1() == null || uploadPodRequest.getPodPhoto1().trim().equals("") ){
-            LogUtil.printToastMSG( getApplicationContext(),"Please Capture Image-1");
+            LogUtil.printToastMSG( mContext,"Please Capture Image-1");
             return false;
         }
 
         if( uploadPodRequest.getPodPhoto2() == null || uploadPodRequest.getPodPhoto2().trim().equals("") ){
-            LogUtil.printToastMSG( getApplicationContext(),"Please Capture Image-2");
+            LogUtil.printToastMSG( mContext,"Please Capture Image-2");
             return false;
         }
 

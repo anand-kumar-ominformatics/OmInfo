@@ -32,6 +32,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -59,6 +60,9 @@ import com.ominfo.staff_original.network.ApiResponse;
 import com.ominfo.staff_original.network.DynamicAPIPath;
 import com.ominfo.staff_original.network.NetworkCheck;
 import com.ominfo.staff_original.network.ViewModelFactory;
+import com.ominfo.staff_original.ui.dashboard.adapter.DashboardBtnAdapter;
+import com.ominfo.staff_original.ui.dashboard.model.GetUserRightsResponse;
+import com.ominfo.staff_original.ui.dashboard.model.GetUserRightsResult;
 import com.ominfo.staff_original.ui.dashboard.model.TrackAndTraceLRViewModel;
 
 import com.ominfo.staff_original.ui.attendance.StartAttendanceActivity;
@@ -79,12 +83,15 @@ import com.ominfo.staff_original.ui.dashboard.model.SingleEmployeeRequest;
 import com.ominfo.staff_original.ui.dashboard.model.SingleEmployeeResult;
 import com.ominfo.staff_original.ui.dashboard.model.TrackAndTraceLrResponse;
 import com.ominfo.staff_original.ui.dashboard.model.TrackAndTrackLrRequest;
+import com.ominfo.staff_original.ui.dashboard.model.UserRightsRequest;
+import com.ominfo.staff_original.ui.dashboard.model.UserRightsViewModel;
 import com.ominfo.staff_original.ui.driver_hisab.model.DriverHisabModel;
 import com.ominfo.staff_original.ui.kata_chithi.KataChithiActivity;
 import com.ominfo.staff_original.ui.kata_chithi.model.Array6;
 import com.ominfo.staff_original.ui.loading_list.LoadingListActivity;
 import com.ominfo.staff_original.ui.login.model.LoginResultTable;
 import com.ominfo.staff_original.ui.track_and_track.TrackAndTraceLRActivity;
+import com.ominfo.staff_original.ui.upload_gds.SelectetUploadGDSActivity;
 import com.ominfo.staff_original.ui.upload_pod.SelectetUploadPODActivity;
 
 import com.ominfo.staff_original.util.AppUtils;
@@ -98,6 +105,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -155,6 +163,11 @@ public class DashbooardActivity extends BaseActivity implements
     @BindView(R.id.add_attendance)
     FloatingActionButton add_attendance;
 
+    @BindView(R.id.gridView)
+    GridView gridView;
+
+    private UserRightsViewModel userRightsViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -168,6 +181,8 @@ public class DashbooardActivity extends BaseActivity implements
         ButterKnife.bind(this);
         injectAPI();
         init();
+
+        callUserRightsApi();
 
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -190,15 +205,21 @@ public class DashbooardActivity extends BaseActivity implements
 
     private void init() {
         mDb = BaseApplication.getInstance(mContext).getAppDatabase();
+
+
+        mDb.getDbDAO().deletePdsById( 2379831 );
         setToolbar();
         if (!isGPSEnabled(mContext)) {
             requestPermission();
         } else {
             getLocation();
         }
-        rippleEffect.stopRippleAnimation();
-        add_attendance.setVisibility(View.VISIBLE);
-        rippleEffect.setVisibility(View.VISIBLE);
+
+//        rippleEffect.stopRippleAnimation();
+        add_attendance.setVisibility(View.GONE);
+        rippleEffect.setVisibility(View.GONE);
+
+
         callEmployeeListApi();
         LoginResultTable loginResultTable = mDb.getDbDAO().getLoginData();
         if (loginResultTable != null) {
@@ -442,6 +463,7 @@ public class DashbooardActivity extends BaseActivity implements
         }
     }
 
+
     private void injectAPI() {
 
         advToDriverViewModel = ViewModelProviders.of(DashbooardActivity.this, mViewModelFactory).get(AdvToDriverViewModel.class);
@@ -453,8 +475,8 @@ public class DashbooardActivity extends BaseActivity implements
         mTrackAndTraceLRViewModel = ViewModelProviders.of(this, mViewModelFactory).get(TrackAndTraceLRViewModel.class);
         mTrackAndTraceLRViewModel.getResponse().observe(this, apiResponse -> consumeResponse(apiResponse, DynamicAPIPath.TRACK_AND_TRACE_LR));
 
-
-
+        userRightsViewModel = ViewModelProviders.of(DashbooardActivity.this, mViewModelFactory).get(UserRightsViewModel.class);
+        userRightsViewModel.getResponse().observe(this, apiResponse -> consumeResponse(apiResponse, DynamicAPIPath.GET_USER_RIGHTS));
 
 
     }
@@ -463,6 +485,26 @@ public class DashbooardActivity extends BaseActivity implements
         initToolbar(0, mContext, R.id.imgBack, R.id.imgReport, R.id.imgNotify, R.id.imgLogout, R.id.imgCall);
     }
 
+
+    /* Call Api For Vehicle No */
+    private void callUserRightsApi() {
+
+        if (NetworkCheck.isInternetAvailable(DashbooardActivity.this)) {
+            String userK = "617042344";
+            LoginResultTable loginResultTable = mDb.getDbDAO().getLoginData();
+            if (loginResultTable != null) {
+                userK = loginResultTable.getUserKey();
+            }
+            UserRightsRequest mRequest = new UserRightsRequest();
+            mRequest.setUserkey(userK); //6b07b768-926c-49b6-ac1c-89a9d03d4c3b
+            mRequest.setUserId( loginResultTable.getUserID() );
+            Gson gson = new Gson();
+            String bodyInStringFormat = gson.toJson(mRequest);
+            userRightsViewModel.hitUserRightsApi(bodyInStringFormat);
+        } else {
+//            LogUtil.printToastMSG(DashbooardActivity.this, getString(R.string.err_msg_connection_was_refused));
+        }
+    }
 
 
 
@@ -554,8 +596,7 @@ public class DashbooardActivity extends BaseActivity implements
     }
 
     //perform click actions
-    @OnClick({R.id.layKataChithi, R.id.layUploadPOD,R.id.layUploadPDS, R.id.layAdvanceToDriver, R.id.layLoading,R.id.imgSearchLr,
-            R.id.rippleEffect, R.id.layAttList,R.id.clearSearchBTN})
+    @OnClick({R.id.imgSearchLr, R.id.rippleEffect,R.id.clearSearchBTN})
 
     public void onClick(View view) {
         int id = view.getId();
@@ -563,21 +604,21 @@ public class DashbooardActivity extends BaseActivity implements
             case R.id.rippleEffect:
                 launchScreen(mContext, StartAttendanceActivity.class);
                 break;
-            case R.id.layAttList:
-                launchScreen(mContext, CalenderActivity.class);
-                break;
-            case R.id.layKataChithi:
-                launchScreen(mContext, KataChithiActivity.class);
-                break;
-            case R.id.layLoading:
-                launchScreen(mContext, LoadingListActivity.class);
-                break;
-            case R.id.layUploadPOD:
-                launchScreen(mContext, SelectetUploadPODActivity.class);
-                break;
-            case R.id.layAdvanceToDriver:
-                callAdvToDriverApi();
-                break;
+//            case R.id.layAttList:
+//                launchScreen(mContext, CalenderActivity.class);
+//                break;
+//            case R.id.layKataChithi:
+//                launchScreen(mContext, KataChithiActivity.class);
+//                break;
+//            case R.id.layLoading:
+//                launchScreen(mContext, LoadingListActivity.class);
+//                break;
+//            case R.id.layUploadPOD:
+//                launchScreen(mContext, SelectetUploadPODActivity.class);
+//                break;
+//            case R.id.layAdvanceToDriver:
+//                callAdvToDriverApi();
+//                break;
             case R.id.imgSearchLr:
                 if( !etSearch.getText().toString().trim().equals("") )
                     callTrackAndTraceLRApi();
@@ -788,6 +829,106 @@ public class DashbooardActivity extends BaseActivity implements
 
 
 
+                    if (tag.equalsIgnoreCase(DynamicAPIPath.GET_USER_RIGHTS)) {
+                        try {
+                            GetUserRightsResponse responseModel = new Gson().fromJson(apiResponse.data.toString(), GetUserRightsResponse.class);
+
+                            System.out.println( apiResponse.data +" user rights");
+
+                            if (responseModel != null && responseModel.getStatus().equals("1")) {
+
+                                if (responseModel.getResult() != null && responseModel.getResult().size() > 0) {
+
+                                    List<GetUserRightsResult> getUserRightsResultListFinal = responseModel.getResult();
+                                    for( GetUserRightsResult getUserRightsResult : getUserRightsResultListFinal ){
+                                        getUserRightsResult.setId( Integer.parseInt( getUserRightsResult.getAppButtonID() ) );
+                                        mDb.getDbDAO().insert( getUserRightsResult );
+                                    }
+
+
+
+
+
+                                    List<GetUserRightsResult> adapterList1= new ArrayList<>();
+
+                                    String buttonList[] = mContext.getResources().getStringArray(R.array.button_list);
+
+
+                                    List<GetUserRightsResult> adapterList= new ArrayList<>(getUserRightsResultListFinal);
+                                    for( GetUserRightsResult getUserRightsResult : adapterList ){
+
+                                        for( String name : buttonList ){
+                                            if(getUserRightsResult.getAppButtonName().equalsIgnoreCase( name ) ){
+                                                adapterList1.add( getUserRightsResult );
+                                                break;
+                                            }
+                                        }
+
+
+                                    }
+
+                                    Iterator<GetUserRightsResult> itr = adapterList1.iterator();
+
+                                    while(itr.hasNext()){
+
+                                        GetUserRightsResult getUserRightsResult = itr.next();
+                                        if(getUserRightsResult.getCanRead().equals("0")){
+                                            itr.remove();
+                                        }
+
+                                    }
+
+
+                                    DashboardBtnAdapter adapter = new DashboardBtnAdapter(getApplicationContext(), adapterList1, new DashboardBtnAdapter.ItemClickListener() {
+                                        @Override
+                                        public void itemClick(String btnName) {
+
+                                                switch ( btnName ){
+                                                    case "Kanta Chithi":{
+                                                        launchScreen(mContext, KataChithiActivity.class);
+                                                        break;
+                                                    }
+                                                    case "Advance to Driver":{
+                                                        callAdvToDriverApi();
+                                                        break;
+                                                    }
+                                                    case "Loading List":{
+                                                        launchScreen(mContext, LoadingListActivity.class);
+                                                        break;
+                                                    }
+                                                    case "Attendance List":{
+                                                        launchScreen(mContext, CalenderActivity.class);
+                                                        break;
+                                                    }
+                                                    case "PDS Pending POD":{
+                                                        launchScreen(mContext, SelectetUploadPODActivity.class);
+                                                        break;
+                                                    }case "GDS Pending POD":{
+                                                        launchScreen(mContext, SelectetUploadGDSActivity.class);
+                                                        break;
+                                                    }  default:{
+
+                                                    }
+
+                                            }
+
+                                        }
+                                    } );
+                                    gridView.setAdapter(adapter);
+
+                                }
+
+                            }else{
+
+                            }
+
+
+                        }
+
+                        catch (Exception e){
+                            System.out.println(e);
+                        }
+                    }
 
 
                     try {
@@ -864,7 +1005,7 @@ public class DashbooardActivity extends BaseActivity implements
                                 mDb.getDbDAO().insertAttendanceData(daysTable);
                                 //AttendanceDaysTable loginAttendance = mDb.getDbDAO().getTestAttendanceData(); //check
                                 if (dayData != null) {
-                                    setAttendanceFloatingButtons(dayData);
+//                                    setAttendanceFloatingButtons(dayData);
                                 }
                             }
                         }
@@ -880,9 +1021,12 @@ public class DashbooardActivity extends BaseActivity implements
         }
     }
     private void setAttendanceFloatingButtons(DayData loginDays) {
-        rippleEffect.stopRippleAnimation();
-        add_attendance.setVisibility(View.VISIBLE);
-        rippleEffect.setVisibility(View.VISIBLE);
+
+
+//        rippleEffect.stopRippleAnimation();
+//        add_attendance.setVisibility(View.VISIBLE);
+//        rippleEffect.setVisibility(View.VISIBLE);
+//
         Boolean iSTimer = SharedPref.getInstance(mContext).read(SharedPrefKey.CHECK_IN_BUTTON, false);
         //if(!iSTimer){
         List<AttendanceList> attendanceListList = new ArrayList<>();
@@ -930,8 +1074,10 @@ public class DashbooardActivity extends BaseActivity implements
                 } catch (Exception e) {
                 }
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-                add_attendance.setVisibility(View.VISIBLE);
-                rippleEffect.setVisibility(View.VISIBLE);
+
+//                add_attendance.setVisibility(View.VISIBLE);
+//                rippleEffect.setVisibility(View.VISIBLE);
+
                 try {
                     Date date1 = sdf.parse(startDate);
                     LogUtil.printLog("att_start ", startDate);
@@ -966,10 +1112,14 @@ public class DashbooardActivity extends BaseActivity implements
                     // if (!iSActiveChill) {
                     if ((date1.compareTo(date2) == -1) || (dateEnd.compareTo(date2) == 1) || (date1.compareTo(date5) == 1) || iSActiveChill){
                         // Outputs -1 as date1 is before date2
-                        rippleEffect.stopRippleAnimation();
-                        add_attendance.setVisibility(View.VISIBLE);
-                        rippleEffect.setVisibility(View.VISIBLE);
+
+//                        rippleEffect.stopRippleAnimation();
+//                        add_attendance.setVisibility(View.VISIBLE);
+//                        rippleEffect.setVisibility(View.VISIBLE);
                         //rippleEffect.startRippleAnimation(2, mContext);
+
+
+
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             add_attendance.setForeground(mContext.getDrawable(R.drawable.attention_gradient_blue));
                         }

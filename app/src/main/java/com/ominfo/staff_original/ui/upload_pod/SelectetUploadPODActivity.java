@@ -17,8 +17,8 @@ import com.ominfo.staff_original.R;
 import com.ominfo.staff_original.basecontrol.BaseActivity;
 import com.ominfo.staff_original.basecontrol.BaseApplication;
 import com.ominfo.staff_original.database.AppDatabase;
-import com.ominfo.staff_original.ui.upload_pod.fragment.PendingForUpload;
-import com.ominfo.staff_original.ui.upload_pod.fragment.PendingFragment;
+import com.ominfo.staff_original.ui.upload_pod.fragment.PendingPDSForUpload;
+import com.ominfo.staff_original.ui.upload_pod.fragment.PendingPDSFragment;
 
 import java.io.File;
 
@@ -95,7 +95,7 @@ public class SelectetUploadPODActivity extends BaseActivity {
         secondTab.setText("Pending for Upload"); // set the Text for the second Tab
         //secondTab.setIcon(R.drawable.ic_record_ticket); // set an icon for the second tab
         tabLayout.addTab(secondTab); // add  the tab  in the TabLayout
-        Fragment fragment = new PendingFragment();
+        Fragment fragment = new PendingPDSFragment();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.simpleFrameLayout, fragment);
@@ -116,13 +116,13 @@ public class SelectetUploadPODActivity extends BaseActivity {
                 Fragment fragment = null;
                 switch (tab.getPosition()) {
                     case 0:
-                        fragment = new PendingFragment();
+                        fragment = new PendingPDSFragment();
                         break;
                     case 1:
-                        fragment = new PendingForUpload();
+                        fragment = new PendingPDSForUpload();
                         break;
                     default:
-                        fragment = new PendingFragment();
+                        fragment = new PendingPDSFragment();
                         break;
                 }
                 FragmentManager fm = getSupportFragmentManager();

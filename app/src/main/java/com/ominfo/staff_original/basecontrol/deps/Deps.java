@@ -13,10 +13,14 @@ import com.ominfo.staff_original.ui.loading_list.LoadingListActivity;
 import com.ominfo.staff_original.ui.login.LoginActivity;
 import com.ominfo.staff_original.ui.track_and_track.TrackAndTraceLRActivity;
 
+import com.ominfo.staff_original.ui.upload_gds.SelectetUploadGDSActivity;
+import com.ominfo.staff_original.ui.upload_gds.SingleGDSDetails;
+import com.ominfo.staff_original.ui.upload_gds.fragment.PendingGDSForUpload;
+import com.ominfo.staff_original.ui.upload_gds.fragment.PendingGDSFragment;
 import com.ominfo.staff_original.ui.upload_pod.SelectetUploadPODActivity;
 import com.ominfo.staff_original.ui.upload_pod.SingleLrDetails;
-import com.ominfo.staff_original.ui.upload_pod.fragment.PendingForUpload;
-import com.ominfo.staff_original.ui.upload_pod.fragment.PendingFragment;
+import com.ominfo.staff_original.ui.upload_pod.fragment.PendingPDSForUpload;
+import com.ominfo.staff_original.ui.upload_pod.fragment.PendingPDSFragment;
 
 import javax.inject.Singleton;
 
@@ -44,7 +48,7 @@ public interface Deps
 
     void inject(SplashActivity splashActivity);
 
-    void inject(PendingFragment pendingFragment);
+    void inject(PendingPDSFragment pendingPDSFragment);
 
     void inject(SelectetUploadPODActivity selectetUploadPODActivity);
 
@@ -52,8 +56,11 @@ public interface Deps
 
     void inject(SingleLrDetails trackAndTraceLRActivity);
 
-    void inject(PendingForUpload pendingForUpload);
+    void inject(PendingPDSForUpload pendingPDSForUpload);
 
+    void inject(PendingGDSFragment pendingGDSFragment);
+
+    void inject(SingleGDSDetails singleGDSDetails);
 
 
 }
